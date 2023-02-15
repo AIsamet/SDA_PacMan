@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/Users/isamet/Nextcloud/Cours Inge/C Algo et structure de données/SDA_PacMan/build",
+  "command": "/usr/bin/clang -DSDL_MAIN_HANDLED -I/opt/homebrew/include -isystem /opt/homebrew/include/SDL2 -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -o CMakeFiles/Pacman.dir/pacman.c.o -c \"/Users/isamet/Nextcloud/Cours Inge/C Algo et structure de données/SDA_PacMan/pacman.c\"",
+  "file": "/Users/isamet/Nextcloud/Cours Inge/C Algo et structure de données/SDA_PacMan/pacman.c"
+}
+]

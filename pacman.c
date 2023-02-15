@@ -14,7 +14,15 @@ SDL_Rect ghost_r = { 3,123, 16,16 };
 SDL_Rect ghost_l = { 37,123, 16,16 }; 
 SDL_Rect ghost_d = { 105,123, 16,16 }; 
 SDL_Rect ghost_u = { 71,123, 16,16 }; 
-SDL_Rect ghost = { 34,34, 32,32 };     // ici scale x2
+SDL_Rect ghost = { 32,36, 32,32 };     // ici scale x2
+
+SDL_Rect pacman_eat = { 34,89, 14,16 };
+SDL_Rect pacman_closed = { 3,89, 16,16 };
+SDL_Rect pacman_r = { 20,89, 16,16 }; 
+SDL_Rect pacman_l = { 20,89, 16,16 }; 
+SDL_Rect pacman_d = { 20,89, 16,16 }; 
+SDL_Rect pacman_u = { 20,89, 16,16 }; 
+SDL_Rect pacman = { 32,36, 32,32 };
 
 int count;
 
@@ -35,6 +43,8 @@ void draw()
     SDL_BlitScaled(plancheSprites, &src_bg, win_surf, &bg);
 
     SDL_Rect* ghost_in = NULL;
+    SDL_Rect* pacman_in = &(pacman_r);
+
     switch (count/128)
     {
         case 0:
@@ -60,8 +70,17 @@ void draw()
     if ((count/4)%2)
         ghost_in2.x += 17;
         
+    SDL_Rect pacman_in2 = *pacman_in;
+    if ((count/4)%2)
+        pacman_in2 = pacman_eat;
+        if (count%4 == 0)
+            pacman_in2 = pacman_closed;
+
     SDL_SetColorKey(plancheSprites, true, 0);
+
 	SDL_BlitScaled(plancheSprites, &ghost_in2, win_surf, &ghost);
+
+    SDL_BlitScaled(plancheSprites, &pacman_in2, win_surf, &pacman);
 
 }
 
