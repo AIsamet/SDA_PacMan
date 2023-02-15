@@ -7,7 +7,7 @@ SDL_Window* pWindow = NULL;
 SDL_Surface* win_surf = NULL;
 SDL_Surface* plancheSprites = NULL;
 
-SDL_Rect src_bg = { 200,3, 168,216 }; // x,y, w,h (0,0) en haut a gauche
+SDL_Rect src_bg = { 201,3, 167,216 }; // x,y, w,h (0,0) en haut a gauche
 SDL_Rect bg = { 4,4, 672,864 }; // ici scale x4
 
 SDL_Rect ghost_r = { 3,123, 16,16 }; 
@@ -20,7 +20,7 @@ int count;
 
 void init()
 {
-	pWindow = SDL_CreateWindow("PacMan", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 700, 900, SDL_WINDOW_SHOWN);
+	pWindow = SDL_CreateWindow("PacMan", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 672, 864, SDL_WINDOW_SHOWN);
 	win_surf = SDL_GetWindowSurface(pWindow);
 
 	plancheSprites = SDL_LoadBMP("./pacman_sprites.bmp");
