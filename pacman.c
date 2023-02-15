@@ -75,8 +75,11 @@ int main(int argc, char** argv)
        	return 1;
     }
 
-	init();
-    
+    while (true)
+    {
+        init();
+    }
+        
 	bool quit = false;
 	while (!quit)
 	{
