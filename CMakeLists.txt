@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 3.7)
 
 project(Pacman LANGUAGES C)
+file(GLOB SOURCES "*.c")
 
 find_package(SDL2 REQUIRED)
 
 add_executable(${PROJECT_NAME} "")
-target_sources(${PROJECT_NAME} PRIVATE pacman.c)
+target_sources(${PROJECT_NAME} PRIVATE ${SOURCES})
 target_include_directories(${PROJECT_NAME} PRIVATE ${SDL2_INCLUDE_DIRS})
 target_compile_definitions(${PROJECT_NAME} PRIVATE "SDL_MAIN_HANDLED")
 target_link_libraries(${PROJECT_NAME} PRIVATE ${SDL2_LIBRARIES})

@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Pacman.dir/input.c.o"
+  "CMakeFiles/Pacman.dir/input.c.o.d"
   "CMakeFiles/Pacman.dir/pacman.c.o"
   "CMakeFiles/Pacman.dir/pacman.c.o.d"
   "Pacman"

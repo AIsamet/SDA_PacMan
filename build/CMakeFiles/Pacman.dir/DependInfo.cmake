@@ -8,7 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/isamet/Nextcloud/Cours Inge/C Algo et structure de données/SDA_PacMan/pacman.c" "CMakeFiles/Pacman.dir/pacman.c.o" "gcc" "CMakeFiles/Pacman.dir/pacman.c.o.d"
+  "/home/joe/.local/share/Trash/files/SDA_PacMan/input.c" "CMakeFiles/Pacman.dir/input.c.o" "gcc" "CMakeFiles/Pacman.dir/input.c.o.d"
+  "/home/joe/.local/share/Trash/files/SDA_PacMan/pacman.c" "CMakeFiles/Pacman.dir/pacman.c.o" "gcc" "CMakeFiles/Pacman.dir/pacman.c.o.d"
   )
 
 # Targets to which this target links.
