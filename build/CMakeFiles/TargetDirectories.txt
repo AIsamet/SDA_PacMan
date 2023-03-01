@@ -1,3 +1,0 @@
-/home/joe/.local/share/Trash/files/SDA_PacMan/build/CMakeFiles/Pacman.dir
-/home/joe/.local/share/Trash/files/SDA_PacMan/build/CMakeFiles/edit_cache.dir
-/home/joe/.local/share/Trash/files/SDA_PacMan/build/CMakeFiles/rebuild_cache.dir
