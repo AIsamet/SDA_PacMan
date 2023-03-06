@@ -1,8 +1,3 @@
-#include <SDL.h>
-
-#include <stdio.h>
-#include <stdbool.h>
-
 #include "input.h"
 
 SDL_Window* pWindow = NULL;
@@ -87,7 +82,6 @@ void draw()
 }
 
 
-
 int main(int argc, char** argv)
 {
     if (SDL_Init(SDL_INIT_VIDEO) != 0 )
@@ -112,19 +106,8 @@ int main(int argc, char** argv)
 			default: break;
 			}
 		}
-        int nbk;
-        const Uint8* keys = SDL_GetKeyboardState(&nbk);
-        if (keys[SDL_SCANCODE_ESCAPE])
-            quit = true;
-        if (keys[SDL_SCANCODE_LEFT])
-            puts("LEFT");
-        if (keys[SDL_SCANCODE_RIGHT])
-            puts("RIGHT");
-        if (keys[SDL_SCANCODE_UP])
-            puts("UP");
-        if (keys[SDL_SCANCODE_DOWN])
-            puts("DOWN");
 
+        input(&pacman);
 		draw();
 
         SDL_Delay(20); // ~50 fps use SDL_GetTicks64() pour plus de precision
