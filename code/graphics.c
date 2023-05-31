@@ -43,6 +43,7 @@ void initSDL()
 void initGraphics(){
     initSDL();
     initWindow();
+    graphicsHandler();
 }
 
 void animateGhosts()
@@ -88,8 +89,6 @@ void animateGhosts()
     SDL_BlitScaled(plancheSprites, &ghost_in2, win_surf, &ghost);
 }
 
-
-
 void draw()
 {
     // Set the color key for transparent pixels in the sprite sheet
@@ -102,19 +101,27 @@ void draw()
     animateGhosts();
 }
 
-
-void runGraphics(){
-    initGraphics();
-}
-
 void destroyGraphics()
 {
     // Free the sprite sheet surface
     SDL_FreeSurface(plancheSprites);
 
-    // Destroy the game window
+    // Destroy the window
     SDL_DestroyWindow(pWindow);
 
     // Quit SDL
     SDL_Quit();
+}
+
+void graphicsHandler(){
+    bool quit = false;
+
+    while (!quit) {
+        handleInput(&quit);
+        draw();
+        SDL_Delay(20);
+        SDL_UpdateWindowSurface(pWindow);
+    }
+
+    destroyGraphics();
 }

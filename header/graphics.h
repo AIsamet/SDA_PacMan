@@ -24,7 +24,7 @@ void initSDL();
 void initGraphics();
 void draw();
 void animateGhost();
-void runGraphics();
+void graphicsHandler();
 void destroyGraphics();
 
 #endif
