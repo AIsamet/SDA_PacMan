@@ -19,9 +19,9 @@
 ## Graphismes et affichage  
 | Objectif                                                | Statut |
 |---------------------------------------------------------|:------:|
-| Affichage des graphismes du jeu                         |  ❌      |
+| Affichage des graphismes du jeu                         |  ✅      |
 | Animation des personnages                               |  ❌      |
-| Intégration des décors et des murs du labyrinthe         |  ❌      |
+| Intégration des décors et des murs du labyrinthe         |  ✅      |
 | Gestion des animations pour les états spéciaux de Pac-Man |  ❌      |
 
 <br>

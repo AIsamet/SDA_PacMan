@@ -1,6 +1,9 @@
 #ifndef INPUT_H
 #define INPUT_H
+#include <SDL2/SDL.h>
+#include <stdbool.h>
 
-// Déclarations des fonctions pour la gestion de l'entrée
+
+void handleInput(bool* quit);
 
 #endif
