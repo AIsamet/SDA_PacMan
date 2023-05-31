@@ -14,6 +14,17 @@ SDL_Rect ghost_l = { 37,123, 16,16 };
 SDL_Rect ghost_d = { 105,123, 16,16 }; 
 SDL_Rect ghost_u = { 71,123, 16,16 }; 
 SDL_Rect ghost = { 34,34, 32,32 };     // ici scale x2
+
+SDL_Rect pacman_spawn = { 20,89, 15,16 };
+SDL_Rect pacman_eat = { 34,89, 14,16 };
+SDL_Rect pacman_closed = { 3,89, 16,16 };
+SDL_Rect pacman_r = { 20,89, 15,16 }; 
+SDL_Rect pacman_l = { 47,89, 15,16 }; 
+SDL_Rect pacman_d = { 109,90, 16,15 }; 
+SDL_Rect pacman_u = { 75,90, 16,15 }; 
+SDL_Rect pacman = { 32,36, 32,32 };
+SDL_Rect* pacman_in = &pacman_spawn;
+
 int count;
 
 
@@ -89,7 +100,7 @@ void animateGhosts()
     SDL_BlitScaled(plancheSprites, &ghost_in2, win_surf, &ghost);
 }
 
-void draw()
+void draw() 
 {
     // Set the color key for transparent pixels in the sprite sheet
     SDL_SetColorKey(plancheSprites, false, 0);
@@ -99,6 +110,9 @@ void draw()
 
     // Animate and draw the ghosts
     animateGhosts();
+
+    // Draw Pac-Man at its current position
+    SDL_BlitScaled(plancheSprites, pacman_in, win_surf, &pacman);
 }
 
 void destroyGraphics()
@@ -117,7 +131,7 @@ void graphicsHandler(){
     bool quit = false;
 
     while (!quit) {
-        handleInput(&quit);
+        inputHandler(&quit, pacman_in);
         draw();
         SDL_Delay(20);
         SDL_UpdateWindowSurface(pWindow);

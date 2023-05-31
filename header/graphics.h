@@ -16,6 +16,17 @@ extern SDL_Rect ghost_l;
 extern SDL_Rect ghost_d;
 extern SDL_Rect ghost_u;
 extern SDL_Rect ghost;
+
+extern SDL_Rect pacman_spawn;
+extern SDL_Rect pacman_eat;
+extern SDL_Rect pacman_closed;
+extern SDL_Rect pacman_r;
+extern SDL_Rect pacman_l;
+extern SDL_Rect pacman_d;
+extern SDL_Rect pacman_u;
+extern SDL_Rect pacman;
+extern SDL_Rect* pacman_in;
+
 extern int count;
 
 // Graphics functions

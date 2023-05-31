@@ -3,12 +3,13 @@
 #include <SDL2/SDL.h>
 #include <stdbool.h>
 #include "graphics.h"
-#include "input.h"
 
 
 void initGame();
 void updateGame();
 void renderGame();
 void handleInputGame();
+
+
 
 #endif
