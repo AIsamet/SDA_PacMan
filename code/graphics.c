@@ -140,7 +140,7 @@ void graphicsHandler(){
     destroyGraphics();
 }
 
-bool isPacmanInMapLimits(SDL_Rect* pacman_in, int x, int y){
+bool isPacmanInMapLimits(int x, int y){
     int new_x = pacman.x + x;
     int new_y = pacman.y + y;
 
@@ -159,28 +159,28 @@ bool isPacmanInMapLimits(SDL_Rect* pacman_in, int x, int y){
 
 
 void movePacmanLeft(SDL_Rect** pacman_in) {
-    if(isPacmanInMapLimits(*pacman_in, -4, 0)){
+    if(isPacmanInMapLimits(-4, 0)){
         pacman.x -= 4;
         *pacman_in = &pacman_l;
     }
 }
 
 void movePacmanRight(SDL_Rect** pacman_in) {
-    if(isPacmanInMapLimits(*pacman_in, 4, 0)){
+    if(isPacmanInMapLimits(4, 0)){
         pacman.x += 4;
         *pacman_in = &pacman_r;
     }
 }
 
 void movePacmanUp(SDL_Rect** pacman_in) {
-    if(isPacmanInMapLimits(*pacman_in, 0, -4)){
+    if(isPacmanInMapLimits(0, -4)){
         pacman.y -= 4;
         *pacman_in = &pacman_u;
     }
 }
 
 void movePacmanDown(SDL_Rect** pacman_in) {
-    if(isPacmanInMapLimits(*pacman_in, 0, 4)){
+    if(isPacmanInMapLimits(0, 4)){
         pacman.y += 4;
         *pacman_in = &pacman_d;
     }
