@@ -131,7 +131,7 @@ void graphicsHandler(){
     bool quit = false;
 
     while (!quit) {
-        inputHandler(&quit, pacman_in);
+        inputHandler(&quit, &pacman_in);
         draw();
         SDL_Delay(20);
         SDL_UpdateWindowSurface(pWindow);
@@ -158,26 +158,30 @@ bool isPacmanInMapLimits(SDL_Rect* pacman_in, int x, int y){
 }
 
 
-void movePacmanLeft(SDL_Rect* pacman_in) {
-    if(isPacmanInMapLimits(pacman_in, -4, 0)){
+void movePacmanLeft(SDL_Rect** pacman_in) {
+    if(isPacmanInMapLimits(*pacman_in, -4, 0)){
         pacman.x -= 4;
+        *pacman_in = &pacman_l;
     }
 }
 
-void movePacmanRight(SDL_Rect* pacman_in) {
-    if(isPacmanInMapLimits(pacman_in, 4, 0)){
+void movePacmanRight(SDL_Rect** pacman_in) {
+    if(isPacmanInMapLimits(*pacman_in, 4, 0)){
         pacman.x += 4;
+        *pacman_in = &pacman_r;
     }
 }
 
-void movePacmanUp(SDL_Rect* pacman_in) {
-    if(isPacmanInMapLimits(pacman_in, 0, -4)){
+void movePacmanUp(SDL_Rect** pacman_in) {
+    if(isPacmanInMapLimits(*pacman_in, 0, -4)){
         pacman.y -= 4;
+        *pacman_in = &pacman_u;
     }
 }
 
-void movePacmanDown(SDL_Rect* pacman_in) {
-    if(isPacmanInMapLimits(pacman_in, 0, 4)){
+void movePacmanDown(SDL_Rect** pacman_in) {
+    if(isPacmanInMapLimits(*pacman_in, 0, 4)){
         pacman.y += 4;
+        *pacman_in = &pacman_d;
     }
 }

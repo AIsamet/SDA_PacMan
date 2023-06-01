@@ -13,7 +13,7 @@ void checkExitEvent(bool* quit, SDL_Event* event) {
     }
 }
 
-void checkKeyboardEvent(bool* quit, SDL_Rect* pacman_in) {
+void checkKeyboardEvent(bool* quit, SDL_Rect** pacman_in) {
     int nbKeys;
     const Uint8* keyboardState = SDL_GetKeyboardState(&nbKeys);
     if (keyboardState[SDL_SCANCODE_ESCAPE]) {
@@ -33,7 +33,7 @@ void checkKeyboardEvent(bool* quit, SDL_Rect* pacman_in) {
     }
 }
 
-void inputHandler(bool* quit, SDL_Rect* pacman_in) {
+void inputHandler(bool* quit, SDL_Rect** pacman_in) {
     SDL_Event event;
     checkExitEvent(quit, &event);
     checkKeyboardEvent(quit, pacman_in);

@@ -5,9 +5,9 @@
 #include "graphics.h"
 
 
-void inputHandler(bool* quit, SDL_Rect* pacman_in);
+void inputHandler(bool* quit, SDL_Rect** pacman_in);
 void checkExitEvent(bool* quit, SDL_Event* event);
-void checkKeyboardEvent(bool* quit, SDL_Rect* pacman_in);
+void checkKeyboardEvent(bool* quit, SDL_Rect** pacman_in);
 
 
 #endif

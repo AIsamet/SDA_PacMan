@@ -37,10 +37,10 @@ void draw();
 void animateGhost();
 void graphicsHandler();
 void destroyGraphics();
-void movePacmanLeft(SDL_Rect* pacman_in);
-void movePacmanRight(SDL_Rect* pacman_in);
-void movePacmanUp(SDL_Rect* pacman_in);
-void movePacmanDown(SDL_Rect* pacman_in);
+void movePacmanLeft(SDL_Rect** pacman_in);
+void movePacmanRight(SDL_Rect** pacman_in);
+void movePacmanUp(SDL_Rect** pacman_in);
+void movePacmanDown(SDL_Rect** pacman_in);
 bool isPacmanInMapLimits(SDL_Rect* pacman_in, int x, int y);
 
 #endif
