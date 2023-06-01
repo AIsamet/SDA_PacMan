@@ -1,16 +1,30 @@
+# Pour compiler et exécuter le projet
+
+mkdir build
+
+cd build
+
+cmake ..
+
+make
+
+./PacMan
+
+<br>
+
 # Objectifs du projet
 
 ## Gameplay et fonctionnalités principales
 | Objectif                                                | Statut |
 |---------------------------------------------------------|:------:|
 | Gestion de la logique du jeu                            |  ❌      |
-| Déplacement du personnage principal (Pac-Man)            |  ❌      |
+| Déplacement du personnage principal (Pac-Man)            |  ✅      |
 | Déplacement des fantômes                                |  ❌      |
-| Détection des collisions                                |  ❌      |
+| Détection des collisions                                |  ➖      |
 | Système de score                                        |  ❌      |
 | Gestion des niveaux                                     |  ❌      |
 | Génération aléatoire des niveaux ou niveaux prédéfinis   |  ❌      |
-| Intégration des sprites et des éléments du jeu           |  ❌      |
+| Intégration des sprites et des éléments du jeu           |  ✅      |
 | Gestion des power-ups                                   |  ❌      |
 | Intégration d'un système de vies pour Pac-Man           |  ❌      |
 
