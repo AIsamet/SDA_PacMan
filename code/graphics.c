@@ -28,6 +28,14 @@ SDL_Rect* pacman_in = &pacman_spawn;
 int count;
 
 
+void initSDL()
+{
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+        fprintf(stderr, "Echec de l'initialisation de la SDL %s", SDL_GetError());
+        return;
+    }
+}
+
 void initWindow()
 {
 	// Create the game window with the title "PacMan" and the specified dimensions
@@ -41,14 +49,6 @@ void initWindow()
 
 	// Initialize the count variable to 0 (used for animation)
 	count = 0;
-}
-
-void initSDL()
-{
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-        fprintf(stderr, "Echec de l'initialisation de la SDL %s", SDL_GetError());
-        return;
-    }
 }
 
 void initGraphics(){
@@ -138,4 +138,20 @@ void graphicsHandler(){
     }
 
     destroyGraphics();
+}
+
+void movePacmanLeft(SDL_Rect* pacman_in) {
+    pacman.x -= 4;
+}
+
+void movePacmanRight(SDL_Rect* pacman_in) {
+    pacman.x += 4;
+}
+
+void movePacmanUp(SDL_Rect* pacman_in) {
+    pacman.y -= 4;
+}
+
+void movePacmanDown(SDL_Rect* pacman_in) {
+    pacman.y += 4;
 }
