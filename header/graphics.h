@@ -28,6 +28,7 @@ extern SDL_Rect pacman;
 extern SDL_Rect* pacman_in;
 
 extern int count;
+extern bool isPacmanEating;
 
 // Graphics functions
 void initWindow();
@@ -35,6 +36,7 @@ void initSDL();
 void initGraphics();
 void draw();
 void animateGhost();
+void animatePacman();
 void graphicsHandler();
 void destroyGraphics();
 void movePacmanLeft(SDL_Rect** pacman_in);

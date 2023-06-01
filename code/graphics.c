@@ -16,7 +16,10 @@ SDL_Rect ghost_u = { 71,123, 16,16 };
 SDL_Rect ghost = { 32,36, 32,32 };     // ici scale x2
 
 SDL_Rect pacman_spawn = { 20,89, 15,16 };
-SDL_Rect pacman_eat = { 34,89, 14,16 };
+SDL_Rect pacman_eat_r = { 35,89, 11,16 };
+SDL_Rect pacman_eat_l = { 63,89, 11,16 };
+SDL_Rect pacman_eat_d = { 126,93, 16,13 };
+SDL_Rect pacman_eat_u = { 92,93, 16,13 };
 SDL_Rect pacman_closed = { 3,89, 16,16 };
 SDL_Rect pacman_r = { 20,89, 15,16 }; 
 SDL_Rect pacman_l = { 47,89, 15,16 }; 
@@ -26,7 +29,7 @@ SDL_Rect pacman = { 32,36, 32,32 };
 SDL_Rect* pacman_in = &pacman_spawn;
 
 int count;
-
+bool isPacmanEating = false;
 
 void initSDL()
 {
@@ -100,6 +103,17 @@ void animateGhosts()
     SDL_BlitScaled(plancheSprites, &ghost_in2, win_surf, &ghost);
 }
 
+void animatePacman(){
+    if ((count / 4) % 2 == 0)
+    {
+        isPacmanEating = true;
+    }
+    else
+    {
+        isPacmanEating = false;
+    }
+}
+
 void draw() 
 {
     // Set the color key for transparent pixels in the sprite sheet
@@ -111,8 +125,35 @@ void draw()
     // Animate and draw the ghosts
     animateGhosts();
 
-    // Draw Pac-Man at its current position
-    SDL_BlitScaled(plancheSprites, pacman_in, win_surf, &pacman);
+    animatePacman();
+
+    if (isPacmanEating)
+    {
+        if (pacman_in == &pacman_r)
+        {
+            SDL_BlitScaled(plancheSprites, &pacman_eat_r, win_surf, &pacman);
+        }
+        else if(pacman_in == &pacman_l)
+        {
+            SDL_BlitScaled(plancheSprites, &pacman_eat_l, win_surf, &pacman);
+        }
+        else if(pacman_in == &pacman_d)
+        {
+            SDL_BlitScaled(plancheSprites, &pacman_eat_d, win_surf, &pacman);
+        }
+        else if(pacman_in == &pacman_u)
+        {
+            SDL_BlitScaled(plancheSprites, &pacman_eat_u, win_surf, &pacman);
+        }
+        else
+        {
+            SDL_BlitScaled(plancheSprites, &pacman_eat_r, win_surf, &pacman);
+        }
+    }
+    else
+    {
+        SDL_BlitScaled(plancheSprites, pacman_in, win_surf, &pacman);
+    }
 }
 
 void destroyGraphics()
