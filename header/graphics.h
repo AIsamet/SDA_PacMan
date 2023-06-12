@@ -43,6 +43,8 @@ void movePacmanLeft(SDL_Rect** pacman_in);
 void movePacmanRight(SDL_Rect** pacman_in);
 void movePacmanUp(SDL_Rect** pacman_in);
 void movePacmanDown(SDL_Rect** pacman_in);
+bool isWallPixel(Uint32 pixel);
+Uint32 getPixelColor(SDL_Surface* surface, int x, int y);
 bool isPacmanInMapLimits(int x, int y);
 
 #endif
