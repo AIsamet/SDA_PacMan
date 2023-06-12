@@ -4,24 +4,21 @@ project(Pacman LANGUAGES C)
 
 find_package(SDL2 REQUIRED)
 
-add_executable(${PROJECT_NAME} "")
-target_sources(${PROJECT_NAME} PRIVATE
-    code/main.c
-    code/game.c
-    code/graphics.c
-    code/input.c
-    code/score.c
-    code/level.c
-)
+file(GLOB_RECURSE SOURCES "src/*.c")
+file(GLOB_RECURSE HEADERS "header/*.h")
+
+add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+
 target_include_directories(${PROJECT_NAME} PRIVATE
-    ${SDL2_INCLUDE_DIRS}
-    header
-)
+        ${SDL2_INCLUDE_DIRS}
+        header
+        )
+
 target_compile_definitions(${PROJECT_NAME} PRIVATE "SDL_MAIN_HANDLED")
 target_link_libraries(${PROJECT_NAME} PRIVATE ${SDL2_LIBRARIES})
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/pacman_sprites.bmp
-    DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/)
+        DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/)
 
 IF (MSVC)
     set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
