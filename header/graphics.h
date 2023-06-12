@@ -11,6 +11,7 @@ extern SDL_Surface* win_surf;
 extern SDL_Surface* plancheSprites;
 extern SDL_Rect src_bg;
 extern SDL_Rect bg;
+extern int map_array[27][21];
 extern SDL_Rect ghost_r;
 extern SDL_Rect ghost_l;
 extern SDL_Rect ghost_d;
@@ -43,8 +44,6 @@ void movePacmanLeft(SDL_Rect** pacman_in);
 void movePacmanRight(SDL_Rect** pacman_in);
 void movePacmanUp(SDL_Rect** pacman_in);
 void movePacmanDown(SDL_Rect** pacman_in);
-bool isWallPixel(Uint32 pixel);
-Uint32 getPixelColor(SDL_Surface* surface, int x, int y);
 bool isPacmanInMapLimits(int x, int y);
 
 #endif
