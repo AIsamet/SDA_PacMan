@@ -15,7 +15,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
         )
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE "SDL_MAIN_HANDLED")
-target_link_libraries(${PROJECT_NAME} PRIVATE ${SDL2_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${SDL2_LIBRARIES} m)  # Add 'm' for math library
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/pacman_sprites.bmp
         DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/)

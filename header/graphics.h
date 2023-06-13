@@ -2,6 +2,7 @@
 #define GRAPHICS_H
 #include <SDL2/SDL.h>
 #include <stdbool.h>
+#include <math.h>
 #include "input.h"
 
 
@@ -44,7 +45,7 @@ void movePacmanLeft(SDL_Rect** pacman_in);
 void movePacmanRight(SDL_Rect** pacman_in);
 void movePacmanUp(SDL_Rect** pacman_in);
 void movePacmanDown(SDL_Rect** pacman_in);
-bool isPacmanInMapLimits(int x, int y);
-void getCurrentPositionInArray(int* x, int* y); // TEST
+bool isPacmanInMapLimits(double x, double y);
+void getCurrentPositionInArray(double* x, double* y); // TEST
 
 #endif

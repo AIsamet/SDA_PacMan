@@ -63,7 +63,7 @@ SDL_Rect pacman_r = { 20,89, 15,16 };
 SDL_Rect pacman_l = { 47,89, 15,16 }; 
 SDL_Rect pacman_d = { 109,90, 16,15 }; 
 SDL_Rect pacman_u = { 75,90, 16,15 }; 
-SDL_Rect pacman = { 32,36, 32,32 };
+SDL_Rect pacman = { 32,32, 32,32 };
 SDL_Rect* pacman_in = &pacman_spawn;
 
 int count;
@@ -223,27 +223,36 @@ void graphicsHandler(){
     destroyGraphics();
 }
 
-bool isPacmanInMapLimits(int x, int y){
-    int new_x = pacman.x + x;
-    int new_y = pacman.y + y;
-    getCurrentPositionInArray(&new_x, &new_y); // overwrite
+bool isPacmanInMapLimits(double x, double y) {
+    double new_x = pacman.x + x;
+    double new_y = pacman.y + y;
+    getCurrentPositionInArray(&new_x, &new_y); // Overwrite
+    double tolerance = 0.0001; // Adjust the tolerance as needed
 
+    printf("new_x = %f, new_y = %f\n", new_x, new_y);
+    printf("new_x == round(new_x) : %d\n", (fabs(new_x - floor(new_x)) < tolerance));
 
-//    // Check horizontal limits
-//    if (new_x < pacman.w || new_x > (672 - pacman.w*2)) {
-//        return false;
-//    }
-//
-//    // Check vertical limits (+1 to make pacman centered)
-//    if (new_y < pacman.h+1 || new_y > (864 - pacman.h*2)+1) {
-//        return false;
-//    }
-    if(map_array[new_y][new_x] == 1){
+    if (map_array[(int)new_y][(int)new_x] == 1) {
+        printf("new_x = %f, new_y = %f\n", new_x, new_y);
         return false;
+    } else {
+        printf("new_x = %f, new_y = %f\n", new_x, new_y);
+        return true;
     }
-    printf("Position de Pacman : x = %d, y = %d\n", new_x, new_y); // TEST
+
+//    if ((fabs(new_x - floor(new_x)) < tolerance) && (fabs(new_y - floor(new_y)) < tolerance)) {
+//        if (map_array[(int)new_y][(int)new_x] == 1) {
+//            //printf("new_x = %f, new_y = %f\n", new_x, new_y);
+//            return false;
+//        } else {
+//            //printf("new_x = %f, new_y = %f\n", new_x, new_y);
+//            return true;
+//        }
+//    }
+
     return true;
 }
+
 
 
 void movePacmanLeft(SDL_Rect** pacman_in) {
@@ -254,7 +263,7 @@ void movePacmanLeft(SDL_Rect** pacman_in) {
 }
 
 void movePacmanRight(SDL_Rect** pacman_in) {
-    if(isPacmanInMapLimits(4, 0)){
+    if(isPacmanInMapLimits(4 + pacman.w - 1, 0)){
         pacman.x += 4;
         *pacman_in = &pacman_r;
     }
@@ -268,16 +277,16 @@ void movePacmanUp(SDL_Rect** pacman_in) {
 }
 
 void movePacmanDown(SDL_Rect** pacman_in) {
-    if(isPacmanInMapLimits(0, 4)){
+    if(isPacmanInMapLimits(0, 4 + pacman.h - 1)){
         pacman.y += 4;
         *pacman_in = &pacman_d;
     }
 }
 
 // TEST
-void getCurrentPositionInArray(int* x, int* y) {
-    float arrayX = 672/21;
-    float arrayY = 864/27;
+void getCurrentPositionInArray(double* x, double* y) {
+    double arrayX = 672/21;
+    double arrayY = 864/27;
     *x = *x/arrayX;
     *y = *y/arrayY;
 }
