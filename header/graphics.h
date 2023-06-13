@@ -45,6 +45,6 @@ void movePacmanRight(SDL_Rect** pacman_in);
 void movePacmanUp(SDL_Rect** pacman_in);
 void movePacmanDown(SDL_Rect** pacman_in);
 bool isPacmanInMapLimits(int x, int y);
-void getPacManCurrentPosition(int* x, int* y); // TEST
+void getCurrentPositionInArray(int* x, int* y); // TEST
 
 #endif
