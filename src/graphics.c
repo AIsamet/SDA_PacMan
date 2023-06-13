@@ -272,7 +272,9 @@ void movePacmanDown(SDL_Rect** pacman_in) {
 
 // TEST
 void getPacManCurrentPosition(int* x, int* y) {
-    *x = pacman.x;
-    *y = pacman.y;
+    float arrayX = 672/21;
+    float arrayY = 864/27;
+    *x = pacman.x/arrayX;
+    *y = pacman.y/arrayY;
 }
 
