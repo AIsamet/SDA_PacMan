@@ -226,11 +226,20 @@ void graphicsHandler(){
 bool isPacmanInMapLimits(double x, double y) {
     double new_x = pacman.x + x;
     double new_y = pacman.y + y;
-    getCurrentPositionInArray(&new_x, &new_y); // Overwrite
+    double pacman_x = pacman.x;
+    double pacman_y = pacman.y;
     double tolerance = 0.0001; // Adjust the tolerance as needed
 
-    printf("new_x = %f, new_y = %f\n", new_x, new_y);
-    printf("new_x == round(new_x) : %d\n", (fabs(new_x - floor(new_x)) < tolerance));
+//    printf("current pacman_x = %f, current pacman_y = %f\n", pacman_x, pacman_y); // TEST
+//    printf("new_x = %f, new_y = %f\n", new_x, new_y);
+
+    printf("New x = %f, new y = %f\n", new_x, new_y);
+    getCurrentPositionInArray(&pacman_x, &pacman_y); // TEST
+    getCurrentPositionInArray(&new_x, &new_y); // Overwrite
+
+//    printf("current pacman_x = %f, current pacman_y = %f\n", pacman_x, pacman_y); // TEST
+//    printf("new_x = %f, new_y = %f\n", new_x, new_y);
+//    printf("BOOL: %d\n", (fabs(pacman_x - floor(pacman_x)) < tolerance) && (fabs(pacman_y - floor(pacman_y)) < tolerance));
 
     if (map_array[(int)new_y][(int)new_x] == 1) {
         printf("new_x = %f, new_y = %f\n", new_x, new_y);
@@ -240,17 +249,19 @@ bool isPacmanInMapLimits(double x, double y) {
         return true;
     }
 
-//    if ((fabs(new_x - floor(new_x)) < tolerance) && (fabs(new_y - floor(new_y)) < tolerance)) {
+//    if ((fabs(pacman_x - floor(pacman_x)) < tolerance) && (fabs(pacman_y - floor(pacman_y)) < tolerance)) {
 //        if (map_array[(int)new_y][(int)new_x] == 1) {
-//            //printf("new_x = %f, new_y = %f\n", new_x, new_y);
+//            printf("Current pacman_x = %f, current pacman_y = %f\n", pacman_x, pacman_y); // TEST
+//            printf("new_x = %f, new_y = %f\n", new_x, new_y);
 //            return false;
 //        } else {
-//            //printf("new_x = %f, new_y = %f\n", new_x, new_y);
+//            printf("Current pacman_x = %f, current pacman_y = %f\n", pacman_x, pacman_y); // TEST
+//            printf("new_x = %f, new_y = %f\n", new_x, new_y);
 //            return true;
 //        }
 //    }
 
-    return true;
+    return false;
 }
 
 
@@ -260,6 +271,7 @@ void movePacmanLeft(SDL_Rect** pacman_in) {
         pacman.x -= 4;
         *pacman_in = &pacman_l;
     }
+
 }
 
 void movePacmanRight(SDL_Rect** pacman_in) {
