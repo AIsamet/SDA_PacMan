@@ -5,6 +5,7 @@
 #include <math.h>
 #include "utils/sdlUtils.h"
 #include "input.h"
+#include "maze.h"
 
 
 // Global variables
