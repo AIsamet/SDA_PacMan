@@ -2,7 +2,7 @@
 
 const int MAZE_WIDTH = 21;
 const int MAZE_HEIGHT = 27;
-SDL_Rect pacGum = { 4, 81, 2, 2 };
+SDL_Rect pacGum = { 1, 78, 8, 8 };
 SDL_Rect superPacGum = { 9, 79, 7, 7 };
 
 // Maze modelisation
@@ -43,8 +43,6 @@ int map_array[27][21] = {
 
 void initMaze() {
     drawPacGum(pacGum, superPacGum);
-//    struct  Position position = { 0,0 };
-//    drawIntoMaze(pacman_closed, position, 32, 32, 32, 32);
 }
 
 void drawPacGum(SDL_Rect pacGum, SDL_Rect superPacGum){
@@ -55,10 +53,10 @@ void drawPacGum(SDL_Rect pacGum, SDL_Rect superPacGum){
             struct Position position = getGridToUIPosition((struct Position){j, i});
 
             if(map_array[i][j] == 2) {
-                drawIntoMaze(pacGum, position, pacGum.x, pacGum.y, pacGum.w, pacGum.h);
+                drawIntoMaze(pacGum, position, 16, 16, 20, 20);
             }
             if(map_array[i][j] == 3) {
-                drawIntoMaze(superPacGum, position, superPacGum.x, superPacGum.y, superPacGum.w, superPacGum.h);
+                drawIntoMaze(superPacGum, position, 16, 16, 20, 20);
             }
         }
     }
@@ -66,8 +64,8 @@ void drawPacGum(SDL_Rect pacGum, SDL_Rect superPacGum){
 
 struct Position getGridToUIPosition(struct Position pos) {
     struct Position position;
-    position.x = pos.x * 25;
-    position.y = pos.y * 25;
+    position.x = pos.x * 31.5;
+    position.y = pos.y * 31.5;
     return position;
 }
 
