@@ -1,10 +1,5 @@
-#include "graphics.h"
+#include "main/graphics.h"
 
-
-// Global graphics variables
-SDL_Window* pWindow = NULL;
-SDL_Surface* win_surf = NULL;
-SDL_Surface* plancheSprites = NULL;
 
 SDL_Rect src_bg = { 201,3, 167,216 }; // x,y, w,h (0,0) en haut a gauche
 SDL_Rect bg = { 4,4, 672,864 }; // ici scale x4
@@ -66,31 +61,8 @@ SDL_Rect pacman_u = { 75,90, 16,15 };
 SDL_Rect pacman = { 32,32, 32,32 };
 SDL_Rect* pacman_in = &pacman_spawn;
 
-int count;
+int count = 0;
 bool isPacmanEating = false;
-
-void initSDL()
-{
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-        fprintf(stderr, "Echec de l'initialisation de la SDL %s", SDL_GetError());
-        return;
-    }
-}
-
-void initWindow()
-{
-	// Create the game window with the title "PacMan" and the specified dimensions
-	pWindow = SDL_CreateWindow("PacMan", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 672, 864, SDL_WINDOW_SHOWN);
-
-	// Get the surface associated with the window for drawing
-	win_surf = SDL_GetWindowSurface(pWindow);
-
-	// Load the sprite sheet containing the game graphics from the specified BMP file
-	plancheSprites = SDL_LoadBMP("./pacman_sprites.bmp");
-
-	// Initialize the count variable to 0 (used for animation)
-	count = 0;
-}
 
 void initGraphics(){
     initSDL();
@@ -138,7 +110,7 @@ void animateGhosts()
     SDL_SetColorKey(plancheSprites, true, 0);
 
     // Draw the appropriate ghost sprite onto the window surface
-    SDL_BlitScaled(plancheSprites, &ghost_in2, win_surf, &ghost);
+    SDL_BlitScaled(plancheSprites, &ghost_in2, pWindowSurface, &ghost);
 }
 
 void animatePacman(){
@@ -158,7 +130,7 @@ void draw()
     SDL_SetColorKey(plancheSprites, false, 0);
 
     // Draw the background image onto the window surface
-    SDL_BlitScaled(plancheSprites, &src_bg, win_surf, &bg);
+    SDL_BlitScaled(plancheSprites, &src_bg, pWindowSurface, &bg);
 
     // Animate and draw the ghosts
     animateGhosts();
@@ -169,45 +141,34 @@ void draw()
     {
         if (pacman_in == &pacman_r)
         {
-            SDL_BlitScaled(plancheSprites, &pacman_eat_r, win_surf, &pacman);
+            SDL_BlitScaled(plancheSprites, &pacman_eat_r, pWindowSurface, &pacman);
         }
         else if(pacman_in == &pacman_l)
         {
-            SDL_BlitScaled(plancheSprites, &pacman_eat_l, win_surf, &pacman);
+            SDL_BlitScaled(plancheSprites, &pacman_eat_l, pWindowSurface, &pacman);
         }
         else if(pacman_in == &pacman_d)
         {
-            SDL_BlitScaled(plancheSprites, &pacman_eat_d, win_surf, &pacman);
+            SDL_BlitScaled(plancheSprites, &pacman_eat_d, pWindowSurface, &pacman);
         }
         else if(pacman_in == &pacman_u)
         {
-            SDL_BlitScaled(plancheSprites, &pacman_eat_u, win_surf, &pacman);
+            SDL_BlitScaled(plancheSprites, &pacman_eat_u, pWindowSurface, &pacman);
         }
         else
         {
-            SDL_BlitScaled(plancheSprites, &pacman_eat_r, win_surf, &pacman);
+            SDL_BlitScaled(plancheSprites, &pacman_eat_r, pWindowSurface, &pacman);
         }
     }
     else
     {
-        SDL_BlitScaled(plancheSprites, pacman_in, win_surf, &pacman);
+        SDL_BlitScaled(plancheSprites, pacman_in, pWindowSurface, &pacman);
     }
-
-//    float x, y; // TEST
-//    getCurrentPositionInArray(&x, &y); // TEST
-//    printf("Position de Pacman : x = %d, y = %d\n", x, y); // TEST
 }
 
 void destroyGraphics()
 {
-    // Free the sprite sheet surface
-    SDL_FreeSurface(plancheSprites);
-
-    // Destroy the window
-    SDL_DestroyWindow(pWindow);
-
-    // Quit SDL
-    SDL_Quit();
+    freeSDL();
 }
 
 void graphicsHandler(){

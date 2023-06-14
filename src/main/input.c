@@ -1,4 +1,4 @@
-#include "input.h"
+#include "main/input.h"
 
 
 void checkExitEvent(bool* quit, SDL_Event* event) {

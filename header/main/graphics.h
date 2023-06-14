@@ -3,12 +3,13 @@
 #include <SDL2/SDL.h>
 #include <stdbool.h>
 #include <math.h>
+#include "utils/sdlUtils.h"
 #include "input.h"
 
 
 // Global variables
 extern SDL_Window* pWindow;
-extern SDL_Surface* win_surf;
+extern SDL_Surface* pWindowSurface;
 extern SDL_Surface* plancheSprites;
 extern SDL_Rect src_bg;
 extern SDL_Rect bg;
@@ -33,8 +34,6 @@ extern int count;
 extern bool isPacmanEating;
 
 // Graphics functions
-void initWindow();
-void initSDL();
 void initGraphics();
 void draw();
 void animateGhost();
