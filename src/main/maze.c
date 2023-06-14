@@ -1,7 +1,5 @@
 #include "main/maze.h"
 
-const int MAZE_WIDTH = 21;
-const int MAZE_HEIGHT = 27;
 SDL_Rect pacGum = { 1, 78, 8, 8 };
 SDL_Rect superPacGum = { 9, 79, 7, 7 };
 
@@ -46,17 +44,17 @@ void initMaze() {
 }
 
 void drawPacGum(SDL_Rect pacGum, SDL_Rect superPacGum){
-    for (int i = 0; i < MAZE_HEIGHT; i++)
+for (int i = 0; i < MAZE_HEIGHT_IN_ARRAY ; i++)
     {
-        for (int j = 0; j < MAZE_WIDTH; j++)
+        for (int j = 0; j < MAZE_WIDTH_IN_ARRAY; j++)
         {
             struct Position position = getGridToUIPosition((struct Position){j, i});
 
             if(map_array[i][j] == 2) {
-                drawIntoMaze(pacGum, position, 16, 16, 20, 20);
+                drawIntoMaze(pacGum, position, PACGUM_X, PACGUM_Y, PACGUM_W, PACGUM_H);
             }
             if(map_array[i][j] == 3) {
-                drawIntoMaze(superPacGum, position, 16, 16, 20, 20);
+                drawIntoMaze(superPacGum, position, PACGUM_X, PACGUM_Y, PACGUM_W, PACGUM_H);
             }
         }
     }
@@ -64,8 +62,8 @@ void drawPacGum(SDL_Rect pacGum, SDL_Rect superPacGum){
 
 struct Position getGridToUIPosition(struct Position pos) {
     struct Position position;
-    position.x = pos.x * 31.5;
-    position.y = pos.y * 31.5;
+    position.x = pos.x * CELL_SIZE;
+    position.y = pos.y * CELL_SIZE;
     return position;
 }
 
