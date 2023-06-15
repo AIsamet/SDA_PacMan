@@ -18,6 +18,7 @@ void copyMapArray();
 struct Coordinates getUIToGridPosition(struct Coordinates UIPos);
 struct Coordinates getGridToUIPosition(struct Coordinates gridPosition);
 void drawIntoMaze(SDL_Rect sprite, struct Coordinates positionToDraw, int x, int y, int w, int h);
+struct Coordinates searchElementInMazeArray(MazeObstacles element);
 int getMapArrayValue(int mapArray[27][21] , int x, int y);
 bool isObstacle(struct Coordinates coordinates);
 bool isColliding(struct Coordinates coordinates, int hitboxOffset);

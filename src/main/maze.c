@@ -7,7 +7,7 @@ SDL_Rect superPacGum = { 9, 79, 7, 7 };
 
 int map_array[27][21] = {
         { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-        { 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1 },
+        { 1, 5, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1 },
         { 1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1 },
         { 1, 3, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 1, 3, 1 },
         { 1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1 },
@@ -99,9 +99,22 @@ void drawIntoMaze(SDL_Rect sprite, struct Coordinates positionToDraw, int x, int
     SDL_BlitScaled(plancheSprites, &sprite, pWindowSurface, &coordinates);
 }
 
-
 int getElementFromMazeArray(struct Coordinates pos) {
     return newMapArray[pos.y][pos.x];
+}
+
+struct Coordinates searchElementInMazeArray(MazeObstacles element) {
+    for (int i = 0; i < MAZE_HEIGHT_IN_ARRAY; i++)
+    {
+        for (int j = 0; j < MAZE_WIDTH_IN_ARRAY; j++)
+        {
+            if (newMapArray[i][j] == element)
+            {
+                return (struct Coordinates){j, i};
+            }
+        }
+    }
+    return (struct Coordinates){-1, -1};
 }
 
 int getMapArrayValue(int mapArray[27][21] , int x, int y) {

@@ -127,11 +127,13 @@ void drawGameGraphics(){
 
     // Animate and draw the ghosts
     animateGhosts();
-    animatePacman();
+    //animatePacman();
 
     // Draw pacman
     //drawPacMan();
+    spawnPacman();
     drawPacman();
+    pacmanEventHandler();
 }
 
 

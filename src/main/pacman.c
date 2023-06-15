@@ -11,7 +11,7 @@ SDL_Rect pacmanSpritesByDirection[4][3] = {
 
 SDL_Rect lastPacmanDirection = {0, 0, 0, 0};
 
-struct Coordinates pacmanSpawnPos = {1, 1};
+struct Coordinates pacmanSpawnPos;
 struct Coordinates pacmanUIPos = {0, 0};
 struct Coordinates pacmanGridPos = {0, 0};
 
@@ -24,13 +24,14 @@ int durationAnimationOnGhostEaten = 0;
 
 void spawnPacman()
 {
+    pacmanSpawnPos = searchElementInMazeArray(PACMAN);
     pacmanGridPos = pacmanSpawnPos;
     pacmanUIPos = getGridToUIPosition(pacmanGridPos);
 
     pacmanDirection = defaultDirection;
     pacmanWishedDirection = defaultDirection;
 
-    lastPacmanDirection = pacmanSpritesByDirection[defaultDirection][0];
+    lastPacmanDirection = pacmanSpritesByDirection[defaultDirection][1];
 }
 
 void pacmanEventHandler()
@@ -59,7 +60,42 @@ void pacmanBlit(SDL_Rect srcRect)
 
 struct Coordinates movePacmanOnGrid(struct Coordinates *pacmanUiPos)
 {
+    // removeMazeElement(PACMAN);
+    // MazeElement element = getMazeElementAt(pacmanGridPos);
 
+    // switch (element)
+    // {
+    // case LEFT_TELEPORTER:
+    //     return teleportPacman(RIGHT_TELEPORTER);
+    // case RIGHT_TELEPORTER:
+    //     return teleportPacman(LEFT_TELEPORTER);
+    // case SMALL_COIN:
+    //     incrementScore(10);
+    //     setElementAtPositionOnMazeAs(pacmanGridPos, PACMAN);
+    //     break;
+    // case BIG_COIN:
+    //     incrementScore(50);
+    //     makeGhostsEatable();
+    //     setElementAtPositionOnMazeAs(pacmanGridPos, PACMAN);
+    //     break;
+    // case RED_GHOST:
+    //     handleGhost(RED_GHOST);
+    //     break;
+    // case PINK_GHOST:
+    //     handleGhost(PINK_GHOST);
+    //     break;
+    // case BLUE_GHOST:
+    //     handleGhost(BLUE_GHOST);
+    //     break;
+    // case ORANGE_GHOST:
+    //     handleGhost(ORANGE_GHOST);
+    //     break;
+    // default:
+    //     setElementAtPositionOnMazeAs(pacmanGridPos, PACMAN);
+    //     break;
+    // }
+
+    // return *pacmanUiPos;
 }
 
 void drawPacman()
