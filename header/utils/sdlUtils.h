@@ -2,6 +2,7 @@
 #define SDLUTILS_H
 
 #include <SDL2/SDL.h>
+#include "globalVariables.h"
 
 
 void initSDL();

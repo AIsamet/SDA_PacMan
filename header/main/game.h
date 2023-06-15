@@ -2,7 +2,7 @@
 #define GAME_H
 #include <SDL2/SDL.h>
 #include <stdbool.h>
-#include "graphics.h"
+#include "../utils/renderer.h"
 
 
 void initGame();

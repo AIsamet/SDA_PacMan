@@ -2,7 +2,7 @@
 #define INPUT_H
 #include <SDL2/SDL.h>
 #include <stdbool.h>
-#include "graphics.h"
+#include "../utils/renderer.h"
 
 
 void inputHandler(bool* quit, SDL_Rect** pacman_in);

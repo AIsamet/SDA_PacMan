@@ -1,14 +1,12 @@
-#ifndef GRAPHICS_H
-#define GRAPHICS_H
+#ifndef GAMEGRAPHICS_H
+#define GAMEGRAPHICS_H
+
 #include <SDL2/SDL.h>
 #include <stdbool.h>
 #include <math.h>
-#include "utils/sdlUtils.h"
-#include "input.h"
-#include "maze.h"
+#include "../main/maze.h"
+#include "../utils/globalVariables.h"
 
-
-// Global variables
 extern SDL_Window* pWindow;
 extern SDL_Surface* pWindowSurface;
 extern SDL_Surface* plancheSprites;
@@ -34,13 +32,12 @@ extern SDL_Rect* pacman_in;
 extern int count;
 extern bool isPacmanEating;
 
-// Graphics functions
-void initGraphics();
-void draw();
+void initGameGraphics();
+void drawGameBackground();
+void drawGameGraphics();
+void drawPacMan();
 void animateGhost();
 void animatePacman();
-void graphicsHandler();
-void destroyGraphics();
 void movePacmanLeft(SDL_Rect** pacman_in);
 void movePacmanRight(SDL_Rect** pacman_in);
 void movePacmanUp(SDL_Rect** pacman_in);
@@ -48,4 +45,5 @@ void movePacmanDown(SDL_Rect** pacman_in);
 bool isPacmanInMapLimits(double x, double y);
 void getCurrentPositionInArray(double* x, double* y); // TEST
 
-#endif
+
+#endif //GAMEGRAPHICS_H

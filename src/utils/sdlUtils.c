@@ -16,7 +16,7 @@ void initSDL()
 void initWindow()
 {
     // Create the game window with the title "PacMan" and the specified dimensions
-    pWindow = SDL_CreateWindow("PacMan", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 668, 864, SDL_WINDOW_SHOWN);
+    pWindow = SDL_CreateWindow("PacMan", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, MAZE_WIDTH, MAZE_HEIGHT, SDL_WINDOW_SHOWN);
 
     // Get the surface associated with the window for drawing
     pWindowSurface = SDL_GetWindowSurface(pWindow);

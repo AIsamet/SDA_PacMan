@@ -2,9 +2,9 @@
 #define SDA_PACMAN_MAZE_H
 
 #include <SDL2/SDL.h>
-#include "position.h"
-#include "graphics.h"
-#include "utils/globalVariables.h"
+#include "../main/position.h"
+#include "../utils/renderer.h"
+#include "../utils/globalVariables.h"
 
 #define PACGUM_X 6
 #define PACGUM_Y 6

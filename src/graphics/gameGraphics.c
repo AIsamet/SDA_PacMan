@@ -1,13 +1,12 @@
-#include "main/graphics.h"
-
+#include "graphics/gameGraphics.h"
 
 SDL_Rect src_bg = { 370,3, 167,216 }; // x,y, w,h (0,0) en haut a gauche
 SDL_Rect bg = { 4,4, 668,864 }; // ici scale x4
 
-SDL_Rect ghost_r = { 3,123, 16,16 }; 
-SDL_Rect ghost_l = { 37,123, 16,16 }; 
-SDL_Rect ghost_d = { 105,123, 16,16 }; 
-SDL_Rect ghost_u = { 71,123, 16,16 }; 
+SDL_Rect ghost_r = { 3,123, 16,16 };
+SDL_Rect ghost_l = { 37,123, 16,16 };
+SDL_Rect ghost_d = { 105,123, 16,16 };
+SDL_Rect ghost_u = { 71,123, 16,16 };
 SDL_Rect ghost = { 32,36, 32,32 };     // ici scale x2
 
 SDL_Rect pacman_spawn = { 20,89, 15,16 };
@@ -16,21 +15,15 @@ SDL_Rect pacman_eat_l = { 63,89, 11,16 };
 SDL_Rect pacman_eat_d = { 126,93, 16,13 };
 SDL_Rect pacman_eat_u = { 92,93, 16,13 };
 SDL_Rect pacman_closed = { 3,89, 16,16 };
-SDL_Rect pacman_r = { 20,89, 15,16 }; 
-SDL_Rect pacman_l = { 47,89, 15,16 }; 
-SDL_Rect pacman_d = { 109,90, 16,15 }; 
-SDL_Rect pacman_u = { 75,90, 16,15 }; 
+SDL_Rect pacman_r = { 20,89, 15,16 };
+SDL_Rect pacman_l = { 47,89, 15,16 };
+SDL_Rect pacman_d = { 109,90, 16,15 };
+SDL_Rect pacman_u = { 75,90, 16,15 };
 SDL_Rect pacman = { 32,32, 32,32 };
 SDL_Rect* pacman_in = &pacman_spawn;
 
 int count = 0;
 bool isPacmanEating = false;
-
-void initGraphics(){
-    initSDL();
-    initWindow();
-    graphicsHandler();
-}
 
 void animateGhosts()
 {
@@ -86,8 +79,7 @@ void animatePacman(){
     }
 }
 
-void draw(){
-
+void drawGameBackground(){
     // Set the color key for transparent pixels in the sprite sheet
     SDL_SetColorKey(plancheSprites, false, 0);
 
@@ -96,12 +88,9 @@ void draw(){
 
     // Init in maze elements
     initMaze(); // TEST
+}
 
-
-    // Animate and draw the ghosts
-    animateGhosts();
-    animatePacman();
-
+void drawPacMan(){
     if (isPacmanEating)
     {
         if (pacman_in == &pacman_r)
@@ -131,23 +120,18 @@ void draw(){
     }
 }
 
-void destroyGraphics()
-{
-    freeSDL();
+void drawGameGraphics(){
+    // Draw the background image onto the window surface
+    drawGameBackground();
+
+    // Animate and draw the ghosts
+    animateGhosts();
+    animatePacman();
+
+    // Draw pacman
+    drawPacMan();
 }
 
-void graphicsHandler(){
-    bool quit = false;
-
-    while (!quit) {
-        inputHandler(&quit, &pacman_in);
-        draw();
-        SDL_Delay(20);
-        SDL_UpdateWindowSurface(pWindow);
-    }
-
-    destroyGraphics();
-}
 
 bool isPacmanInMapLimits(double x, double y) {
     double new_x = pacman.x + x;
@@ -221,11 +205,9 @@ void movePacmanDown(SDL_Rect** pacman_in) {
     }
 }
 
-// TEST
 void getCurrentPositionInArray(double* x, double* y) {
-    double arrayX = 672/21;
-    double arrayY = 864/27;
+    double arrayX = MAZE_WIDTH/MAZE_WIDTH_IN_ARRAY;
+    double arrayY = MAZE_HEIGHT/MAZE_HEIGHT_IN_ARRAY;
     *x = *x/arrayX;
     *y = *y/arrayY;
 }
-
