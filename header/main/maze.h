@@ -15,6 +15,7 @@ void initMaze();
 void drawPacGum(SDL_Rect pacGum, SDL_Rect superPackGum, int newMapArray[27][21]);
 void copyMapArray(int newMapArray[27][21]);
 struct Position getGridToUIPosition(struct Position gridPosition);
+struct Position getGridToUiPosition(struct Position UIPos);
 void drawIntoMaze(SDL_Rect sprite, struct Position positionToDraw, int x, int y, int w, int h);
 
 #endif //SDA_PACMAN_MAZE_H

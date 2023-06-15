@@ -79,6 +79,15 @@ struct Position getGridToUIPosition(struct Position pos) {
     return position;
 }
 
+struct Position getGridToUiPosition(struct Position UIPos)
+{
+    struct Position position;
+    position.x = UIPos.x * CELL_SIZE;
+    position.y = UIPos.y * CELL_SIZE;
+    return position;
+}
+
+
 void drawIntoMaze(SDL_Rect sprite, struct Position positionToDraw, int x, int y, int w, int h){
     SDL_Rect position;
     position.x = positionToDraw.x + x;
