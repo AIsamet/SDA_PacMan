@@ -134,6 +134,7 @@ void drawGameGraphics(){
     spawnPacman();
     drawPacman();
     pacmanEventHandler();
+    fps++;
 }
 
 

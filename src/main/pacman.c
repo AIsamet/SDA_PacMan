@@ -1,6 +1,5 @@
 #include "main/pacman.h"
 
-
 SDL_Rect pacmanSpritesByDirection[4][3] = {
         {{4, 90, PACMAN_SIZE, PACMAN_SIZE}, {21, 90, PACMAN_SIZE, PACMAN_SIZE}, {38, 90, PACMAN_SIZE, PACMAN_SIZE}},  // RIGHT
         {{4, 90, PACMAN_SIZE, PACMAN_SIZE}, {56, 90, PACMAN_SIZE, PACMAN_SIZE}, {72, 90, PACMAN_SIZE, PACMAN_SIZE}},  // LEFT
@@ -31,7 +30,7 @@ void spawnPacman()
     pacmanDirection = defaultDirection;
     pacmanWishedDirection = defaultDirection;
 
-    lastPacmanDirection = pacmanSpritesByDirection[defaultDirection][1];
+    lastPacmanDirection = pacmanSpritesByDirection[defaultDirection][0];
 }
 
 void pacmanEventHandler()
