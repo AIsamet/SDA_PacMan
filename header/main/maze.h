@@ -15,8 +15,8 @@
 void initMaze();
 void drawPacGum(SDL_Rect pacGum, SDL_Rect superPackGum);
 void copyMapArray();
+struct Coordinates getUIToGridPosition(struct Coordinates UIPos);
 struct Coordinates getGridToUIPosition(struct Coordinates gridPosition);
-struct Coordinates getGridToUiPosition(struct Coordinates UIPos);
 void drawIntoMaze(SDL_Rect sprite, struct Coordinates positionToDraw, int x, int y, int w, int h);
 int getMapArrayValue(int mapArray[27][21] , int x, int y);
 bool isObstacle(struct Coordinates coordinates);

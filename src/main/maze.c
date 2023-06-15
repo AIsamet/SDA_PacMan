@@ -57,7 +57,7 @@ void drawPacGum(SDL_Rect pacGum, SDL_Rect superPacGum) {
         {
             if (newMapArray[i][j] == 2 || newMapArray[i][j] == 3)
             {
-                struct Coordinates position = getGridToUiPosition((struct Coordinates){j, i});
+                struct Coordinates position = getGridToUIPosition((struct Coordinates){j, i});
 
                 if (newMapArray[i][j] == 2)
                 {
@@ -80,7 +80,7 @@ struct Coordinates getUIToGridPosition(struct Coordinates UIPos)
     return coordinates;
 }
 
-struct Coordinates getGridToUiPosition(struct Coordinates gridPos)
+struct Coordinates getGridToUIPosition(struct Coordinates gridPos)
 {
     struct Coordinates coordinates;
     coordinates.x = gridPos.x * CELL_SIZE;

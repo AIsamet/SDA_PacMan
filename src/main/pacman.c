@@ -25,7 +25,7 @@ int durationAnimationOnGhostEaten = 0;
 void spawnPacman()
 {
     pacmanGridPos = pacmanSpawnPos;
-    pacmanUIPos = getGridToUiPosition(pacmanGridPos);
+    pacmanUIPos = getGridToUIPosition(pacmanGridPos);
 
     pacmanDirection = defaultDirection;
     pacmanWishedDirection = defaultDirection;
@@ -49,9 +49,57 @@ int canPacmanMove(Direction direction)
     return !isColliding(pacmanPosCopy, CELL_SIZE - 1);
 }
 
+
+void pacmanBlit(SDL_Rect srcRect)
+{
+    SDL_Rect rect = {pacmanUIPos.x, pacmanUIPos.y, CELL_SIZE, CELL_SIZE};
+    SDL_SetColorKey(plancheSprites, 1, 0);
+    SDL_BlitScaled(plancheSprites, &srcRect, pWindowSurface, &rect);
+}
+
+struct Coordinates movePacmanOnGrid(struct Coordinates *pacmanUiPos)
+{
+
+}
+
 void drawPacman()
 {
     SDL_Rect newPacman = {0, 0, 0, 0};
     int pacmanAnimation = (fps / ANIMATION_SPEED) % 3;
     struct Coordinates pacmanPosCopy = pacmanUIPos;
+
+     // Test is wished direction can be applied
+    if (pacmanDirection != pacmanWishedDirection && canPacmanMove(pacmanWishedDirection))
+    {
+        pacmanDirection = pacmanWishedDirection;
+    }
+
+    // Then we can choose the sprite corresponding to direction
+    newPacman = pacmanSpritesByDirection[pacmanDirection][pacmanAnimation];
+
+    // Calculate the target UI position
+    sumCoordinatesWithOffset(&pacmanPosCopy, pacmanDirection, 1);
+
+    if (isColliding(pacmanPosCopy, CELL_SIZE - 1))
+    {
+        // If pacman ran into obstacle, just blit him at without updating his position
+        pacmanBlit(lastPacmanDirection);
+        return;
+    }
+
+    // Get target pacman position in grid
+    struct Coordinates newPacmanGridPos = getUIToGridPosition(getCellCenter(pacmanPosCopy));
+
+    if (!isEqual(pacmanGridPos, newPacmanGridPos))
+    {
+        // Pacman has moved in grid
+        pacmanGridPos = newPacmanGridPos;
+        pacmanPosCopy = movePacmanOnGrid(&pacmanPosCopy);
+    }
+
+    // Move is valid, update pacman position
+    pacmanUIPos = pacmanPosCopy;
+    lastPacmanDirection = newPacman;
+
+    pacmanBlit(newPacman);
 }

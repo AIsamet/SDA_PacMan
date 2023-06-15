@@ -130,7 +130,8 @@ void drawGameGraphics(){
     animatePacman();
 
     // Draw pacman
-    drawPacMan();
+    //drawPacMan();
+    drawPacman();
 }
 
 

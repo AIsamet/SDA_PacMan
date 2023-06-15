@@ -6,6 +6,7 @@
 #include <math.h>
 #include "../main/maze.h"
 #include "../utils/globalVariables.h"
+#include "../main/pacman.h"
 
 extern SDL_Window* pWindow;
 extern SDL_Surface* pWindowSurface;
