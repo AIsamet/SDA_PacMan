@@ -1,4 +1,5 @@
 #include "utils/renderer.h"
+#include "main/pacman.h"
 
 void initGraphics(){
     initSDL();

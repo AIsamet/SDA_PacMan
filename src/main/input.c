@@ -33,6 +33,21 @@ void checkKeyboardEvent(bool* quit, SDL_Rect** pacman_in) {
     }
 }
 
+void pacmanInputHandler(SDL_Event* event, Direction* pacmanWishedDirection_in) {
+    const Uint8* keys = SDL_GetKeyboardState(NULL);
+
+    if (keys[SDL_SCANCODE_LEFT] || keys[SDL_SCANCODE_A])
+        *pacmanWishedDirection_in = DIRECTION_LEFT;
+    else if (keys[SDL_SCANCODE_RIGHT] || keys[SDL_SCANCODE_D])
+        *pacmanWishedDirection_in = DIRECTION_RIGHT;
+    else if (keys[SDL_SCANCODE_UP] || keys[SDL_SCANCODE_W])
+        *pacmanWishedDirection_in = DIRECTION_UP;
+    else if (keys[SDL_SCANCODE_DOWN] || keys[SDL_SCANCODE_S])
+        *pacmanWishedDirection_in = DIRECTION_DOWN;
+}
+
+
+
 void inputHandler(bool* quit, SDL_Rect** pacman_in) {
     SDL_Event event;
     checkExitEvent(quit, &event);

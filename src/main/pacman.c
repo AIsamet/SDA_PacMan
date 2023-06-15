@@ -32,3 +32,12 @@ void spawnPacman()
 
     lastPacmanDirection = pacmanSpritesByDirection[defaultDirection][0];
 }
+
+void pacmanEventHandler()
+{
+    SDL_Event event;
+    pacmanInputHandler(&event, &pacmanWishedDirection);
+
+    // print wished direction
+    printf("Wished direction: %d\n", pacmanWishedDirection);
+}

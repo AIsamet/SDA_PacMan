@@ -143,7 +143,7 @@ bool isPacmanInMapLimits(double x, double y) {
 //    printf("current pacman_x = %f, current pacman_y = %f\n", pacman_x, pacman_y); // TEST
 //    printf("new_x = %f, new_y = %f\n", new_x, new_y);
 
-    printf("New x = %f, new y = %f\n", new_x, new_y);
+//    printf("New x = %f, new y = %f\n", new_x, new_y);
     getCurrentPositionInArray(&pacman_x, &pacman_y); // TEST
     getCurrentPositionInArray(&new_x, &new_y); // Overwrite
 
@@ -152,10 +152,10 @@ bool isPacmanInMapLimits(double x, double y) {
 //    printf("BOOL: %d\n", (fabs(pacman_x - floor(pacman_x)) < tolerance) && (fabs(pacman_y - floor(pacman_y)) < tolerance));
 
     if (map_array[(int)new_y][(int)new_x] == 1) {
-        printf("new_x = %f, new_y = %f\n", new_x, new_y);
+//        printf("new_x = %f, new_y = %f\n", new_x, new_y);
         return false;
     } else {
-        printf("new_x = %f, new_y = %f\n", new_x, new_y);
+//        printf("new_x = %f, new_y = %f\n", new_x, new_y);
         return true;
     }
 
