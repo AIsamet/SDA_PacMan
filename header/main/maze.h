@@ -12,7 +12,8 @@
 #define PACGUM_H 26
 
 void initMaze();
-void drawPacGum(SDL_Rect pacGum, SDL_Rect superPackGum);
+void drawPacGum(SDL_Rect pacGum, SDL_Rect superPackGum, int newMapArray[27][21]);
+void copyMapArray(int newMapArray[27][21]);
 struct Position getGridToUIPosition(struct Position gridPosition);
 void drawIntoMaze(SDL_Rect sprite, struct Position positionToDraw, int x, int y, int w, int h);
 

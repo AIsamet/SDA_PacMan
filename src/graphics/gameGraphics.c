@@ -185,7 +185,7 @@ void movePacmanLeft(SDL_Rect** pacman_in) {
 }
 
 void movePacmanRight(SDL_Rect** pacman_in) {
-    if(isPacmanInMapLimits(4 + pacman.w - 1, 0)){
+    if(isPacmanInMapLimits(pacman.w, 0)){
         pacman.x += 4;
         *pacman_in = &pacman_r;
     }
@@ -199,7 +199,7 @@ void movePacmanUp(SDL_Rect** pacman_in) {
 }
 
 void movePacmanDown(SDL_Rect** pacman_in) {
-    if(isPacmanInMapLimits(0, 4 + pacman.h - 1)){
+    if(isPacmanInMapLimits(0,pacman.h)){
         pacman.y += 4;
         *pacman_in = &pacman_d;
     }

@@ -39,21 +39,33 @@ int map_array[27][21] = {
         { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
 };
 
-void initMaze() {
-    drawPacGum(pacGum, superPacGum);
+void copyMapArray(int newMapArray[27][21]) {
+    for (int i = 0; i < MAZE_HEIGHT_IN_ARRAY ; i++)
+    {
+        for (int j = 0; j < MAZE_WIDTH_IN_ARRAY; j++)
+        {
+            newMapArray[i][j] = map_array[i][j];
+        }
+    }
 }
 
-void drawPacGum(SDL_Rect pacGum, SDL_Rect superPacGum){
+void initMaze() {
+    int newMapArray[27][21];
+    copyMapArray(newMapArray);
+    drawPacGum(pacGum, superPacGum, newMapArray);
+}
+
+void drawPacGum(SDL_Rect pacGum, SDL_Rect superPacGum, int newMapArray[27][21]){
 for (int i = 0; i < MAZE_HEIGHT_IN_ARRAY ; i++)
     {
         for (int j = 0; j < MAZE_WIDTH_IN_ARRAY; j++)
         {
             struct Position position = getGridToUIPosition((struct Position){j, i});
 
-            if(map_array[i][j] == 2) {
+            if(newMapArray[i][j] == 2) {
                 drawIntoMaze(pacGum, position, PACGUM_X, PACGUM_Y, PACGUM_W, PACGUM_H);
             }
-            if(map_array[i][j] == 3) {
+            if(newMapArray[i][j] == 3) {
                 drawIntoMaze(superPacGum, position, PACGUM_X, PACGUM_Y, PACGUM_W, PACGUM_H);
             }
         }
