@@ -117,6 +117,27 @@ struct Coordinates searchElementInMazeArray(MazeObstacles element) {
     return (struct Coordinates){-1, -1};
 }
 
+bool isInArrayRange (struct Coordinates pos) 
+{
+    return pos.x >= 0 && pos.x < MAZE_WIDTH_IN_ARRAY && pos.y >= 0 && pos.y < MAZE_HEIGHT_IN_ARRAY;
+}
+
+void setElementInMazeArray(MazeObstacles element, struct Coordinates pos) {
+    if (isInArrayRange(pos))
+    {
+        newMapArray[pos.y][pos.x] = element;
+    }
+}
+
+void removeElementFromMazeArray(MazeObstacles element)
+{
+    struct Coordinates coordinates = searchElementInMazeArray(element);
+    if (coordinates.x != -1 && coordinates.y != -1)
+    {
+        newMapArray[coordinates.y][coordinates.x] = 0;
+    }
+}
+
 int getMapArrayValue(int mapArray[27][21] , int x, int y) {
     return mapArray[y][x];
 }
@@ -142,4 +163,17 @@ bool isColliding(struct Coordinates coordinates, int hitboxOffset)
     }
 
     return false;
+}
+
+void displayMaze()
+{
+    for (int i = 0; i < MAZE_HEIGHT_IN_ARRAY; i++)
+    {
+        for (int j = 0; j < MAZE_WIDTH_IN_ARRAY; j++)
+        {
+            printf("%d", newMapArray[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
 }

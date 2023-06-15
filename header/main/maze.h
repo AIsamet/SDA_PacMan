@@ -19,9 +19,14 @@ struct Coordinates getUIToGridPosition(struct Coordinates UIPos);
 struct Coordinates getGridToUIPosition(struct Coordinates gridPosition);
 void drawIntoMaze(SDL_Rect sprite, struct Coordinates positionToDraw, int x, int y, int w, int h);
 struct Coordinates searchElementInMazeArray(MazeObstacles element);
+void removeElementFromMazeArray(MazeObstacles element);
 int getMapArrayValue(int mapArray[27][21] , int x, int y);
+int getElementFromMazeArray(struct Coordinates pos);
+bool isInArrayRange (struct Coordinates pos);
+void setElementInMazeArray(MazeObstacles element, struct Coordinates pos);
 bool isObstacle(struct Coordinates coordinates);
 bool isColliding(struct Coordinates coordinates, int hitboxOffset);
+void displayMaze();
 
 
 #endif //SDA_PACMAN_MAZE_H

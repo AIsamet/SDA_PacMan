@@ -26,6 +26,18 @@ int count = 0;
 int fps = 0;
 bool isPacmanEating = false;
 
+
+void drawGameBackground(){
+    // Set the color key for transparent pixels in the sprite sheet
+    SDL_SetColorKey(plancheSprites, false, 0);
+
+    // Draw the background image onto the window surface
+    SDL_BlitScaled(plancheSprites, &src_bg, pWindowSurface, &bg);
+
+    // Init in maze elements
+    initMaze(); // TEST
+}
+
 void animateGhosts()
 {
     // Variable to hold the current ghost sprite rectangle
@@ -69,150 +81,16 @@ void animateGhosts()
     SDL_BlitScaled(plancheSprites, &ghost_in2, pWindowSurface, &ghost);
 }
 
-void animatePacman(){
-    if ((count / 4) % 2 == 0)
-    {
-        isPacmanEating = true;
-    }
-    else
-    {
-        isPacmanEating = false;
-    }
-}
-
-void drawGameBackground(){
-    // Set the color key for transparent pixels in the sprite sheet
-    SDL_SetColorKey(plancheSprites, false, 0);
-
-    // Draw the background image onto the window surface
-    SDL_BlitScaled(plancheSprites, &src_bg, pWindowSurface, &bg);
-
-    // Init in maze elements
-    initMaze(); // TEST
-}
-
-void drawPacMan(){
-    if (isPacmanEating)
-    {
-        if (pacman_in == &pacman_r)
-        {
-            SDL_BlitScaled(plancheSprites, &pacman_eat_r, pWindowSurface, &pacman);
-        }
-        else if(pacman_in == &pacman_l)
-        {
-            SDL_BlitScaled(plancheSprites, &pacman_eat_l, pWindowSurface, &pacman);
-        }
-        else if(pacman_in == &pacman_d)
-        {
-            SDL_BlitScaled(plancheSprites, &pacman_eat_d, pWindowSurface, &pacman);
-        }
-        else if(pacman_in == &pacman_u)
-        {
-            SDL_BlitScaled(plancheSprites, &pacman_eat_u, pWindowSurface, &pacman);
-        }
-        else
-        {
-            SDL_BlitScaled(plancheSprites, &pacman_eat_r, pWindowSurface, &pacman);
-        }
-    }
-    else
-    {
-        SDL_BlitScaled(plancheSprites, pacman_in, pWindowSurface, &pacman);
-    }
-}
-
 void drawGameGraphics(){
     // Draw the background image onto the window surface
     drawGameBackground();
 
     // Animate and draw the ghosts
     animateGhosts();
-    //animatePacman();
 
     // Draw pacman
-    //drawPacMan();
     spawnPacman();
     drawPacman();
     pacmanEventHandler();
     fps++;
-}
-
-
-bool isPacmanInMapLimits(double x, double y) {
-    double new_x = pacman.x + x;
-    double new_y = pacman.y + y;
-    double pacman_x = pacman.x;
-    double pacman_y = pacman.y;
-    double tolerance = 0.0001; // Adjust the tolerance as needed
-
-//    printf("current pacman_x = %f, current pacman_y = %f\n", pacman_x, pacman_y); // TEST
-//    printf("new_x = %f, new_y = %f\n", new_x, new_y);
-
-//    printf("New x = %f, new y = %f\n", new_x, new_y);
-    getCurrentPositionInArray(&pacman_x, &pacman_y); // TEST
-    getCurrentPositionInArray(&new_x, &new_y); // Overwrite
-
-//    printf("current pacman_x = %f, current pacman_y = %f\n", pacman_x, pacman_y); // TEST
-//    printf("new_x = %f, new_y = %f\n", new_x, new_y);
-//    printf("BOOL: %d\n", (fabs(pacman_x - floor(pacman_x)) < tolerance) && (fabs(pacman_y - floor(pacman_y)) < tolerance));
-
-    if (map_array[(int)new_y][(int)new_x] == 1) {
-//        printf("new_x = %f, new_y = %f\n", new_x, new_y);
-        return false;
-    } else {
-//        printf("new_x = %f, new_y = %f\n", new_x, new_y);
-        return true;
-    }
-
-//    if ((fabs(pacman_x - floor(pacman_x)) < tolerance) && (fabs(pacman_y - floor(pacman_y)) < tolerance)) {
-//        if (map_array[(int)new_y][(int)new_x] == 1) {
-//            printf("Current pacman_x = %f, current pacman_y = %f\n", pacman_x, pacman_y); // TEST
-//            printf("new_x = %f, new_y = %f\n", new_x, new_y);
-//            return false;
-//        } else {
-//            printf("Current pacman_x = %f, current pacman_y = %f\n", pacman_x, pacman_y); // TEST
-//            printf("new_x = %f, new_y = %f\n", new_x, new_y);
-//            return true;
-//        }
-//    }
-
-    return false;
-}
-
-
-
-void movePacmanLeft(SDL_Rect** pacman_in) {
-    if(isPacmanInMapLimits(-4, 0)){
-        pacman.x -= 4;
-        *pacman_in = &pacman_l;
-    }
-
-}
-
-void movePacmanRight(SDL_Rect** pacman_in) {
-    if(isPacmanInMapLimits(PACMAN_SIZE, 0)){
-        pacman.x += 4;
-        *pacman_in = &pacman_r;
-    }
-}
-
-void movePacmanUp(SDL_Rect** pacman_in) {
-    if(isPacmanInMapLimits(0, -4)){
-        pacman.y -= 4;
-        *pacman_in = &pacman_u;
-    }
-}
-
-void movePacmanDown(SDL_Rect** pacman_in) {
-    if(isPacmanInMapLimits(0, PACMAN_SIZE)){
-        pacman.y += 4;
-        *pacman_in = &pacman_d;
-    }
-}
-
-void getCurrentPositionInArray(double* x, double* y) {
-    double arrayX = MAZE_WIDTH/MAZE_WIDTH_IN_ARRAY;
-    double arrayY = MAZE_HEIGHT/MAZE_HEIGHT_IN_ARRAY;
-    *x = *x/arrayX;
-    *y = *y/arrayY;
 }
