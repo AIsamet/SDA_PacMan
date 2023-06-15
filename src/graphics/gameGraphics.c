@@ -9,16 +9,16 @@ SDL_Rect ghost_d = { 105,123, 16,16 };
 SDL_Rect ghost_u = { 71,123, 16,16 };
 SDL_Rect ghost = { 32,36, 32,32 };     // ici scale x2
 
-SDL_Rect pacman_spawn = { 20,89, 15,16 };
-SDL_Rect pacman_eat_r = { 35,89, 11,16 };
-SDL_Rect pacman_eat_l = { 63,89, 11,16 };
-SDL_Rect pacman_eat_d = { 126,93, 16,13 };
-SDL_Rect pacman_eat_u = { 92,93, 16,13 };
-SDL_Rect pacman_closed = { 3,89, 16,16 };
-SDL_Rect pacman_r = { 20,89, 15,16 };
-SDL_Rect pacman_l = { 47,89, 15,16 };
-SDL_Rect pacman_d = { 109,90, 16,15 };
-SDL_Rect pacman_u = { 75,90, 16,15 };
+SDL_Rect pacman_closed = { 4,90, PACMAN_SIZE, PACMAN_SIZE };
+SDL_Rect pacman_spawn = { 21,90, PACMAN_SIZE, PACMAN_SIZE };
+SDL_Rect pacman_eat_r = { 38, 90, PACMAN_SIZE, PACMAN_SIZE };
+SDL_Rect pacman_eat_l = { 72, 90, PACMAN_SIZE, PACMAN_SIZE };
+SDL_Rect pacman_eat_d = { 140, 90, PACMAN_SIZE, PACMAN_SIZE };
+SDL_Rect pacman_eat_u = { 106, 90, PACMAN_SIZE, PACMAN_SIZE };
+SDL_Rect pacman_r = { 21,90, PACMAN_SIZE, PACMAN_SIZE };
+SDL_Rect pacman_l = { 56, 90, PACMAN_SIZE, PACMAN_SIZE };
+SDL_Rect pacman_d = { 123, 90, PACMAN_SIZE, PACMAN_SIZE };
+SDL_Rect pacman_u = { 89, 90, PACMAN_SIZE, PACMAN_SIZE };
 SDL_Rect pacman = { 32,32, 32,32 };
 SDL_Rect* pacman_in = &pacman_spawn;
 
@@ -185,7 +185,7 @@ void movePacmanLeft(SDL_Rect** pacman_in) {
 }
 
 void movePacmanRight(SDL_Rect** pacman_in) {
-    if(isPacmanInMapLimits(pacman.w, 0)){
+    if(isPacmanInMapLimits(PACMAN_SIZE, 0)){
         pacman.x += 4;
         *pacman_in = &pacman_r;
     }
@@ -199,7 +199,7 @@ void movePacmanUp(SDL_Rect** pacman_in) {
 }
 
 void movePacmanDown(SDL_Rect** pacman_in) {
-    if(isPacmanInMapLimits(0,pacman.h)){
+    if(isPacmanInMapLimits(0, PACMAN_SIZE)){
         pacman.y += 4;
         *pacman_in = &pacman_d;
     }
