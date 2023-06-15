@@ -23,6 +23,7 @@ SDL_Rect pacman = { 32,32, 32,32 };
 SDL_Rect* pacman_in = &pacman_spawn;
 
 int count = 0;
+int fps = 0;
 bool isPacmanEating = false;
 
 void animateGhosts()

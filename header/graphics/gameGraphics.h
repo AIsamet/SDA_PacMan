@@ -30,6 +30,7 @@ extern SDL_Rect pacman;
 extern SDL_Rect* pacman_in;
 
 extern int count;
+extern int fps;
 extern bool isPacmanEating;
 
 void initGameGraphics();

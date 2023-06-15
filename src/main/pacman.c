@@ -11,9 +11,9 @@ SDL_Rect pacmanSpritesByDirection[4][3] = {
 
 SDL_Rect lastPacmanDirection = {0, 0, 0, 0};
 
-struct Position pacmanSpawnPos = {1, 1};
-struct Position pacmanUIPos = {0, 0};
-struct Position pacmanGridPos = {0, 0};
+struct Coordinates pacmanSpawnPos = {1, 1};
+struct Coordinates pacmanUIPos = {0, 0};
+struct Coordinates pacmanGridPos = {0, 0};
 
 Direction defaultDirection = DIRECTION_RIGHT;
 
@@ -40,4 +40,18 @@ void pacmanEventHandler()
 
     // print wished direction
     printf("Wished direction: %d\n", pacmanWishedDirection);
+}
+
+int canPacmanMove(Direction direction)
+{
+    struct Coordinates pacmanPosCopy = pacmanUIPos;
+    sumCoordinatesWithOffset(&pacmanPosCopy, direction, 1);
+    return !isColliding(pacmanPosCopy, CELL_SIZE - 1);
+}
+
+void drawPacman()
+{
+    SDL_Rect newPacman = {0, 0, 0, 0};
+    int pacmanAnimation = (fps / ANIMATION_SPEED) % 3;
+    struct Coordinates pacmanPosCopy = pacmanUIPos;
 }

@@ -2,9 +2,10 @@
 #define SDA_PACMAN_MAZE_H
 
 #include <SDL2/SDL.h>
-#include "../main/position.h"
+#include "../main/coordinates.h"
 #include "../utils/renderer.h"
 #include "../utils/globalVariables.h"
+#include "../customData/mazeObstacles.h"
 
 #define PACGUM_X 6
 #define PACGUM_Y 6
@@ -12,10 +13,14 @@
 #define PACGUM_H 26
 
 void initMaze();
-void drawPacGum(SDL_Rect pacGum, SDL_Rect superPackGum, int newMapArray[27][21]);
-void copyMapArray(int newMapArray[27][21]);
-struct Position getGridToUIPosition(struct Position gridPosition);
-struct Position getGridToUiPosition(struct Position UIPos);
-void drawIntoMaze(SDL_Rect sprite, struct Position positionToDraw, int x, int y, int w, int h);
+void drawPacGum(SDL_Rect pacGum, SDL_Rect superPackGum);
+void copyMapArray();
+struct Coordinates getGridToUIPosition(struct Coordinates gridPosition);
+struct Coordinates getGridToUiPosition(struct Coordinates UIPos);
+void drawIntoMaze(SDL_Rect sprite, struct Coordinates positionToDraw, int x, int y, int w, int h);
+int getMapArrayValue(int mapArray[27][21] , int x, int y);
+bool isObstacle(struct Coordinates coordinates);
+bool isColliding(struct Coordinates coordinates, int hitboxOffset);
+
 
 #endif //SDA_PACMAN_MAZE_H

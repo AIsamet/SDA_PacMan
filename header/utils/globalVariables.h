@@ -9,4 +9,6 @@
 #define CELL_SIZE 32
 #define PACMAN_SIZE 14
 
+#define ANIMATION_SPEED 14
+
 #endif //GLOBALVARIABLES_H
