@@ -89,7 +89,6 @@ void drawGameGraphics(){
     animateGhosts();
 
     // Draw pacman
-    spawnPacman();
     drawPacman();
     pacmanEventHandler();
     fps++;

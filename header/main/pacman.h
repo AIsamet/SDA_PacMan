@@ -13,7 +13,6 @@
 void spawnPacman();
 void pacmanEventHandler();
 bool isObstacle(struct Coordinates coordinates);
-bool isColliding(struct Coordinates coordinates, int hitboxOffset);
 int canPacmanMove(Direction direction);
 void pacmanBlit(SDL_Rect srcRect);
 void drawPacman();

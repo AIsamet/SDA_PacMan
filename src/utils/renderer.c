@@ -15,6 +15,9 @@ void destroyGraphics()
 void graphicsHandler(){
     bool quit = false;
 
+    drawGameBackground();
+    spawnPacman();
+
     while (!quit) {
         inputHandler(&quit, &pacman_in);
         drawGameGraphics();

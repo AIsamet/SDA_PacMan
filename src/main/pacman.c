@@ -87,11 +87,20 @@ void drawPacman()
         pacmanDirection = pacmanWishedDirection;
     }
 
+    //print pacman direction
+    printf("pacman direction : %d\n", pacmanDirection);
+    // print wished pacman direction
+    printf("pacman wished direction : %d\n", pacmanWishedDirection);
+    //pacman UI position
+    printf("pacman UI position : %d\n", pacmanUIPos.x);
+    //pacman grid position
+    printf("pacman grid position : %d\n", pacmanGridPos.x);
+
     // Then we can choose the sprite corresponding to direction
     newPacman = pacmanSpritesByDirection[pacmanDirection][pacmanAnimation];
 
     // Calculate the target UI position
-    sumCoordinatesWithOffset(&pacmanPosCopy, pacmanDirection, 1);
+    sumCoordinatesWithOffset(&pacmanPosCopy, pacmanDirection, 3);
 
     if (isColliding(pacmanPosCopy, CELL_SIZE - 1))
     {
