@@ -34,7 +34,6 @@ extern int count;
 extern int pacmanAnimationCount;
 extern bool isPacmanEating;
 
-void initGameGraphics();
 void drawGameBackground();
 void drawGameGraphics();
 void drawPacMan();

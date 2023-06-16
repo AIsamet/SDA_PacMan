@@ -1,7 +1,7 @@
 #include "main/game.h"
 
 
-void initGame() {
+void initGameLoop() {
     initGraphics();
 }
 

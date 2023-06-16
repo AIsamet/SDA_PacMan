@@ -5,7 +5,7 @@
 #include "../utils/renderer.h"
 
 
-void initGame();
+void initGameLoop();
 void updateGame();
 void renderGame();
 void handleInputGame();

@@ -35,7 +35,7 @@ void drawGameBackground(){
     SDL_BlitScaled(plancheSprites, &src_bg, pWindowSurface, &bg);
 
     // Init in maze elements
-    initMaze(); // TEST
+    generateMaze(); // TEST
 }
 
 void animateGhosts()

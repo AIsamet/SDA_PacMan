@@ -2,21 +2,14 @@
 #include "main/pacman.h"
 
 void initGraphics(){
-    initSDL();
-    initWindow();
     graphicsHandler();
-}
-
-void destroyGraphics()
-{
-    freeSDL();
 }
 
 void graphicsHandler(){
     bool quit = false;
 
     drawGameBackground();
-    copyMapArray();
+    initMaze();
     spawnPacman();
 
     while (!quit) {
@@ -25,6 +18,4 @@ void graphicsHandler(){
         SDL_Delay(20);
         SDL_UpdateWindowSurface(pWindow);
     }
-
-    destroyGraphics();
 }

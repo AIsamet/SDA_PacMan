@@ -7,6 +7,11 @@
 
 
 int main(int argc, char** argv) {
-    initGame();
+    initSDL();
+    initWindow();
+
+    initGameLoop();
+
+    freeSDL();
     return 0;
 }

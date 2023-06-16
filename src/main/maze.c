@@ -45,10 +45,6 @@ void copyMapArray() {
     }
 }
 
-void initMaze() {
-    drawPacGum(pacGum, superPacGum);
-}
-
 void drawPacGum(SDL_Rect pacGum, SDL_Rect superPacGum) {
     for (int i = 0; i < MAZE_HEIGHT_IN_ARRAY; i++)
     {
@@ -70,6 +66,14 @@ void drawPacGum(SDL_Rect pacGum, SDL_Rect superPacGum) {
     }
 }
 
+void generateMaze(){
+    drawPacGum(pacGum, superPacGum);
+}
+
+void initMaze() {
+    copyMapArray();
+    generateMaze();
+}
 
 struct Coordinates getUIToGridPosition(struct Coordinates UIPos)
 {
