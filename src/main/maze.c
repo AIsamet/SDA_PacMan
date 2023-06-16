@@ -46,7 +46,6 @@ void copyMapArray() {
 }
 
 void initMaze() {
-    copyMapArray();
     drawPacGum(pacGum, superPacGum);
 }
 

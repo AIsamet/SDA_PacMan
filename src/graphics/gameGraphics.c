@@ -23,7 +23,7 @@ SDL_Rect pacman = { 32,32, 32,32 };
 SDL_Rect* pacman_in = &pacman_spawn;
 
 int count = 0;
-int fps = 0;
+int pacmanAnimationCount = 0;
 bool isPacmanEating = false;
 
 
@@ -84,12 +84,11 @@ void animateGhosts()
 void drawGameGraphics(){
     // Draw the background image onto the window surface
     drawGameBackground();
-
     // Animate and draw the ghosts
     animateGhosts();
 
     // Draw pacman
     drawPacman();
     pacmanEventHandler();
-    fps++;
+    pacmanAnimationCount++;
 }

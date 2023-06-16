@@ -75,7 +75,7 @@ struct Coordinates movePacmanOnGrid(struct Coordinates *pacmanUiPos)
 void drawPacman()
 {
     SDL_Rect newPacman = {0, 0, 0, 0};  // Initialize a new SDL rectangle for pacman
-    int pacmanAnimation = (fps / ANIMATION_SPEED) % 3;  // Determine the current animation frame of pacman
+    int pacmanAnimation = (pacmanAnimationCount / ANIMATION_SPEED) % 3;  // Determine the current animation frame of pacman
     struct Coordinates pacmanUIPosCopy = pacmanUIPos;  // Make a copy of pacman's UI position
 
     // Check if pacman's desired direction is different from the current direction and if pacman can move in the desired direction
