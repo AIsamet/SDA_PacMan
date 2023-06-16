@@ -81,20 +81,21 @@ void drawPacman()
     int pacmanAnimation = (fps / ANIMATION_SPEED) % 3;
     struct Coordinates pacmanPosCopy = pacmanUIPos;
 
-     // Test is wished direction can be applied
-    if (pacmanDirection != pacmanWishedDirection && canPacmanMove(pacmanWishedDirection))
-    {
+//    if (pacmanDirection != pacmanWishedDirection && canPacmanMove(pacmanWishedDirection))
+//    {
         pacmanDirection = pacmanWishedDirection;
-    }
+//    }
 
     //print pacman direction
     printf("pacman direction : %d\n", pacmanDirection);
     // print wished pacman direction
     printf("pacman wished direction : %d\n", pacmanWishedDirection);
-    //pacman UI position
-    printf("pacman UI position : %d\n", pacmanUIPos.x);
-    //pacman grid position
-    printf("pacman grid position : %d\n", pacmanGridPos.x);
+    //pacman UI positions x and y
+    printf("pacman UI position X : %d ; Y : %d\n", pacmanUIPos.x, pacmanUIPos.y);
+    // pacman grid positions
+    printf("pacman grid position X : %d ; Y : %d\n", pacmanGridPos.x, pacmanGridPos.y);
+    //can move
+    printf("can move : %d\n", canPacmanMove(pacmanWishedDirection));
 
     // Then we can choose the sprite corresponding to direction
     newPacman = pacmanSpritesByDirection[pacmanDirection][pacmanAnimation];
@@ -102,12 +103,12 @@ void drawPacman()
     // Calculate the target UI position
     sumCoordinatesWithOffset(&pacmanPosCopy, pacmanDirection, 3);
 
-    if (isColliding(pacmanPosCopy, CELL_SIZE - 1))
-    {
-        // If pacman ran into obstacle, just blit him at without updating his position
-        pacmanBlit(lastPacmanDirection);
-        return;
-    }
+    // bugged, to be fixed
+//    if (isColliding(pacmanPosCopy, CELL_SIZE - 1))
+//    {
+//        pacmanBlit(lastPacmanDirection);
+//        return;
+//    }
 
     // Get target pacman position in grid
     struct Coordinates newPacmanGridPos = getUIToGridPosition(getCellCenter(pacmanPosCopy));
