@@ -1,5 +1,6 @@
 #include "graphics/gameGraphics.h"
 
+
 SDL_Rect src_bg = { 369,3, 168,216 }; // x,y, w,h (0,0) en haut a gauche
 SDL_Rect bg = { 4,4, 672,864 }; // ici scale x4
 
@@ -9,31 +10,9 @@ SDL_Rect ghost_d = { 105,123, 16,16 };
 SDL_Rect ghost_u = { 71,123, 16,16 };
 SDL_Rect ghost = { 32,36, 32,32 };     // ici scale x2
 
-SDL_Rect pacman_closed = { 4,90, PACMAN_SIZE, PACMAN_SIZE };
-SDL_Rect pacman_spawn = { 21,90, PACMAN_SIZE, PACMAN_SIZE };
-SDL_Rect pacman_eat_r = { 38, 90, PACMAN_SIZE, PACMAN_SIZE };
-SDL_Rect pacman_eat_l = { 72, 90, PACMAN_SIZE, PACMAN_SIZE };
-SDL_Rect pacman_eat_d = { 140, 90, PACMAN_SIZE, PACMAN_SIZE };
-SDL_Rect pacman_eat_u = { 106, 90, PACMAN_SIZE, PACMAN_SIZE };
-SDL_Rect pacman_r = { 21,90, PACMAN_SIZE, PACMAN_SIZE };
-SDL_Rect pacman_l = { 56, 90, PACMAN_SIZE, PACMAN_SIZE };
-SDL_Rect pacman_d = { 123, 90, PACMAN_SIZE, PACMAN_SIZE };
-SDL_Rect pacman_u = { 89, 90, PACMAN_SIZE, PACMAN_SIZE };
-SDL_Rect pacman = { 32,32, 32,32 };
-SDL_Rect* pacman_in = &pacman_spawn;
-
 int ghostAnimationCount = 0;
 int pacmanAnimationCount = 0;
-bool isPacmanEating = false;
 
-
-void drawGameBackground(){
-    // Set the color key for transparent pixels in the sprite sheet
-    SDL_SetColorKey(plancheSprites, false, 0);
-
-    // Draw the background image onto the window surface
-    SDL_BlitScaled(plancheSprites, &src_bg, pWindowSurface, &bg);
-}
 
 void animateGhosts()
 {
@@ -78,6 +57,14 @@ void animateGhosts()
     SDL_BlitScaled(plancheSprites, &ghost_in2, pWindowSurface, &ghost);
 }
 
+void drawGameBackground(){
+    // Set the color key for transparent pixels in the sprite sheet
+    SDL_SetColorKey(plancheSprites, false, 0);
+
+    // Draw the background image onto the window surface
+    SDL_BlitScaled(plancheSprites, &src_bg, pWindowSurface, &bg);
+}
+
 void drawGameGraphics(){
     // Draw the background image onto the window surface
     drawGameBackground();
@@ -90,6 +77,8 @@ void drawGameGraphics(){
 
     // Draw pacman
     drawPacman();
+
+    // Get keyboard events
     pacmanEventHandler();
     pacmanAnimationCount++;
 }

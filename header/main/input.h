@@ -6,10 +6,10 @@
 #include "../customData/direction.h"
 
 
-void inputHandler(bool* quit, SDL_Rect** pacman_in);
+void checkKeyboardEvent(bool* quit);
 void pacmanInputHandler(SDL_Event* event, Direction* pacmanWishedDirection_in);
 void checkExitEvent(bool* quit, SDL_Event* event);
-void checkKeyboardEvent(bool* quit);
+void inputHandler(bool* quit);
 
 
 #endif

@@ -1,18 +1,6 @@
 #include "main/input.h"
 
 
-void checkExitEvent(bool* quit, SDL_Event* event) {
-    while (SDL_PollEvent(event)) {
-        switch (event->type) {
-            case SDL_QUIT:
-                *quit = true;
-                break;
-            default:
-                break;
-        }
-    }
-}
-
 void checkKeyboardEvent(bool* quit) {
     int nbKeys;
     const Uint8* keyboardState = SDL_GetKeyboardState(&nbKeys);
@@ -34,7 +22,19 @@ void pacmanInputHandler(SDL_Event* event, Direction* pacmanWishedDirection_in) {
         *pacmanWishedDirection_in = DIRECTION_DOWN;
 }
 
-void inputHandler(bool* quit, SDL_Rect** pacman_in) {
+void checkExitEvent(bool* quit, SDL_Event* event) {
+    while (SDL_PollEvent(event)) {
+        switch (event->type) {
+            case SDL_QUIT:
+                *quit = true;
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+void inputHandler(bool* quit) {
     SDL_Event event;
     checkExitEvent(quit, &event);
     checkKeyboardEvent(quit);

@@ -6,10 +6,6 @@
 
 
 void initGameLoop();
-void updateGame();
-void renderGame();
-void handleInputGame();
-
 
 
 #endif

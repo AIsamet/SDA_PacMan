@@ -1,5 +1,6 @@
 #include "main/maze.h"
 
+
 int newMapArray[27][21];
 
 SDL_Rect pacGum = { 1, 78, 8, 8 };
@@ -168,7 +169,7 @@ bool isColliding(struct Coordinates coordinates, int hitboxOffset)
     return false;
 }
 
-void displayMaze()
+void displayMazeInConsole()
 {
     for (int i = 0; i < MAZE_HEIGHT_IN_ARRAY; i++)
     {

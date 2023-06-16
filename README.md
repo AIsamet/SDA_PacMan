@@ -25,11 +25,11 @@ make
 ## Gameplay et fonctionnalités principales
 | Objectif                                                | Statut |
 |---------------------------------------------------------|:------:|
-| Gestion de la logique du jeu                            |  ❌      |
+| Gestion de la logique du jeu                            |  ❌    |
 | Déplacement du personnage principal (Pac-Man)            |  ✅      |
 | Déplacement des fantômes                                |  ➖      |
-| Détection des collisions                                |  ➖      |
-| Système de score                                        |  ❌      |
+| Détection des collisions                                |  ✅      |
+| Système de score                                        |  ➖      |
 | Gestion des niveaux                                     |  ❌      |
 | Génération aléatoire des niveaux ou niveaux prédéfinis   |  ❌      |
 | Intégration des sprites et des éléments du jeu           |  ✅      |
@@ -42,7 +42,7 @@ make
 | Objectif                                                | Statut |
 |---------------------------------------------------------|:------:|
 | Affichage des graphismes du jeu                         |  ✅      |
-| Animation des personnages                               |  ➖      |
+| Animation des personnages                               |  ✅      |
 | Intégration des décors et des murs du labyrinthe         |  ✅      |
 | Gestion des animations pour les états spéciaux de Pac-Man |  ❌      |
 

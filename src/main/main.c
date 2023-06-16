@@ -7,11 +7,13 @@
 
 
 int main(int argc, char** argv) {
+
     initSDL();
     initWindow();
 
     initGameLoop();
 
     freeSDL();
+    
     return 0;
 }

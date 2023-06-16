@@ -1,8 +1,8 @@
 #ifndef COORDINATES_H
 #define COORDINATES_H
-
 #include <stdbool.h>
-#include "customData/direction.h"
+#include "../customData/direction.h"
+
 
 struct Coordinates
 {

@@ -4,6 +4,9 @@
 #include <SDL2/SDL.h>
 #include "globalVariables.h"
 
+extern SDL_Window* pWindow;
+extern SDL_Surface* pWindowSurface;
+extern SDL_Surface* plancheSprites;
 
 void initSDL();
 void initWindow();

@@ -3,11 +3,9 @@
 
 
 void initGraphics(){
-
     drawGameBackground();
     initMaze();
     spawnPacman();
-
     graphicsHandler();
 }
 
@@ -18,7 +16,7 @@ void graphicsHandler(){
         clock_t frameStartTime = clock();
         SDL_FillRect(pWindowSurface, 0, 0);
         drawGameGraphics();
-        inputHandler(&quit, &pacman_in);
+        inputHandler(&quit);
         SDL_UpdateWindowSurface(pWindow);
         maintainFrameRateDelay(frameStartTime, DELAY);
     }
