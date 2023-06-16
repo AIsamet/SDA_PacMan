@@ -22,7 +22,7 @@ SDL_Rect pacman_u = { 89, 90, PACMAN_SIZE, PACMAN_SIZE };
 SDL_Rect pacman = { 32,32, 32,32 };
 SDL_Rect* pacman_in = &pacman_spawn;
 
-int count = 0;
+int ghostAnimationCount = 0;
 int pacmanAnimationCount = 0;
 bool isPacmanEating = false;
 
@@ -33,9 +33,6 @@ void drawGameBackground(){
 
     // Draw the background image onto the window surface
     SDL_BlitScaled(plancheSprites, &src_bg, pWindowSurface, &bg);
-
-    // Init in maze elements
-    generateMaze(); // TEST
 }
 
 void animateGhosts()
@@ -43,8 +40,8 @@ void animateGhosts()
     // Variable to hold the current ghost sprite rectangle
     SDL_Rect* ghost_in = NULL;
 
-    // Determine the current ghost sprite based on the count value
-    switch (count / 128)
+    // Determine the current ghost sprite based on the ghostAnimationCount value
+    switch (ghostAnimationCount / 128)
     {
         case 0:
             ghost_in = &(ghost_r); // Right-facing ghost sprite
@@ -64,14 +61,14 @@ void animateGhosts()
             break;
     }
 
-    // Increment the count value and wrap it around to 0 when it reaches 512
-    count = (count + 1) % 512;
+    // Increment the ghostAnimationCount value and wrap it around to 0 when it reaches 512
+    ghostAnimationCount = (ghostAnimationCount + 1) % 512;
 
     // Create a copy of the current ghost sprite rectangle
     SDL_Rect ghost_in2 = *ghost_in;
 
     // Modify the ghost sprite rectangle if it is in the alternate state
-    if ((count / 4) % 2)
+    if ((ghostAnimationCount / 4) % 2)
         ghost_in2.x += 17;
 
     // Set the color key for transparent pixels in the sprite sheet
@@ -84,6 +81,10 @@ void animateGhosts()
 void drawGameGraphics(){
     // Draw the background image onto the window surface
     drawGameBackground();
+
+    // Draw maze
+    generateMaze();
+
     // Animate and draw the ghosts
     animateGhosts();
 
@@ -91,4 +92,19 @@ void drawGameGraphics(){
     drawPacman();
     pacmanEventHandler();
     pacmanAnimationCount++;
+}
+
+void maintainFrameRateDelay(clock_t frameStartTime, Uint32 desiredFrameDelayInMs)
+{
+    // Calculate the duration of the frame
+    clock_t frameEndTime = clock();
+    clock_t frameDuration = frameEndTime - frameStartTime;
+    int64_t frameDurationMs = (frameDuration * 1000) / CLOCKS_PER_SEC;
+
+    // Calculate the remaining delay needed to maintain the desired frame rate
+    int64_t remainingDelay = desiredFrameDelayInMs - frameDurationMs;
+
+    // If there is still time remaining, delay the execution
+    if (remainingDelay > 0)
+        SDL_Delay(SDL_static_cast(Uint32, remainingDelay));
 }

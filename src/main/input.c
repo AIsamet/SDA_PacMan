@@ -34,8 +34,6 @@ void pacmanInputHandler(SDL_Event* event, Direction* pacmanWishedDirection_in) {
         *pacmanWishedDirection_in = DIRECTION_DOWN;
 }
 
-
-
 void inputHandler(bool* quit, SDL_Rect** pacman_in) {
     SDL_Event event;
     checkExitEvent(quit, &event);

@@ -4,9 +4,10 @@
 #include <SDL2/SDL.h>
 #include <stdbool.h>
 #include <math.h>
+#include <time.h>
 #include "../main/maze.h"
-#include "../utils/globalVariables.h"
 #include "../main/pacman.h"
+#include "../utils/globalVariables.h"
 
 extern SDL_Window* pWindow;
 extern SDL_Surface* pWindowSurface;
@@ -44,7 +45,8 @@ void movePacmanRight(SDL_Rect** pacman_in);
 void movePacmanUp(SDL_Rect** pacman_in);
 void movePacmanDown(SDL_Rect** pacman_in);
 bool isPacmanInMapLimits(double x, double y);
-void getCurrentPositionInArray(double* x, double* y); // TEST
+void getCurrentPositionInArray(double* x, double* y);
+void maintainFrameRateDelay(clock_t frameStartTime, Uint32 desiredFrameDelayInMs);
 
 
 #endif //GAMEGRAPHICS_H

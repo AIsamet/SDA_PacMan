@@ -1,21 +1,25 @@
 #include "utils/renderer.h"
 #include "main/pacman.h"
 
+
 void initGraphics(){
+
+    drawGameBackground();
+    initMaze();
+    spawnPacman();
+
     graphicsHandler();
 }
 
 void graphicsHandler(){
     bool quit = false;
 
-    drawGameBackground();
-    initMaze();
-    spawnPacman();
-
     while (!quit) {
-        inputHandler(&quit, &pacman_in);
+        clock_t frameStartTime = clock();
+        SDL_FillRect(pWindowSurface, 0, 0);
         drawGameGraphics();
-        SDL_Delay(20);
+        inputHandler(&quit, &pacman_in);
         SDL_UpdateWindowSurface(pWindow);
+        maintainFrameRateDelay(frameStartTime, DELAY);
     }
 }
