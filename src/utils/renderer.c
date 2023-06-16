@@ -16,6 +16,7 @@ void graphicsHandler(){
     bool quit = false;
 
     drawGameBackground();
+    initMaze();
     spawnPacman();
 
     while (!quit) {

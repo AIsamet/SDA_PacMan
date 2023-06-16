@@ -12,7 +12,6 @@
 
 void spawnPacman();
 void pacmanEventHandler();
-bool isObstacle(struct Coordinates coordinates);
 int canPacmanMove(Direction direction);
 void pacmanBlit(SDL_Rect srcRect);
 void drawPacman();
