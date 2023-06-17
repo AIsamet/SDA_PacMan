@@ -15,6 +15,8 @@ SDL_Rect wantedDirectionArrowSpritesByDirection[4] = {
     {25, 301, DIRECTION_ARROW_SIZE, DIRECTION_ARROW_SIZE}, // DOWN
 };
 
+int pacmanLives = PACMAN_LIVES;
+
 SDL_Rect lastPacmanPosition = {0, 0, 0, 0};
 
 struct Coordinates pacmanSpawnPos;
@@ -37,6 +39,11 @@ void spawnPacman()
     pacmanWantedDirection = defaultDirection;
 
     lastPacmanPosition = pacmanSpritesByDirection[defaultDirection][0];
+}
+
+int getPacmanLives()
+{
+    return pacmanLives;
 }
 
 // Function to handle the events related to Pacman

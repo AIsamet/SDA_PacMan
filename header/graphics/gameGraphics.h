@@ -7,6 +7,7 @@
 #include "../main/maze.h"
 #include "../main/pacman.h"
 #include "../utils/globalVariables.h"
+#include "../main/pacman.h"
 
 
 extern SDL_Rect src_bg;
