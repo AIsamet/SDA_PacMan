@@ -2,10 +2,17 @@
 
 
 SDL_Rect pacmanSpritesByDirection[4][3] = {
-        {{4, 90, PACMAN_SIZE, PACMAN_SIZE}, {21, 90, PACMAN_SIZE, PACMAN_SIZE}, {38, 90, PACMAN_SIZE, PACMAN_SIZE}},  // RIGHT
-        {{4, 90, PACMAN_SIZE, PACMAN_SIZE}, {56, 90, PACMAN_SIZE, PACMAN_SIZE}, {72, 90, PACMAN_SIZE, PACMAN_SIZE}},  // LEFT
-        {{4, 90, PACMAN_SIZE, PACMAN_SIZE}, {89, 90, PACMAN_SIZE, PACMAN_SIZE}, {106, 90, PACMAN_SIZE, PACMAN_SIZE}}, // UP
-        {{4, 90, PACMAN_SIZE, PACMAN_SIZE}, {123, 90, PACMAN_SIZE, PACMAN_SIZE}, {140, 90, PACMAN_SIZE, PACMAN_SIZE}} // DOWN
+    {{4, 90, PACMAN_SIZE, PACMAN_SIZE}, {21, 90, PACMAN_SIZE, PACMAN_SIZE}, {38, 90, PACMAN_SIZE, PACMAN_SIZE}},  // RIGHT
+    {{4, 90, PACMAN_SIZE, PACMAN_SIZE}, {56, 90, PACMAN_SIZE, PACMAN_SIZE}, {72, 90, PACMAN_SIZE, PACMAN_SIZE}},  // LEFT
+    {{4, 90, PACMAN_SIZE, PACMAN_SIZE}, {89, 90, PACMAN_SIZE, PACMAN_SIZE}, {106, 90, PACMAN_SIZE, PACMAN_SIZE}}, // UP
+    {{4, 90, PACMAN_SIZE, PACMAN_SIZE}, {123, 90, PACMAN_SIZE, PACMAN_SIZE}, {140, 90, PACMAN_SIZE, PACMAN_SIZE}} // DOWN
+};
+
+SDL_Rect wantedDirectionArrowSpritesByDirection[4] = {
+    {4, 301, DIRECTION_ARROW_SIZE, DIRECTION_ARROW_SIZE}, // RIGHT
+    {11, 301, DIRECTION_ARROW_SIZE, DIRECTION_ARROW_SIZE}, // LEFT
+    {18, 301, DIRECTION_ARROW_SIZE, DIRECTION_ARROW_SIZE}, // UP
+    {25, 301, DIRECTION_ARROW_SIZE, DIRECTION_ARROW_SIZE}, // DOWN
 };
 
 SDL_Rect lastPacmanPosition = {0, 0, 0, 0};
@@ -17,7 +24,7 @@ struct Coordinates pacmanGridPos = {0, 0};
 Direction defaultDirection = DIRECTION_RIGHT;
 
 Direction pacmanDirection;
-Direction pacmanWishedDirection;
+Direction pacmanWantedDirection;
 
 // Function to spawn Pacman at the beginning of the game
 void spawnPacman()
@@ -27,7 +34,7 @@ void spawnPacman()
     pacmanUIPos = getGridToUIPosition(pacmanGridPos);
 
     pacmanDirection = defaultDirection;
-    pacmanWishedDirection = defaultDirection;
+    pacmanWantedDirection = defaultDirection;
 
     lastPacmanPosition = pacmanSpritesByDirection[defaultDirection][0];
 }
@@ -36,7 +43,7 @@ void spawnPacman()
 void pacmanEventHandler()
 {
     SDL_Event event;
-    pacmanInputHandler(&event, &pacmanWishedDirection);
+    pacmanInputHandler(&event, &pacmanWantedDirection);
 }
 
 // Function to check if Pacman can move in a given direction
@@ -81,13 +88,13 @@ int getPacmanCurrentAnimationIndex()
 }
 
 // Function to update the direction of Pacman if possible
-void updatePacmanDirection(Direction pacmanWishedDirection)
+void updatePacmanDirection(Direction pacmanWantedDirection)
 {
     // Check if the desired direction for Pacman has changed and if Pacman can move in that direction
-    if (pacmanDirection != pacmanWishedDirection && canPacmanMove(pacmanWishedDirection))
+    if (pacmanDirection != pacmanWantedDirection && canPacmanMove(pacmanWantedDirection))
     {
         // Update the direction of Pacman
-        pacmanDirection = pacmanWishedDirection;
+        pacmanDirection = pacmanWantedDirection;
     }
 }
 
@@ -104,7 +111,7 @@ void drawPacman()
     int pacmanAnimation = getPacmanCurrentAnimationIndex();
 
     // Update the direction of Pacman if possible
-    updatePacmanDirection(pacmanWishedDirection);
+    updatePacmanDirection(pacmanWantedDirection);
 
     // Retrieve the appropriate sprite for the current direction and animation frame
     SDL_Rect newPacmanPosition = getPacmanSprite(pacmanDirection,pacmanAnimation);
@@ -142,4 +149,37 @@ void drawPacman()
         // Draw Pacman on the screen
         pacmanBlit(newPacmanPosition);
     }
+}
+
+// Function to retrieve the appropriate sprite for the current direction
+SDL_Rect getWantedDirectionArrowSprite(Direction direction)
+{
+    return wantedDirectionArrowSpritesByDirection[direction];
+}
+
+// Function to draw the wanted direction arrow on the screen
+void drawWantedDirectionArrow()
+{   
+    // Retrieve the appropriate sprite for the current direction
+    SDL_Rect currentDirectionArrowSprite = getWantedDirectionArrowSprite(pacmanWantedDirection);
+
+    // Calculate the UI position of the wanted direction arrow
+    struct Coordinates arrowUIPos = {
+        pacmanUIPos.x + DIRECTION_ARROW_OFFSET,
+        pacmanUIPos.y + DIRECTION_ARROW_OFFSET,
+    };
+
+    // Add an offset to the wanted direction arrow's UI position based on its direction
+    sumCoordinatesWithOffset(&arrowUIPos, pacmanWantedDirection, DIRECTION_ARROW_PADDING);
+
+    // Calculate the destination rectangle of the wanted direction arrow
+    struct SDL_Rect arrowDestRect = {
+        arrowUIPos.x,
+        arrowUIPos.y + HEADER_SCREEN_HEIGHT,
+        DIRECTION_ARROW_DISPLAY_SIZE,
+        DIRECTION_ARROW_DISPLAY_SIZE
+    };
+
+    // Blit the wanted direction arrow sprite on the screen
+    SDL_BlitScaled(plancheSprites, &currentDirectionArrowSprite, pWindowSurface, &arrowDestRect);
 }

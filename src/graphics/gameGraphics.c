@@ -93,6 +93,9 @@ void drawGameGraphics(){
     // Draw pacman
     drawPacman();
 
+    // Draw arrow
+    drawWantedDirectionArrow();
+
     // Get keyboard events
     pacmanEventHandler();
     pacmanAnimationCount++;

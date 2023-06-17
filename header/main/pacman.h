@@ -16,9 +16,11 @@ int canPacmanMove(Direction direction);
 void pacmanBlit(SDL_Rect srcRect);
 void updateUnderPacmanGridElement();
 int getPacmanCurrentAnimationIndex();
-void updatePacmanDirection(Direction pacmanWishedDirection);
+void updatePacmanDirection(Direction pacmanWantedDirection);
 SDL_Rect getPacmanSprite(Direction direction, int animationIndex);
 void drawPacman();
+SDL_Rect getWantedDirectionArrowSprite(Direction direction);
+void drawWantedDirectionArrow();
 
 
 #endif //PACMAN_H
