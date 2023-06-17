@@ -34,7 +34,7 @@ make
 | Génération aléatoire des niveaux ou niveaux prédéfinis   |  ❌      |
 | Intégration des sprites et des éléments du jeu           |  ✅      |
 | Gestion des power-ups                                   |  ➖      |
-| Intégration d'un système de vies pour Pac-Man           |  ❌      |
+| Intégration d'un système de vies pour Pac-Man           |  ➖      |
 
 <br>
 
@@ -61,7 +61,7 @@ make
 | Objectif                                                | Statut |
 |---------------------------------------------------------|:------:|
 | Intégration d'un menu principal                          |  ❌      |
-| Affichage du score et des vies de Pac-Man                |  ❌      |
+| Affichage du score et des vies de Pac-Man                |  ➖      |
 | Écran de Game Over et de victoire                        |  ❌      |
 
 <br>
@@ -69,13 +69,13 @@ make
 ## Optimisation et performance
 | Objectif                                                | Statut |
 |---------------------------------------------------------|:------:|
-| Optimisation du code et des performances du jeu          |  ❌      |
-| Gestion efficace de la mémoire et des ressources         |  ❌      |
+| Optimisation du code et des performances du jeu          |  ➖      |
+| Gestion efficace de la mémoire et des ressources         |  ➖      |
 
 <br>
 
 ## Tests et débogage
 | Objectif                                                | Statut |
 |---------------------------------------------------------|:------:|
-| Réalisation de tests unitaires                           |  ❌      |
-| Débogage pour détecter et corriger les erreurs et problèmes |  ❌      |
+| Réalisation de tests unitaires                           |  ➖      |
+| Débogage pour détecter et corriger les erreurs et problèmes |  ➖      |
