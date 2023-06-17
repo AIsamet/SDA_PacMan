@@ -14,7 +14,7 @@
 
 void copyMapArray();
 void drawPacGum(SDL_Rect pacGum, SDL_Rect superPackGum);
-void generateMaze();
+void drawMazeElements();
 void initMaze();
 struct Coordinates getUIToGridPosition(struct Coordinates UIPos);
 struct Coordinates getGridToUIPosition(struct Coordinates gridPosition);

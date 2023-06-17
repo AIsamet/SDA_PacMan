@@ -1,17 +1,19 @@
 #include "utils/renderer.h"
-#include "main/pacman.h"
 
 
 void initGraphics()
-{    
-    // Draw the game background
-    drawGameBackground();
+{   
+    // Init SDL 
+    initSDL();
+
+    // Init SDL game window
+    initWindow();
 
     // Init the maze into the background
     initMaze();
 
-    // Spawn Pacman
-    spawnPacman();
+    // Init Pacman
+    initPacman();
 
     // Use graphicsHandler to render the game
     graphicsHandler();
@@ -29,8 +31,14 @@ void graphicsHandler()
         // Clear the window surface
         SDL_FillRect(pWindowSurface, 0, 0);
 
+        // Draw the game header
+        drawGameHeader();
+
         // Draw the game graphics
         drawGameGraphics();
+
+        // Draw the game footer
+        drawGameFooter();
 
         // Handle input
         inputHandler(&quit);

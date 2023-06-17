@@ -1,21 +1,8 @@
 #include "graphics/gameGraphics.h"
 
 
-// scale x4 for all sprites
-SDL_Rect src_header = {0, 0, 0, 0};
-SDL_Rect header = {0, 0, TOTAL_SCREEN_WIDTH, HEADER_SCREEN_HEIGHT};
-
 SDL_Rect src_game_bg = { 369,3, 168,216 };
 SDL_Rect game_bg = { 0, HEADER_SCREEN_HEIGHT, MAZE_WIDTH, MAZE_HEIGHT };
-
-SDL_Rect src_footer = {0, 0, 0, 0};
-SDL_Rect footer = {0, HEADER_SCREEN_HEIGHT + MAZE_HEIGHT, TOTAL_SCREEN_WIDTH, FOOTER_SCREEN_HEIGHT};
-
-SDL_Rect destPacmanLives[3] = { 
-    { 0 + PACMAN_LIVES_X_DISPLAY_OFFSET , HEADER_SCREEN_HEIGHT + MAZE_HEIGHT + PACMAN_LIVES_Y_DISPLAY_OFFSET , CELL_SIZE, CELL_SIZE},
-    { 32 + PACMAN_LIVES_X_DISPLAY_OFFSET, HEADER_SCREEN_HEIGHT + MAZE_HEIGHT + PACMAN_LIVES_Y_DISPLAY_OFFSET , CELL_SIZE, CELL_SIZE},
-    { 64 + PACMAN_LIVES_X_DISPLAY_OFFSET, HEADER_SCREEN_HEIGHT + MAZE_HEIGHT + PACMAN_LIVES_Y_DISPLAY_OFFSET , CELL_SIZE, CELL_SIZE}
-};
 
 SDL_Rect ghost_r = { 3,123, 16,16 };
 SDL_Rect ghost_l = { 37,123, 16,16 };
@@ -79,58 +66,13 @@ void drawGameBackground()
     SDL_BlitScaled(plancheSprites, &src_game_bg, pWindowSurface, &game_bg);
 }
 
-void drawGameHeader()
-{
-    // Set the color key for transparent pixels in the sprite sheet
-    SDL_SetColorKey(plancheSprites, false, 0);
-
-    // Draw the black header onto the window surface
-    SDL_BlitScaled(plancheSprites, &src_header, pWindowSurface, &header);
-}
-
-void drawPacmanLives()
-{
-    // Get pacman sprite
-    SDL_Rect pacman = getPacmanSprite(PACMAN_DEFAULT_DIRECTION, PACMAN_DEFAULT_ANIMATION);
-    int pacmanLives = getPacmanLives();
-
-    // Draw each pacman lives
-    for(int lives = 0; lives < pacmanLives; lives++)
-    {
-        SDL_Rect dest = destPacmanLives[lives];
-
-        // Set the color key for transparent pixels in the sprite sheet
-        SDL_SetColorKey(plancheSprites, false, 0);
-
-        SDL_BlitScaled(plancheSprites, &pacman, pWindowSurface, &dest);
-    }
-}
-
-void drawGameFooter()
-{
-    // Set the color key for transparent pixels in the sprite sheet
-    SDL_SetColorKey(plancheSprites, false, 0);
-
-    // Draw the black footer onto the window surface
-    SDL_BlitScaled(plancheSprites, &src_footer, pWindowSurface, &footer);
-
-    // Draw pacman lives
-    drawPacmanLives();
-}
-
 void drawGameGraphics()
 {
-    // Draw the information header
-    drawGameHeader();
-
     // Draw the background image onto the window surface
     drawGameBackground();
 
-    // Draw the footer information for pacman lives
-    drawGameFooter();
-
     // Draw maze
-    generateMaze();
+    drawMazeElements();
 
     // Animate and draw the ghosts
     animateGhosts();

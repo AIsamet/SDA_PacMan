@@ -10,7 +10,7 @@
 #include "main/input.h"
 
 
-void spawnPacman();
+void initPacman();
 void pacmanEventHandler();
 int canPacmanMove(Direction direction);
 void pacmanBlit(SDL_Rect srcRect);
@@ -21,6 +21,5 @@ SDL_Rect getPacmanSprite(Direction direction, int animationIndex);
 void drawPacman();
 SDL_Rect getWantedDirectionArrowSprite(Direction direction);
 void drawWantedDirectionArrow();
-int getPacmanLives();
 
 #endif //PACMAN_H

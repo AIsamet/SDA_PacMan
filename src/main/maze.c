@@ -69,7 +69,7 @@ void drawPacGum(SDL_Rect pacGum, SDL_Rect superPacGum)
     }
 }
 
-void generateMaze()
+void drawMazeElements()
 {
     drawPacGum(pacGum, superPacGum);
 }
@@ -77,7 +77,7 @@ void generateMaze()
 void initMaze() 
 {
     copyMapArray();
-    generateMaze();
+    drawMazeElements();
 }
 
 struct Coordinates getUIToGridPosition(struct Coordinates UIPos)

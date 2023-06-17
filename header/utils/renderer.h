@@ -3,6 +3,8 @@
 #include "../utils/sdlUtils.h"
 #include "../main/input.h"
 #include "../graphics/gameGraphics.h"
+#include "../graphics/footerGraphics.h"
+#include "../graphics/headerGraphics.h"
 
 
 void initGraphics();
