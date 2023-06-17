@@ -41,3 +41,19 @@ void freeSDL()
     // Quit SDL
     SDL_Quit();
 }
+
+void printRectValues(SDL_Rect rect)
+{
+    printf("x: %d, y: %d, w: %d, h: %d\n", rect.x, rect.y, rect.w, rect.h);
+}
+
+void extractSpritesIterativelyWithOffsets(SDL_Rect inputSprite, SDL_Rect *outputSpriteArray, int numberOfSprites, int xOffset, int yOffset)
+{
+    for (int i = 0; i < numberOfSprites; i++)
+    {
+        outputSpriteArray[i].x = inputSprite.x + i * xOffset;
+        outputSpriteArray[i].y = inputSprite.y + i * yOffset;
+        outputSpriteArray[i].w = inputSprite.w;
+        outputSpriteArray[i].h = inputSprite.h;
+    }    
+}

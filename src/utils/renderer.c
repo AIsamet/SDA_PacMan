@@ -9,6 +9,9 @@ void initGraphics()
     // Init SDL game window
     initWindow();
 
+    // Init header sprites
+    initHeaderSprites();
+
     // Init the maze into the background
     initMaze();
 
