@@ -8,7 +8,7 @@
 
 
 #define PACGUM_X 6
-#define PACGUM_Y 6
+#define PACGUM_Y (6 + HEADER_SCREEN_HEIGHT)
 #define PACGUM_W 26
 #define PACGUM_H 26
 

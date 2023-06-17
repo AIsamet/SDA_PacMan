@@ -1,19 +1,23 @@
 #include "graphics/gameGraphics.h"
 
 
-SDL_Rect src_bg = { 369,3, 168,216 }; // x,y, w,h (0,0) en haut a gauche
-SDL_Rect bg = { 4,4, 672,864 }; // ici scale x4
+// scale x4 for all sprites
+SDL_Rect src_header = {0, 0, 0, 0};
+SDL_Rect header = {0, 0, TOTAL_SCREEN_WIDTH, HEADER_SCREEN_HEIGHT};
+
+SDL_Rect src_game_bg = { 369,3, 168,216 };
+SDL_Rect game_bg = { 0, HEADER_SCREEN_HEIGHT, MAZE_WIDTH, MAZE_HEIGHT };
 
 SDL_Rect ghost_r = { 3,123, 16,16 };
 SDL_Rect ghost_l = { 37,123, 16,16 };
 SDL_Rect ghost_d = { 105,123, 16,16 };
 SDL_Rect ghost_u = { 71,123, 16,16 };
-SDL_Rect ghost = { 32,36, 32,32 };     // ici scale x2
+SDL_Rect ghost = { 32,HEADER_SCREEN_HEIGHT + 36, 32,32 };
 
 int ghostAnimationCount = 0;
 int pacmanAnimationCount = 0;
 
-
+// to be removed
 void animateGhosts()
 {
     // Variable to hold the current ghost sprite rectangle
@@ -62,10 +66,21 @@ void drawGameBackground(){
     SDL_SetColorKey(plancheSprites, false, 0);
 
     // Draw the background image onto the window surface
-    SDL_BlitScaled(plancheSprites, &src_bg, pWindowSurface, &bg);
+    SDL_BlitScaled(plancheSprites, &src_game_bg, pWindowSurface, &game_bg);
+}
+
+void drawGameHeader(){
+    // Set the color key for transparent pixels in the sprite sheet
+    SDL_SetColorKey(plancheSprites, false, 0);
+
+    // Draw the black header onto the window surface
+    SDL_BlitScaled(plancheSprites, &src_header, pWindowSurface, &header);
 }
 
 void drawGameGraphics(){
+    // Draw the information header
+    drawGameHeader();
+
     // Draw the background image onto the window surface
     drawGameBackground();
 

@@ -50,7 +50,7 @@ int canPacmanMove(Direction direction)
 // Function to draw the Pacman character on the screen
 void pacmanBlit(SDL_Rect srcRect)
 {
-    SDL_Rect rect = {pacmanUIPos.x, pacmanUIPos.y, CELL_SIZE, CELL_SIZE};
+    SDL_Rect rect = {pacmanUIPos.x, pacmanUIPos.y + HEADER_SCREEN_HEIGHT, CELL_SIZE, CELL_SIZE};
     SDL_SetColorKey(plancheSprites, 1, 0);
     SDL_BlitScaled(plancheSprites, &srcRect, pWindowSurface, &rect);
 }
