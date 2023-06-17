@@ -8,7 +8,7 @@ SDL_Rect pacmanSpritesByDirection[4][3] = {
         {{4, 90, PACMAN_SIZE, PACMAN_SIZE}, {123, 90, PACMAN_SIZE, PACMAN_SIZE}, {140, 90, PACMAN_SIZE, PACMAN_SIZE}} // DOWN
 };
 
-SDL_Rect lastPacmanDirection = {0, 0, 0, 0};
+SDL_Rect lastPacmanPosition = {0, 0, 0, 0};
 
 struct Coordinates pacmanSpawnPos;
 struct Coordinates pacmanUIPos = {0, 0};
@@ -19,6 +19,7 @@ Direction defaultDirection = DIRECTION_RIGHT;
 Direction pacmanDirection;
 Direction pacmanWishedDirection;
 
+// Function to spawn Pacman at the beginning of the game
 void spawnPacman()
 {
     pacmanSpawnPos = searchElementInMazeArray(PACMAN);
@@ -28,22 +29,25 @@ void spawnPacman()
     pacmanDirection = defaultDirection;
     pacmanWishedDirection = defaultDirection;
 
-    lastPacmanDirection = pacmanSpritesByDirection[defaultDirection][0];
+    lastPacmanPosition = pacmanSpritesByDirection[defaultDirection][0];
 }
 
+// Function to handle the events related to Pacman
 void pacmanEventHandler()
 {
     SDL_Event event;
     pacmanInputHandler(&event, &pacmanWishedDirection);
 }
 
+// Function to check if Pacman can move in a given direction
 int canPacmanMove(Direction direction)
 {
-    struct Coordinates pacmanUIPosCopy = pacmanUIPos;
-    sumCoordinatesWithOffset(&pacmanUIPosCopy, direction, 1);
-    return !isColliding(pacmanUIPosCopy, CELL_SIZE - 1);
+    struct Coordinates newPacmanUIPos = pacmanUIPos;
+    sumCoordinatesWithOffset(&newPacmanUIPos, direction, 1);
+    return !isColliding(newPacmanUIPos, CELL_SIZE - 1);
 }
 
+// Function to draw the Pacman character on the screen
 void pacmanBlit(SDL_Rect srcRect)
 {
     SDL_Rect rect = {pacmanUIPos.x, pacmanUIPos.y, CELL_SIZE, CELL_SIZE};
@@ -51,7 +55,8 @@ void pacmanBlit(SDL_Rect srcRect)
     SDL_BlitScaled(plancheSprites, &srcRect, pWindowSurface, &rect);
 }
 
-struct Coordinates movePacmanOnGrid(struct Coordinates *pacmanUiPos)
+// Function to update the element under Pacman in the maze array
+void updateUnderPacmanGridElement()
 {
     removeElementFromMazeArray(PACMAN);
     MazeObstacles element = getElementFromMazeArray(pacmanGridPos);
@@ -67,58 +72,74 @@ struct Coordinates movePacmanOnGrid(struct Coordinates *pacmanUiPos)
     default:
         break;
     }
+}
 
-    return *pacmanUiPos;
+// Function to get the current animation frame of Pacman
+int getPacmanCurrentAnimationIndex()
+{
+    return (pacmanAnimationCount / ANIMATION_SPEED) % 3;
+}
+
+// Function to update the direction of Pacman if possible
+void updatePacmanDirection(Direction pacmanWishedDirection)
+{
+    // Check if the desired direction for Pacman has changed and if Pacman can move in that direction
+    if (pacmanDirection != pacmanWishedDirection && canPacmanMove(pacmanWishedDirection))
+    {
+        // Update the direction of Pacman
+        pacmanDirection = pacmanWishedDirection;
+    }
+}
+
+// Function to retrieve the appropriate sprite for the current direction and animation frame
+SDL_Rect getPacmanSprite(Direction direction, int animationIndex)
+{
+    return pacmanSpritesByDirection[direction][animationIndex];
 }
 
 // Function to draw the Pacman character on the screen
 void drawPacman()
 {
-// Define a new rectangle for Pacman
-SDL_Rect newPacman = {0, 0, 0, 0};
-// Calculate the current animation frame for Pacman
-int pacmanAnimation = (pacmanAnimationCount / ANIMATION_SPEED) % 3;
+    // Get the current animation frame of Pacman
+    int pacmanAnimation = getPacmanCurrentAnimationIndex();
 
-// Make a copy of the current UI position of Pacman
-struct Coordinates pacmanUIPosCopy = pacmanUIPos;
+    // Update the direction of Pacman if possible
+    updatePacmanDirection(pacmanWishedDirection);
 
-// Check if the desired direction for Pacman has changed and if Pacman can move in that direction
-if (pacmanDirection != pacmanWishedDirection && canPacmanMove(pacmanWishedDirection))
-{
-    // Update the direction of Pacman
-    pacmanDirection = pacmanWishedDirection;
-}
+    // Retrieve the appropriate sprite for the current direction and animation frame
+    SDL_Rect newPacmanPosition = getPacmanSprite(pacmanDirection,pacmanAnimation);
 
-// Retrieve the appropriate sprite for the current direction and animation frame
-newPacman = pacmanSpritesByDirection[pacmanDirection][pacmanAnimation];
+    // Make a copy of the current UI position of Pacman
+    struct Coordinates newPacmanUIPos = pacmanUIPos;
+    // Add an offset to the Pacman's UI position copy based on its direction
+    sumCoordinatesWithOffset(&newPacmanUIPos, pacmanDirection, 1);
 
-// Add an offset to the Pacman's UI position based on its direction
-sumCoordinatesWithOffset(&pacmanUIPosCopy, pacmanDirection, 1);
+    // Check if Pacman is colliding with an obstacle
+    if (isColliding(newPacmanUIPos, CELL_SIZE - 1))
+    {
+        // Restore the previous direction of Pacman and exit the function
+        pacmanBlit(lastPacmanPosition);
+        return;
+    }
+    else
+    {
+        // Get the new grid position of Pacman based on its updated UI position
+        struct Coordinates newPacmanGridPos = getUIToGridPosition(getCellCenter(newPacmanUIPos));
 
-// Check if Pacman is colliding with an obstacle
-if (isColliding(pacmanUIPosCopy, CELL_SIZE - 1))
-{
-    // Restore the previous direction of Pacman and exit the function
-    pacmanBlit(lastPacmanDirection);
-    return;
-}
+        // Check if Pacman has moved to a new grid position
+        if (!isEqual(pacmanGridPos, newPacmanGridPos))
+        {
+            // Update the grid position of Pacman and adjust the UI position accordingly
+            pacmanGridPos = newPacmanGridPos;
+            updateUnderPacmanGridElement();
+        }
 
-// Get the new grid position of Pacman based on its updated UI position
-struct Coordinates newPacmanGridPos = getUIToGridPosition(getCellCenter(pacmanUIPosCopy));
+        // Update the UI position of Pacman
+        pacmanUIPos = newPacmanUIPos;
+        // Update the last direction of Pacman
+        lastPacmanPosition = newPacmanPosition;
 
-// Check if Pacman has moved to a new grid position
-if (!isEqual(pacmanGridPos, newPacmanGridPos))
-{
-    // Update the grid position of Pacman and adjust the UI position accordingly
-    pacmanGridPos = newPacmanGridPos;
-    pacmanUIPosCopy = movePacmanOnGrid(&pacmanUIPosCopy);
-}
-
-// Update the UI position of Pacman
-pacmanUIPos = pacmanUIPosCopy;
-// Update the last direction of Pacman
-lastPacmanDirection = newPacman;
-
-// Draw Pacman on the screen
-pacmanBlit(newPacman);
+        // Draw Pacman on the screen
+        pacmanBlit(newPacmanPosition);
+    }
 }

@@ -14,7 +14,10 @@ void spawnPacman();
 void pacmanEventHandler();
 int canPacmanMove(Direction direction);
 void pacmanBlit(SDL_Rect srcRect);
-struct Coordinates movePacmanOnGrid(struct Coordinates *pacmanUiPos);
+void updateUnderPacmanGridElement();
+int getPacmanCurrentAnimationIndex();
+void updatePacmanDirection(Direction pacmanWishedDirection);
+SDL_Rect getPacmanSprite(Direction direction, int animationIndex);
 void drawPacman();
 
 
