@@ -4,11 +4,25 @@
 SDL_Rect src_footer = {0, 0, 0, 0};
 SDL_Rect footer = {0, HEADER_SCREEN_HEIGHT + MAZE_HEIGHT, TOTAL_SCREEN_WIDTH, FOOTER_SCREEN_HEIGHT};
 
+SDL_Rect src_arrow = {99, 69, 9, 9};
+SDL_Rect arrow = {LIVES_ARROW_X_POSITION, LIVES_ARROW_Y_POSITION, LIVES_ARROW_SIZE, LIVES_ARROW_SIZE};
+
 SDL_Rect destPacmanLives[3] = { 
-    { 0 + PACMAN_LIVES_X_DISPLAY_OFFSET , HEADER_SCREEN_HEIGHT + MAZE_HEIGHT + PACMAN_LIVES_Y_DISPLAY_OFFSET , CELL_SIZE, CELL_SIZE},
-    { 32 + PACMAN_LIVES_X_DISPLAY_OFFSET, HEADER_SCREEN_HEIGHT + MAZE_HEIGHT + PACMAN_LIVES_Y_DISPLAY_OFFSET , CELL_SIZE, CELL_SIZE},
-    { 64 + PACMAN_LIVES_X_DISPLAY_OFFSET, HEADER_SCREEN_HEIGHT + MAZE_HEIGHT + PACMAN_LIVES_Y_DISPLAY_OFFSET , CELL_SIZE, CELL_SIZE}
+    { PACMAN_LIVES_X_DISPLAY_OFFSET , HEADER_SCREEN_HEIGHT + MAZE_HEIGHT + PACMAN_LIVES_Y_DISPLAY_OFFSET , CELL_SIZE, CELL_SIZE},
+    { PACMAN_LIVES_X_DISPLAY_OFFSET + 40, HEADER_SCREEN_HEIGHT + MAZE_HEIGHT + PACMAN_LIVES_Y_DISPLAY_OFFSET , CELL_SIZE, CELL_SIZE},
+    { PACMAN_LIVES_X_DISPLAY_OFFSET + 80, HEADER_SCREEN_HEIGHT + MAZE_HEIGHT + PACMAN_LIVES_Y_DISPLAY_OFFSET , CELL_SIZE, CELL_SIZE}
 };
+
+SDL_Rect livesTextPosition = {LIVES_TEXT_X_POSITION, LIVES_TEXT_Y_POSITION, LETTERS_SIZE, LETTERS_SIZE};
+
+void drawLivesText()
+{
+    // Draw the lives text
+    drawText("LIVES ", livesTextPosition, 15);
+
+    // Draw the arrow
+    SDL_BlitScaled(plancheSprites, &src_arrow, pWindowSurface, &arrow);
+}
 
 void drawPacmanLives()
 {
@@ -35,6 +49,9 @@ void drawGameFooter()
 
     // Draw the black footer onto the window surface
     SDL_BlitScaled(plancheSprites, &src_footer, pWindowSurface, &footer);
+
+    // Draw the lives text
+    drawLivesText();
 
     // Draw pacman lives
     drawPacmanLives();
