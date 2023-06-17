@@ -8,7 +8,7 @@ SDL_Rect alphabetSprites[LETTERS_IN_ALPHABET];
 SDL_Rect alphabetFirstLetter = {45, 301, LETTERS_SIZE, LETTERS_SIZE};
 
 SDL_Rect numbersSprites[10];
-SDL_Rect numbersFirstLetter = {4, 53, NUMBERS_SIZE, NUMBERS_SIZE};
+SDL_Rect firstNumber = {4, 53, NUMBERS_SIZE, NUMBERS_SIZE};
 
 SDL_Rect scoreFirstLetter = {50, 20, LETTERS_SIZE, LETTERS_SIZE};
 
@@ -30,10 +30,16 @@ void stringToSprite(char *string, SDL_Rect *output)
     }
 }
 
+SDL_Rect getNumberToSprite(int number)
+{
+    return numbersSprites[number];
+}
+
 // Initialize the header sprites
 void initHeaderSprites()
 {
     extractSpritesIterativelyWithOffsets(alphabetFirstLetter, alphabetSprites, LETTERS_IN_ALPHABET, LETTERS_X_OFFSET, LETTERS_Y_OFFSET);
+    extractSpritesIterativelyWithOffsets(firstNumber, numbersSprites, NUMBER_OF_NUMBERS, NUMBERS_X_OFFSET, NUMBERS_Y_OFFSET);
 }
 
 // Convert a string to uppercase
