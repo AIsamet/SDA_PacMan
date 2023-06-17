@@ -29,5 +29,4 @@ bool isObstacle(struct Coordinates coordinates);
 bool isColliding(struct Coordinates coordinates, int hitboxOffset);
 void displayMazeInConsole();
 
-
 #endif //SDA_PACMAN_MAZE_H

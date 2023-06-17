@@ -61,7 +61,8 @@ void animateGhosts()
     SDL_BlitScaled(plancheSprites, &ghost_in2, pWindowSurface, &ghost);
 }
 
-void drawGameBackground(){
+void drawGameBackground()
+{
     // Set the color key for transparent pixels in the sprite sheet
     SDL_SetColorKey(plancheSprites, false, 0);
 
@@ -69,7 +70,8 @@ void drawGameBackground(){
     SDL_BlitScaled(plancheSprites, &src_game_bg, pWindowSurface, &game_bg);
 }
 
-void drawGameHeader(){
+void drawGameHeader()
+{
     // Set the color key for transparent pixels in the sprite sheet
     SDL_SetColorKey(plancheSprites, false, 0);
 
@@ -77,7 +79,8 @@ void drawGameHeader(){
     SDL_BlitScaled(plancheSprites, &src_header, pWindowSurface, &header);
 }
 
-void drawGameGraphics(){
+void drawGameGraphics()
+{
     // Draw the information header
     drawGameHeader();
 

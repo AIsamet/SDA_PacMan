@@ -22,5 +22,4 @@ void drawPacman();
 SDL_Rect getWantedDirectionArrowSprite(Direction direction);
 void drawWantedDirectionArrow();
 
-
 #endif //PACMAN_H

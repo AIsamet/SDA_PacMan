@@ -1,5 +1,6 @@
 #include "main/coordinates.h"
 
+
 bool isEqual(struct Coordinates coordinates1, struct Coordinates coordinates2)
 {
     return coordinates1.x == coordinates2.x && coordinates1.y == coordinates2.y;

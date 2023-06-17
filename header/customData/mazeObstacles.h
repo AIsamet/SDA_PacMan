@@ -1,6 +1,7 @@
 #ifndef MAZEOBSTACLES_H
 #define MAZEOBSTACLES_H
 
+
 typedef enum
 {
     EMPTY = 0,

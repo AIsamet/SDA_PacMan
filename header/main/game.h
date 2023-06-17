@@ -7,5 +7,4 @@
 
 void initGameLoop();
 
-
 #endif

@@ -2,8 +2,8 @@
 #include "main/pacman.h"
 
 
-void initGraphics(){
-    
+void initGraphics()
+{    
     // Draw the game background
     drawGameBackground();
 
@@ -17,11 +17,12 @@ void initGraphics(){
     graphicsHandler();
 }
 
-void graphicsHandler(){
+void graphicsHandler()
+{
     bool quit = false;
 
-    while (!quit) {
-
+    while (!quit) 
+    {
         // Start the frame timer
         clock_t frameStartTime = clock();
 

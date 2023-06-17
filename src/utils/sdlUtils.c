@@ -1,5 +1,6 @@
 #include "utils/sdlUtils.h"
 
+
 // Global graphics variables
 SDL_Window* pWindow = NULL;
 SDL_Surface* pWindowSurface = NULL;
@@ -7,7 +8,8 @@ SDL_Surface* plancheSprites = NULL;
 
 void initSDL()
 {
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) 
+    {
         fprintf(stderr, "Echec de l'initialisation de la SDL %s", SDL_GetError());
         return;
     }

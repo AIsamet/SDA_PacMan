@@ -36,7 +36,8 @@ int map_array[27][21] = {
         { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
 };
 
-void copyMapArray() {
+void copyMapArray() 
+{
     for (int i = 0; i < MAZE_HEIGHT_IN_ARRAY ; i++)
     {
         for (int j = 0; j < MAZE_WIDTH_IN_ARRAY; j++)
@@ -46,7 +47,8 @@ void copyMapArray() {
     }
 }
 
-void drawPacGum(SDL_Rect pacGum, SDL_Rect superPacGum) {
+void drawPacGum(SDL_Rect pacGum, SDL_Rect superPacGum) 
+{
     for (int i = 0; i < MAZE_HEIGHT_IN_ARRAY; i++)
     {
         for (int j = 0; j < MAZE_WIDTH_IN_ARRAY; j++)
@@ -67,11 +69,13 @@ void drawPacGum(SDL_Rect pacGum, SDL_Rect superPacGum) {
     }
 }
 
-void generateMaze(){
+void generateMaze()
+{
     drawPacGum(pacGum, superPacGum);
 }
 
-void initMaze() {
+void initMaze() 
+{
     copyMapArray();
     generateMaze();
 }
@@ -93,7 +97,8 @@ struct Coordinates getGridToUIPosition(struct Coordinates gridPos)
 }
 
 
-void drawIntoMaze(SDL_Rect sprite, struct Coordinates positionToDraw, int x, int y, int w, int h) {
+void drawIntoMaze(SDL_Rect sprite, struct Coordinates positionToDraw, int x, int y, int w, int h) 
+{
     SDL_Rect coordinates = {
             .x = positionToDraw.x + x,
             .y = positionToDraw.y + y,
@@ -103,11 +108,13 @@ void drawIntoMaze(SDL_Rect sprite, struct Coordinates positionToDraw, int x, int
     SDL_BlitScaled(plancheSprites, &sprite, pWindowSurface, &coordinates);
 }
 
-int getElementFromMazeArray(struct Coordinates pos) {
+int getElementFromMazeArray(struct Coordinates pos) 
+{
     return newMapArray[pos.y][pos.x];
 }
 
-struct Coordinates searchElementInMazeArray(MazeObstacles element) {
+struct Coordinates searchElementInMazeArray(MazeObstacles element) 
+{
     for (int i = 0; i < MAZE_HEIGHT_IN_ARRAY; i++)
     {
         for (int j = 0; j < MAZE_WIDTH_IN_ARRAY; j++)
@@ -126,7 +133,8 @@ bool isInArrayRange (struct Coordinates pos)
     return pos.x >= 0 && pos.x < MAZE_WIDTH_IN_ARRAY && pos.y >= 0 && pos.y < MAZE_HEIGHT_IN_ARRAY;
 }
 
-void setElementInMazeArray(MazeObstacles element, struct Coordinates pos) {
+void setElementInMazeArray(MazeObstacles element, struct Coordinates pos) 
+{
     if (isInArrayRange(pos))
     {
         newMapArray[pos.y][pos.x] = element;
@@ -142,7 +150,8 @@ void removeElementFromMazeArray(MazeObstacles element)
     }
 }
 
-int getMapArrayValue(int mapArray[27][21] , int x, int y) {
+int getMapArrayValue(int mapArray[27][21] , int x, int y) 
+{
     return mapArray[y][x];
 }
 

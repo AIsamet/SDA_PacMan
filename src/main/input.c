@@ -1,7 +1,8 @@
 #include "main/input.h"
 
 
-void checkKeyboardEvent(bool* quit) {
+void checkKeyboardEvent(bool* quit) 
+{
     int nbKeys;
     const Uint8* keyboardState = SDL_GetKeyboardState(&nbKeys);
     if (keyboardState[SDL_SCANCODE_ESCAPE]) {
@@ -9,7 +10,8 @@ void checkKeyboardEvent(bool* quit) {
     }
 }
 
-void pacmanInputHandler(SDL_Event* event, Direction* pacmanWishedDirection_in) {
+void pacmanInputHandler(SDL_Event* event, Direction* pacmanWishedDirection_in) 
+{
     const Uint8* keys = SDL_GetKeyboardState(NULL);
 
     if (keys[SDL_SCANCODE_LEFT] || keys[SDL_SCANCODE_A])
@@ -22,7 +24,8 @@ void pacmanInputHandler(SDL_Event* event, Direction* pacmanWishedDirection_in) {
         *pacmanWishedDirection_in = DIRECTION_DOWN;
 }
 
-void checkExitEvent(bool* quit, SDL_Event* event) {
+void checkExitEvent(bool* quit, SDL_Event* event) 
+{
     while (SDL_PollEvent(event)) {
         switch (event->type) {
             case SDL_QUIT:
@@ -34,7 +37,8 @@ void checkExitEvent(bool* quit, SDL_Event* event) {
     }
 }
 
-void inputHandler(bool* quit) {
+void inputHandler(bool* quit) 
+{
     SDL_Event event;
     checkExitEvent(quit, &event);
     checkKeyboardEvent(quit);

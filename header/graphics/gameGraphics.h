@@ -27,5 +27,4 @@ void drawGameHeader();
 void drawGameGraphics();
 void maintainFrameRateDelay(clock_t frameStartTime, Uint32 desiredFrameDelayInMs);
 
-
 #endif //GAMEGRAPHICS_H

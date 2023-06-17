@@ -1,6 +1,7 @@
 #ifndef PACMAN_POSITION_H
 #define PACMAN_POSITION_H
 
+
 struct Position
 {
     int x;

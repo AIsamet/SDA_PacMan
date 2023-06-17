@@ -1,5 +1,6 @@
 #include "utils/spriteUtils.h"
 
+
 struct Coordinates getCellCenter(struct Coordinates coordinates)
 {
     struct Coordinates result = {
