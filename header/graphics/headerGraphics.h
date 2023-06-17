@@ -5,9 +5,12 @@
 #include "../main/pacman.h"
 
 
+SDL_Rect getCharSprite(char c);
+void stringToSprite(char *string, SDL_Rect *output);
 void initHeaderSprites();
-SDL_Rect charToAlphabet(char c);
-void stringToAlphabet(char *string, SDL_Rect *output);
+void drawText(char *string, SDL_Rect position, int textSize);
+void drawScoreTitle();
+void toUpperCase(char *string);
 void drawGameHeader();
 
 #endif
