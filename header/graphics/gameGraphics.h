@@ -24,6 +24,7 @@ extern int pacmanAnimationCount;
 void animateGhost();
 void drawGameBackground();
 void drawGameHeader();
+void drawGameFooter();
 void drawGameGraphics();
 void maintainFrameRateDelay(clock_t frameStartTime, Uint32 desiredFrameDelayInMs);
 

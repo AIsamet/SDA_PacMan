@@ -8,6 +8,9 @@ SDL_Rect header = {0, 0, TOTAL_SCREEN_WIDTH, HEADER_SCREEN_HEIGHT};
 SDL_Rect src_game_bg = { 369,3, 168,216 };
 SDL_Rect game_bg = { 0, HEADER_SCREEN_HEIGHT, MAZE_WIDTH, MAZE_HEIGHT };
 
+SDL_Rect src_footer = {0, 0, 0, 0};
+SDL_Rect footer = {0, HEADER_SCREEN_HEIGHT + MAZE_HEIGHT, TOTAL_SCREEN_WIDTH, FOOTER_SCREEN_HEIGHT};
+
 SDL_Rect ghost_r = { 3,123, 16,16 };
 SDL_Rect ghost_l = { 37,123, 16,16 };
 SDL_Rect ghost_d = { 105,123, 16,16 };
@@ -79,6 +82,15 @@ void drawGameHeader()
     SDL_BlitScaled(plancheSprites, &src_header, pWindowSurface, &header);
 }
 
+void drawGameFooter()
+{
+    // Set the color key for transparent pixels in the sprite sheet
+    SDL_SetColorKey(plancheSprites, false, 0);
+
+    // Draw the black footer onto the window surface
+    SDL_BlitScaled(plancheSprites, &src_footer, pWindowSurface, &footer);
+}
+
 void drawGameGraphics()
 {
     // Draw the information header
@@ -86,6 +98,9 @@ void drawGameGraphics()
 
     // Draw the background image onto the window surface
     drawGameBackground();
+
+    // Draw the footer information for pacman lives
+    drawGameFooter();
 
     // Draw maze
     generateMaze();
