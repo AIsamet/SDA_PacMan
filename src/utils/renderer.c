@@ -38,7 +38,7 @@ void graphicsHandler()
         drawGameHeader();
 
         // if 3 seconds have not passed yet
-        if((clock() - gameStartTime) / CLOCKS_PER_SEC < GAME_START_DELAY)
+        if(canGameStart())
         {
             // Draw the start graphics
             drawWaitGraphics();

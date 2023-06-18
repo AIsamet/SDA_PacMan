@@ -71,3 +71,8 @@ void addPacmanLives(int livesToAdd)
 {
     pacmanLives += livesToAdd;
 }
+
+bool canGameStart() 
+{
+    return ((clock() - gameStartTime) / CLOCKS_PER_SEC < GAME_START_DELAY);
+}
