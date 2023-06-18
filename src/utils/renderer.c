@@ -34,8 +34,7 @@ void graphicsHandler()
         // Clear the window surface
         SDL_FillRect(pWindowSurface, 0, 0);
 
-        // if 3 seconds have not passed yet
-        if(canGameStart())
+        if(!canGameStart())
         {
             // Draw the start graphics
             //drawWaitGraphics();
@@ -54,7 +53,7 @@ void graphicsHandler()
         }
 
         // Handle input
-        inputHandler(&quit);
+        exitEventHandler(&quit);
 
         // Update the window surface
         SDL_UpdateWindowSurface(pWindow);

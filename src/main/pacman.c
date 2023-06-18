@@ -48,8 +48,7 @@ void spawnPacman()
 // Function to handle the events related to Pacman
 void pacmanEventHandler()
 {
-    SDL_Event event;
-    pacmanInputHandler(&event, &pacmanWantedDirection);
+    pacmanInputHandler(&pacmanWantedDirection);
 }
 
 // Function to check if Pacman can move in a given direction

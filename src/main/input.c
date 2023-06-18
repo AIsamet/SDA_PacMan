@@ -1,7 +1,7 @@
 #include "main/input.h"
 
-
-void checkKeyboardEvent(bool* quit) 
+// Check if the user pressed the escape key and quit the game if so by setting the quit flag to true
+void checkKeyboardExitEvent(bool* quit) 
 {
     int nbKeys;
     const Uint8* keyboardState = SDL_GetKeyboardState(&nbKeys);
@@ -10,7 +10,30 @@ void checkKeyboardEvent(bool* quit)
     }
 }
 
-void pacmanInputHandler(SDL_Event* event, Direction* pacmanWishedDirection_in) 
+// Check if the user pressed the exit button (window close button) and quit the game if so by setting the quit flag to true
+void checkExitEvent(bool* quit) 
+{
+    SDL_Event event;
+
+    while (SDL_PollEvent(&event)) {
+        switch (event.type) {
+            case SDL_QUIT:
+                *quit = true;
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+void exitEventHandler(bool* quit) 
+{
+    checkExitEvent(quit);
+    checkKeyboardExitEvent(quit);
+}
+
+// Check if the user pressed the arrow keys or WASD keys
+void pacmanInputHandler(Direction* pacmanWishedDirection_in) 
 {
     const Uint8* keys = SDL_GetKeyboardState(NULL);
 
@@ -24,22 +47,11 @@ void pacmanInputHandler(SDL_Event* event, Direction* pacmanWishedDirection_in)
         *pacmanWishedDirection_in = DIRECTION_DOWN;
 }
 
-void checkExitEvent(bool* quit, SDL_Event* event) 
+// Check if the user pressed the enter key to start the game
+void startGameInputHandler(bool* isGameStarted) 
 {
-    while (SDL_PollEvent(event)) {
-        switch (event->type) {
-            case SDL_QUIT:
-                *quit = true;
-                break;
-            default:
-                break;
-        }
-    }
-}
+    const Uint8* keys = SDL_GetKeyboardState(NULL);
 
-void inputHandler(bool* quit) 
-{
-    SDL_Event event;
-    checkExitEvent(quit, &event);
-    checkKeyboardEvent(quit);
+    if (keys[SDL_SCANCODE_RETURN])
+        *isGameStarted = true;
 }
