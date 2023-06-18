@@ -7,13 +7,15 @@ bool isGameStarted = false;
 bool isGameRunning = false;
 bool isGamePaused = false;
 bool isGameOver = false;
+clock_t gameStartTime;
 
 void initGame() 
 {
+    clock_t gameStartTime = clock();
+
     score = DEFAULT_SCORE;
     highScore = DEFAULT_HIGH_SCORE;
-    pacmanLives = PACMAN_LIVES;  
-    isGameStarted = true;  
+    pacmanLives = PACMAN_LIVES;
 }
 
 void initGameLoop() 

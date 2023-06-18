@@ -37,17 +37,18 @@ void graphicsHandler()
         // Draw the game header
         drawGameHeader();
 
-        if(isGameStarted)
+        // if 3 seconds have not passed yet
+        if((clock() - gameStartTime) / CLOCKS_PER_SEC < GAME_START_DELAY)
         {
-            // Draw waiting graphics
-            drawStartGraphics();
+            // Draw the start graphics
+            drawWaitGraphics();
         }
         else
         {
             // Draw the game graphics
             drawGameGraphics();
         }
-        
+
         // Draw the game footer
         drawGameFooter();
 

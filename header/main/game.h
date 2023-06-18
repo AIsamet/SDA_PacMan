@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include "../utils/renderer.h"
 
+extern clock_t gameStartTime;
 extern bool isGameStarted;
 extern bool isGameRunning;
 extern bool isGamePaused;

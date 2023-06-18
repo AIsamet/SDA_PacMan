@@ -66,7 +66,7 @@ void drawGameBackground()
     SDL_BlitScaled(plancheSprites, &src_game_bg, pWindowSurface, &game_bg);
 }
 
-void drawStartGraphics()
+void drawWaitGraphics()
 {
     // Draw the background image onto the window surface
     drawGameBackground();
