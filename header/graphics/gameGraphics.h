@@ -28,6 +28,6 @@ void drawGameHeader();
 void drawGameFooter();
 void drawWaitGraphics();
 void drawGameGraphics();
-void maintainFrameRateDelay(clock_t frameStartTime, Uint32 desiredFrameDelayInMs);
+void maintainFrameRateDelay(clock_t frameStartTime, int frameRate);
 
 #endif //GAMEGRAPHICS_H

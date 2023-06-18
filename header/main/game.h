@@ -22,6 +22,7 @@ void setPacmanLives(int newPacmanLives);
 void addScore(int scoreToAdd);
 void addHighScore(int highScoreToAdd);
 void addPacmanLives(int livesToAdd);
-bool canGameStart();
+bool getIsGameStarted();
+bool getIsGameRunning();
 
 #endif

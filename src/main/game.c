@@ -72,7 +72,17 @@ void addPacmanLives(int livesToAdd)
     pacmanLives += livesToAdd;
 }
 
-bool canGameStart() 
+bool getIsGameStarted() 
 {
     return isGameStarted;
+}
+
+bool getIsGameRunning() 
+{
+    // wait for 3 seconds before starting the game
+    if ((clock() - gameStartTime) / CLOCKS_PER_SEC > GAME_RUNNING_WAIT_DELAY)    
+    {
+        isGameRunning = true;
+    }
+    return isGameRunning;
 }

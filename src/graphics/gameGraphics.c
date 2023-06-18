@@ -100,17 +100,19 @@ void drawGameGraphics()
     pacmanAnimationCount++;
 }
 
-void maintainFrameRateDelay(clock_t frameStartTime, Uint32 desiredFrameDelayInMs)
+// function to maintain a specified frame rate
+void maintainFrameRateDelay(clock_t frameStartTime, int frameRate)
 {
-    // Calculate the duration of the frame
-    clock_t frameEndTime = clock();
-    clock_t frameDuration = frameEndTime - frameStartTime;
-    int64_t frameDurationMs = (frameDuration * 1000) / CLOCKS_PER_SEC;
+    // Calculate the duration of the current frame in milliseconds
+    const int64_t frameDurationMs = (clock() - frameStartTime) * 1000 / CLOCKS_PER_SEC;
+
+    // Calculate the desired frame delay in milliseconds based on the desired frames per second (FPS)
+    const int desiredFrameDelayInMs = 1000 / frameRate;
 
     // Calculate the remaining delay needed to maintain the desired frame rate
-    int64_t remainingDelay = desiredFrameDelayInMs - frameDurationMs;
+    const int64_t remainingDelay = desiredFrameDelayInMs - frameDurationMs;
 
-    // If there is still time remaining, delay the execution
+    // If there is still time remaining before the next frame, delay the execution
     if (remainingDelay > 0)
-        SDL_Delay(SDL_static_cast(Uint32, remainingDelay));
+        SDL_Delay((Uint32)remainingDelay);
 }
