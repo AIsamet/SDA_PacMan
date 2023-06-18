@@ -29,7 +29,7 @@ make
 | Déplacement du personnage principal (Pac-Man)            |  ✅      |
 | Déplacement des fantômes                                |  ➖      |
 | Détection des collisions                                |  ✅      |
-| Système de score                                        |  ➖      |
+| Système de score                                        |  ✅      |
 | Gestion des niveaux                                     |  ❌      |
 | Génération aléatoire des niveaux ou niveaux prédéfinis   |  ❌      |
 | Intégration des sprites et des éléments du jeu           |  ✅      |
@@ -61,7 +61,7 @@ make
 | Objectif                                                | Statut |
 |---------------------------------------------------------|:------:|
 | Intégration d'un menu principal                          |  ❌      |
-| Affichage du score et des vies de Pac-Man                |  ➖      |
+| Affichage du score et des vies de Pac-Man                |  ✅      |
 | Écran de Game Over et de victoire                        |  ❌      |
 
 <br>
