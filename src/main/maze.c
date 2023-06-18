@@ -77,7 +77,6 @@ void drawMazeElements()
 void initMaze() 
 {
     copyMapArray();
-    drawMazeElements();
 }
 
 struct Coordinates getUIToGridPosition(struct Coordinates UIPos)

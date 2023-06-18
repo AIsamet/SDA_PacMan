@@ -12,7 +12,7 @@ void initGraphics()
     // Init common graphics
     initCommonGraphics();
 
-    // Init the maze into the background
+    // Init the maze
     initMaze();
 
     // Init Pacman
