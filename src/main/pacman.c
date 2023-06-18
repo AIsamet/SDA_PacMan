@@ -72,8 +72,10 @@ void updateUnderPacmanGridElement()
     {
     case PAC_GUM:
         setElementInMazeArray(EMPTY, pacmanGridPos);
+        addScore(PAC_GUM_SCORE);
         break;
     case SUPER_PAC_GUM:
+        addScore(SUPER_PAC_GUM_SCORE);
         setElementInMazeArray(EMPTY, pacmanGridPos);
         break;
     default:

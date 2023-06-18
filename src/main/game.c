@@ -46,3 +46,21 @@ void setPacmanLives(int newPacmanLives)
 {
     pacmanLives = newPacmanLives;
 }
+
+void addScore(int scoreToAdd) 
+{
+    score += scoreToAdd;
+
+    if (score > highScore)
+        highScore = score;
+}
+
+void addHighScore(int highScoreToAdd) 
+{
+    highScore += highScoreToAdd;
+}
+
+void addPacmanLives(int livesToAdd) 
+{
+    pacmanLives += livesToAdd;
+}
