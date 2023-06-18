@@ -66,6 +66,18 @@ void drawGameBackground()
     SDL_BlitScaled(plancheSprites, &src_game_bg, pWindowSurface, &game_bg);
 }
 
+void drawStartGraphics()
+{
+    // Draw the background image onto the window surface
+    drawGameBackground();
+
+    // Draw maze
+    drawMazeElements();
+
+    // Spawn pacman
+    spawnPacman();
+}
+
 void drawGameGraphics()
 {
     // Draw the background image onto the window surface

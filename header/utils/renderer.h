@@ -5,6 +5,7 @@
 #include "../graphics/gameGraphics.h"
 #include "../graphics/footerGraphics.h"
 #include "../graphics/headerGraphics.h"
+#include "../main/game.h"
 
 
 void initGraphics();

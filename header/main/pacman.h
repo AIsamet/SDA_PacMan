@@ -11,6 +11,7 @@
 
 
 void initPacman();
+void spawnPacman();
 void pacmanEventHandler();
 int canPacmanMove(Direction direction);
 void pacmanBlit(SDL_Rect srcRect);

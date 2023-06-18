@@ -4,6 +4,11 @@
 #include <stdbool.h>
 #include "../utils/renderer.h"
 
+extern bool isGameStarted;
+extern bool isGameRunning;
+extern bool isGamePaused;
+extern bool isGameOver;
+
 
 void initGame();
 void initGameLoop();

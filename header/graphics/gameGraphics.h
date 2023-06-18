@@ -26,6 +26,7 @@ void animateGhost();
 void drawGameBackground();
 void drawGameHeader();
 void drawGameFooter();
+void drawStartGraphics();
 void drawGameGraphics();
 void maintainFrameRateDelay(clock_t frameStartTime, Uint32 desiredFrameDelayInMs);
 

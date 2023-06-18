@@ -39,6 +39,12 @@ void initPacman()
     lastPacmanPosition = pacmanSpritesByDirection[defaultDirection][0];
 }
 
+void spawnPacman()
+{
+    initPacman();
+    pacmanBlit(lastPacmanPosition);
+}
+
 // Function to handle the events related to Pacman
 void pacmanEventHandler()
 {

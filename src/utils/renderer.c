@@ -37,9 +37,17 @@ void graphicsHandler()
         // Draw the game header
         drawGameHeader();
 
-        // Draw the game graphics
-        drawGameGraphics();
-
+        if(isGameStarted)
+        {
+            // Draw waiting graphics
+            drawStartGraphics();
+        }
+        else
+        {
+            // Draw the game graphics
+            drawGameGraphics();
+        }
+        
         // Draw the game footer
         drawGameFooter();
 
