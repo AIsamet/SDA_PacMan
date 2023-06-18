@@ -5,6 +5,7 @@
 #include "../graphics/gameGraphics.h"
 #include "../graphics/footerGraphics.h"
 #include "../graphics/headerGraphics.h"
+#include "../graphics/mainMenuGraphics.h"
 #include "../main/game.h"
 
 

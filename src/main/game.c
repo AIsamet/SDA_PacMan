@@ -74,5 +74,10 @@ void addPacmanLives(int livesToAdd)
 
 bool canGameStart() 
 {
-    return ((clock() - gameStartTime) / CLOCKS_PER_SEC < GAME_START_DELAY);
+    if((clock() - gameStartTime) / CLOCKS_PER_SEC < GAME_START_DELAY)
+    {
+        isGameStarted = true;
+        return true;
+    }
+    return false;
 }

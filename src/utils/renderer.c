@@ -34,23 +34,24 @@ void graphicsHandler()
         // Clear the window surface
         SDL_FillRect(pWindowSurface, 0, 0);
 
-        // Draw the game header
-        drawGameHeader();
-
         // if 3 seconds have not passed yet
         if(canGameStart())
         {
             // Draw the start graphics
-            drawWaitGraphics();
+            //drawWaitGraphics();
+            drawMainMenuGraphics();
         }
         else
         {
+            // Draw the game header
+            drawGameHeader();
+
             // Draw the game graphics
             drawGameGraphics();
-        }
 
-        // Draw the game footer
-        drawGameFooter();
+            // Draw the game footer
+            drawGameFooter();
+        }
 
         // Handle input
         inputHandler(&quit);
