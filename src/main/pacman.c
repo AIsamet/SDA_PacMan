@@ -15,6 +15,8 @@ SDL_Rect wantedDirectionArrowSpritesByDirection[4] = {
     {25, 301, DIRECTION_ARROW_SIZE, DIRECTION_ARROW_SIZE}, // DOWN
 };
 
+bool isPacmanDead;
+
 SDL_Rect lastPacmanPosition = {0, 0, 0, 0};
 
 struct Coordinates pacmanSpawnPos;
@@ -29,6 +31,7 @@ Direction pacmanWantedDirection;
 // Function to spawn Pacman at the beginning of the game
 void initPacman()
 {
+    bool isPacmanDead = false;
     pacmanSpawnPos = searchElementInMazeArray(PACMAN);
     pacmanGridPos = pacmanSpawnPos;
     pacmanUIPos = getGridToUIPosition(pacmanGridPos);
@@ -67,6 +70,18 @@ void pacmanBlit(SDL_Rect srcRect)
     SDL_BlitScaled(plancheSprites, &srcRect, pWindowSurface, &rect);
 }
 
+void killPacman()
+{
+    removePacmanLives(1);
+    isPacmanDead = true;
+    isGameRunning = false;
+}
+
+void ghostColisionHandler()
+{
+    killPacman();
+}
+
 // Function to update the element under Pacman in the maze array
 void updateUnderPacmanGridElement()
 {
@@ -83,6 +98,8 @@ void updateUnderPacmanGridElement()
         addScore(SUPER_PAC_GUM_SCORE);
         setElementInMazeArray(EMPTY, pacmanGridPos);
         break;
+    case GHOST:
+        ghostColisionHandler();
     default:
         break;
     }
@@ -189,4 +206,9 @@ void drawWantedDirectionArrow()
 
     // Blit the wanted direction arrow sprite on the screen
     SDL_BlitScaled(plancheSprites, &currentDirectionArrowSprite, pWindowSurface, &arrowDestRect);
+}
+
+bool getIsPacmanDead()
+{
+    return isPacmanDead;
 }

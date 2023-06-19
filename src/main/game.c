@@ -72,6 +72,21 @@ void addPacmanLives(int livesToAdd)
     pacmanLives += livesToAdd;
 }
 
+void removeScore(int scoreToRemove) 
+{
+    score -= scoreToRemove;
+}
+
+void removeHighScore(int highScoreToRemove) 
+{
+    highScore -= highScoreToRemove;
+}
+
+void removePacmanLives(int livesToRemove) 
+{
+    pacmanLives -= livesToRemove;
+}
+
 bool getIsGameStarted() 
 {
     return isGameStarted;

@@ -4,6 +4,7 @@
 #include "../main/input.h"
 #include "../main/game.h"
 #include "../main/ghost.h"
+#include "../main/pacman.h"
 #include "../graphics/gameGraphics.h"
 #include "../graphics/footerGraphics.h"
 #include "../graphics/headerGraphics.h"

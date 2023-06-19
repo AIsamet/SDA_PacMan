@@ -15,6 +15,8 @@ void spawnPacman();
 void pacmanEventHandler();
 int canPacmanMove(Direction direction);
 void pacmanBlit(SDL_Rect srcRect);
+void killPacman();
+void ghostColisionHandler();
 void updateUnderPacmanGridElement();
 int getPacmanCurrentAnimationIndex();
 void updatePacmanDirection(Direction pacmanWantedDirection);
@@ -22,5 +24,6 @@ SDL_Rect getPacmanSprite(Direction direction, int animationIndex);
 void drawPacman();
 SDL_Rect getWantedDirectionArrowSprite(Direction direction);
 void drawWantedDirectionArrow();
+bool getIsPacmanDead();
 
 #endif //PACMAN_H

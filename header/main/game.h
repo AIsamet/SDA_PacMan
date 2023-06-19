@@ -22,6 +22,9 @@ void setPacmanLives(int newPacmanLives);
 void addScore(int scoreToAdd);
 void addHighScore(int highScoreToAdd);
 void addPacmanLives(int livesToAdd);
+void removeScore(int scoreToRemove);
+void removeHighScore(int highScoreToRemove);
+void removePacmanLives(int livesToRemove);
 bool getIsGameStarted();
 bool getIsGameRunning();
 
