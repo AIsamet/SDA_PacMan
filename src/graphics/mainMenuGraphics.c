@@ -18,8 +18,15 @@ void drawMainMenuGraphics()
     SDL_BlitScaled(plancheSprites, &src_mainMenuBackground, pWindowSurface, &mainMenuBackground);
     // Draw the logo
     SDL_BlitScaled(plancheSprites, &src_logo, pWindowSurface, &logo);
+
     // Draw the play instruction
+    if (blinkingCounter % TEXT_BLINKING_SPEED)
+    {
     drawText("PRESS ENTER TO PLAY", playInstructionPostion, 20);
+    }
+
     // Draw image
     SDL_BlitScaled(plancheSprites, &src_mainMenuImg, pWindowSurface, &mainMenuImg);
+
+    blinkingCounter++;
 }

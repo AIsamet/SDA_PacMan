@@ -4,6 +4,9 @@
 SDL_Rect src_game_bg = { 369,3, 168,216 };
 SDL_Rect game_bg = { 0, HEADER_SCREEN_HEIGHT, MAZE_WIDTH, MAZE_HEIGHT };
 
+SDL_Rect src_readyImg = { SOURCE_READY_X_POSITION, SOURCE_READY_Y_POSITION, SOURCE_READY_WIDTH, SOURCE_READY_HEIGHT };
+SDL_Rect readyImg = { READY_X_POSITION, READY_Y_POSITION, READY_WIDTH, READY_HEIGHT };
+
 SDL_Rect ghost_r = { 3,123, 16,16 };
 SDL_Rect ghost_l = { 37,123, 16,16 };
 SDL_Rect ghost_d = { 105,123, 16,16 };
@@ -66,6 +69,7 @@ void drawGameBackground()
     SDL_BlitScaled(plancheSprites, &src_game_bg, pWindowSurface, &game_bg);
 }
 
+
 void drawWaitGraphics()
 {
     // Draw the background image onto the window surface
@@ -76,6 +80,12 @@ void drawWaitGraphics()
 
     // Spawn pacman
     spawnPacman();
+
+    // Draw ready image
+    if (blinkingCounter % TEXT_BLINKING_SPEED)
+    {
+    SDL_BlitScaled(plancheSprites, &src_readyImg, pWindowSurface, &readyImg);
+    }
 }
 
 void drawGameGraphics()

@@ -10,6 +10,8 @@ extern SDL_Rect alphabetFirstLetter;
 extern SDL_Rect numbersSprites[];
 extern SDL_Rect numbersFirstNumber;
 
+extern int blinkingCounter;
+
 void initCommonGraphics();
 SDL_Rect getCharToSprite(char c);
 void getStringToSprite(char *string, SDL_Rect *output);
