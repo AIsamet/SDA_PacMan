@@ -9,7 +9,8 @@ typedef enum
     PAC_GUM = 2,
     SUPER_PAC_GUM = 3,
     GHOST_DOOR = 4,
-    PACMAN = 5
+    PACMAN = 5,
+    GHOST = 6
 } MazeObstacles;
 
 #endif //MAZEOBSTACLES_H

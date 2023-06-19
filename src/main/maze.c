@@ -17,10 +17,10 @@ int map_array[27][21] = {
         { 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1 },
         { 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1 },
         { 1, 1, 1, 1, 1, 2, 1, 1, 1, 0, 1, 0, 1, 1, 1, 2, 1, 1, 1, 1, 1 },
-        { 0, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 1, 2, 1, 0, 1, 4, 4, 4, 1, 0, 1, 2, 1, 0, 0, 0, 0 },
+        { 0, 0, 0, 0, 1, 2, 1, 0, 0, 0, 6, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0 },
+        { 0, 0, 0, 0, 1, 2, 1, 0, 1, 1, 4, 1, 1, 0, 1, 2, 1, 0, 0, 0, 0 },
         { 1, 1, 1, 1, 1, 2, 1, 0, 1, 0, 0, 0, 1, 0, 1, 2, 1, 1, 1, 1, 1 },
-        { 0, 0, 0, 0, 0, 2, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2, 0, 0, 0, 0, 0 },
+        { 0, 0, 0, 0, 0, 2, 0, 0, 1, 6, 6, 6, 1, 0, 0, 2, 0, 0, 0, 0, 0 },
         { 1, 1, 1, 1, 1, 2, 1, 0, 1, 1, 1, 1, 1, 0, 1, 2, 1, 1, 1, 1, 1 },
         { 0, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0 },
         { 0, 0, 0, 0, 1, 2, 1, 0, 1, 1, 1, 1, 1, 0, 1, 2, 1, 0, 0, 0, 0 },
@@ -121,6 +121,26 @@ struct Coordinates searchElementInMazeArray(MazeObstacles element)
             if (newMapArray[i][j] == element)
             {
                 return (struct Coordinates){j, i};
+            }
+        }
+    }
+    return (struct Coordinates){-1, -1};
+}
+
+struct Coordinates searchElementInMazeArrayByOccurenceNumber(MazeObstacles element, int occurenceNumber) 
+{
+    int occurence = 0;
+    for (int i = 0; i < MAZE_HEIGHT_IN_ARRAY; i++)
+    {
+        for (int j = 0; j < MAZE_WIDTH_IN_ARRAY; j++)
+        {
+            if (newMapArray[i][j] == element)
+            {
+                occurence++;
+                if (occurence == occurenceNumber)
+                {
+                    return (struct Coordinates){j, i};
+                }
             }
         }
     }

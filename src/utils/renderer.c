@@ -18,6 +18,9 @@ void initGraphics()
     // Init Pacman
     initPacman();
 
+    // Init the ghosts
+    initGhost();
+
     // Use graphicsHandler to render the game
     graphicsHandler();
 }
