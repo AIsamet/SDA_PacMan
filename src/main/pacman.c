@@ -15,8 +15,6 @@ SDL_Rect wantedDirectionArrowSpritesByDirection[4] = {
     {25, 301, DIRECTION_ARROW_SIZE, DIRECTION_ARROW_SIZE}, // DOWN
 };
 
-bool isPacmanDead;
-
 SDL_Rect lastPacmanPosition = {0, 0, 0, 0};
 
 struct Coordinates pacmanSpawnPos;
@@ -73,8 +71,9 @@ void pacmanBlit(SDL_Rect srcRect)
 void killPacman()
 {
     removePacmanLives(1);
-    isPacmanDead = true;
+    resetPacmanPosition();
     isGameRunning = false;
+    gameStartTime = clock();
 }
 
 void ghostColisionHandler()
@@ -208,7 +207,7 @@ void drawWantedDirectionArrow()
     SDL_BlitScaled(plancheSprites, &currentDirectionArrowSprite, pWindowSurface, &arrowDestRect);
 }
 
-bool getIsPacmanDead()
+void resetPacmanPosition()
 {
-    return isPacmanDead;
+    resetElementPositionInMazeArray(PACMAN);
 }

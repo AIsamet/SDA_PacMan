@@ -13,6 +13,7 @@ extern bool isGameOver;
 
 void initGame();
 void initGameLoop();
+void startGameLoop();
 int getScore();
 int getHighScore();
 int getPacmanLives();

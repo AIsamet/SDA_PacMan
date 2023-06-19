@@ -107,9 +107,29 @@ void drawIntoMaze(SDL_Rect sprite, struct Coordinates positionToDraw, int x, int
     SDL_BlitScaled(plancheSprites, &sprite, pWindowSurface, &coordinates);
 }
 
+int getElementFromOriginalArray(struct Coordinates pos) 
+{
+    return map_array[pos.y][pos.x];
+}
+
 int getElementFromMazeArray(struct Coordinates pos) 
 {
     return newMapArray[pos.y][pos.x];
+}
+
+struct Coordinates searchElementInOriginalArray(MazeObstacles element) 
+{
+    for (int i = 0; i < MAZE_HEIGHT_IN_ARRAY; i++)
+    {
+        for (int j = 0; j < MAZE_WIDTH_IN_ARRAY; j++)
+        {
+            if (map_array[i][j] == element)
+            {
+                return (struct Coordinates){j, i};
+            }
+        }
+    }
+    return (struct Coordinates){-1, -1};
 }
 
 struct Coordinates searchElementInMazeArray(MazeObstacles element) 
@@ -208,4 +228,19 @@ void displayMazeInConsole()
         printf("\n");
     }
     printf("\n");
+}
+
+void resetElementPositionInMazeArray(MazeObstacles element)
+{
+    // Get element position in original array
+    struct Coordinates elementPositionInOriginalArray = searchElementInOriginalArray(element);
+    // Get element position in maze array
+    struct Coordinates elementPositionInMazeArray = searchElementInMazeArray(element);
+    // Get default element in elementPositionInMazeArray position in original array
+    MazeObstacles defaultElementInOriginalArray = getElementFromOriginalArray(elementPositionInMazeArray);
+
+    // Set default element from original array in resetted element position in maze array
+    setElementInMazeArray(defaultElementInOriginalArray, elementPositionInMazeArray);
+    // Place element in original array
+    setElementInMazeArray(element, elementPositionInOriginalArray);
 }
