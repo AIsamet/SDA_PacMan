@@ -1,4 +1,4 @@
-#include "graphics/commonGraphics.h"
+#include "../graphics/commonGraphics.h"
 
 
 SDL_Rect alphabetSprites[LETTERS_IN_ALPHABET];
@@ -6,6 +6,8 @@ SDL_Rect alphabetFirstLetter = {ALPHABET_FIRST_LETTER_X_POSITION, ALPHABET_FIRST
 
 SDL_Rect numbersSprites[NUMBER_OF_NUMBERS];
 SDL_Rect numbersFirstNumber = {NUMBERS_FIRST_NUMBER_X_POSITION, NUMBERS_FIRST_NUMBER_Y_POSITION, NUMBERS_SIZE, NUMBERS_SIZE};
+
+int blinkingCounter = 0;
 
 // Get the sprite for a given character
 SDL_Rect getCharToSprite(char c)

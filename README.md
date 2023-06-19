@@ -25,7 +25,7 @@ make
 ## Gameplay et fonctionnalités principales
 | Objectif                                                | Statut |
 |---------------------------------------------------------|:------:|
-| Gestion de la logique du jeu                            |  ❌    |
+| Gestion de la logique du jeu                            |  ➖    |
 | Déplacement du personnage principal (Pac-Man)            |  ✅      |
 | Déplacement des fantômes                                |  ➖      |
 | Détection des collisions                                |  ✅      |
@@ -34,7 +34,7 @@ make
 | Génération aléatoire des niveaux ou niveaux prédéfinis   |  ❌      |
 | Intégration des sprites et des éléments du jeu           |  ✅      |
 | Gestion des power-ups                                   |  ➖      |
-| Intégration d'un système de vies pour Pac-Man           |  ➖      |
+| Intégration d'un système de vies pour Pac-Man           |  ✅      |
 
 <br>
 
@@ -60,7 +60,7 @@ make
 ## Interface utilisateur
 | Objectif                                                | Statut |
 |---------------------------------------------------------|:------:|
-| Intégration d'un menu principal                          |  ❌      |
+| Intégration d'un menu principal                          |  ✅      |
 | Affichage du score et des vies de Pac-Man                |  ✅      |
 | Écran de Game Over et de victoire                        |  ❌      |
 

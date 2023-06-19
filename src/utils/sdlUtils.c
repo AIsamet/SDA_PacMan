@@ -1,4 +1,4 @@
-#include "utils/sdlUtils.h"
+#include "sdlUtils.h"
 
 
 // Global graphics variables

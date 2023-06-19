@@ -1,4 +1,4 @@
-#include "utils/renderer.h"
+#include "renderer.h"
 
 
 void initGraphics()
@@ -12,11 +12,14 @@ void initGraphics()
     // Init common graphics
     initCommonGraphics();
 
-    // Init the maze into the background
+    // Init the maze
     initMaze();
 
     // Init Pacman
     initPacman();
+
+    // Init the ghosts
+    initGhost();
 
     // Use graphicsHandler to render the game
     graphicsHandler();
@@ -34,30 +37,15 @@ void graphicsHandler()
         // Clear the window surface
         SDL_FillRect(pWindowSurface, 0, 0);
 
-        // Draw the game header
-        drawGameHeader();
+        // Start the game loop
+        startGameLoop();
 
-        // if 3 seconds have not passed yet
-        if((clock() - gameStartTime) / CLOCKS_PER_SEC < GAME_START_DELAY)
-        {
-            // Draw the start graphics
-            drawWaitGraphics();
-        }
-        else
-        {
-            // Draw the game graphics
-            drawGameGraphics();
-        }
-
-        // Draw the game footer
-        drawGameFooter();
-
-        // Handle input
-        inputHandler(&quit);
+        // Handle game exit input
+        exitEventHandler(&quit);
 
         // Update the window surface
         SDL_UpdateWindowSurface(pWindow);
         // Delay the frame rate
-        maintainFrameRateDelay(frameStartTime, DELAY);
+        maintainFrameRateDelay(frameStartTime, GAME_FRAMERATE);
     }
 }

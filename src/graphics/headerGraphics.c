@@ -1,4 +1,4 @@
-#include "graphics/headerGraphics.h"
+#include "headerGraphics.h"
 
 
 SDL_Rect src_header = {0, 0, 0, 0}; // To get black background
@@ -10,7 +10,6 @@ SDL_Rect highScoreTitleDrawPosition = {HIGH_SCORE_TITLE_X_POSITION, HIGH_SCORE_T
 SDL_Rect oneUpScoreDrawPosition = {ONE_UP_DRAW_X_POSITION, ONE_UP_DRAW_Y_POSITION, LETTERS_SIZE, LETTERS_SIZE};
 SDL_Rect highScoreDrawPosition = {HIGH_SCORE_DRAW_X_POSITION, HIGH_SCORE_DRAW_Y_POSITION, LETTERS_SIZE, LETTERS_SIZE};
 
-int blinkingCounter = 0;
 
 // Draw the 1UP text
 void draw1UP()

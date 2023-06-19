@@ -1,4 +1,4 @@
-#include "main/pacman.h"
+#include "pacman.h"
 
 
 SDL_Rect pacmanSpritesByDirection[4][3] = {
@@ -29,6 +29,7 @@ Direction pacmanWantedDirection;
 // Function to spawn Pacman at the beginning of the game
 void initPacman()
 {
+    bool isPacmanDead = false;
     pacmanSpawnPos = searchElementInMazeArray(PACMAN);
     pacmanGridPos = pacmanSpawnPos;
     pacmanUIPos = getGridToUIPosition(pacmanGridPos);
@@ -48,8 +49,7 @@ void spawnPacman()
 // Function to handle the events related to Pacman
 void pacmanEventHandler()
 {
-    SDL_Event event;
-    pacmanInputHandler(&event, &pacmanWantedDirection);
+    pacmanInputHandler(&pacmanWantedDirection);
 }
 
 // Function to check if Pacman can move in a given direction
@@ -68,6 +68,19 @@ void pacmanBlit(SDL_Rect srcRect)
     SDL_BlitScaled(plancheSprites, &srcRect, pWindowSurface, &rect);
 }
 
+void killPacman()
+{
+    removePacmanLives(1);
+    resetPacmanPosition();
+    isGameRunning = false;
+    gameStartTime = clock();
+}
+
+void ghostColisionHandler()
+{
+    killPacman();
+}
+
 // Function to update the element under Pacman in the maze array
 void updateUnderPacmanGridElement()
 {
@@ -84,6 +97,8 @@ void updateUnderPacmanGridElement()
         addScore(SUPER_PAC_GUM_SCORE);
         setElementInMazeArray(EMPTY, pacmanGridPos);
         break;
+    case GHOST:
+        ghostColisionHandler();
     default:
         break;
     }
@@ -190,4 +205,9 @@ void drawWantedDirectionArrow()
 
     // Blit the wanted direction arrow sprite on the screen
     SDL_BlitScaled(plancheSprites, &currentDirectionArrowSprite, pWindowSurface, &arrowDestRect);
+}
+
+void resetPacmanPosition()
+{
+    resetElementPositionInMazeArray(PACMAN);
 }

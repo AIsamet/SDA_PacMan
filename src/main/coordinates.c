@@ -1,4 +1,4 @@
-#include "main/coordinates.h"
+#include "coordinates.h"
 
 
 bool isEqual(struct Coordinates coordinates1, struct Coordinates coordinates2)

@@ -1,8 +1,8 @@
 #include <stdbool.h>
-#include "utils/renderer.h"
-#include "main/game.h"
-#include "main/input.h"
-#include "main/level.h"
+#include "../utils/renderer.h"
+#include "game.h"
+#include "input.h"
+#include "level.h"
 
 
 int main(int argc, char** argv) 
