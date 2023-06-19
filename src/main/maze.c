@@ -1,4 +1,4 @@
-#include "main/maze.h"
+#include "maze.h"
 
 
 int newMapArray[27][21];

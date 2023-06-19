@@ -1,4 +1,4 @@
-#include "graphics/headerGraphics.h"
+#include "headerGraphics.h"
 
 
 SDL_Rect src_header = {0, 0, 0, 0}; // To get black background

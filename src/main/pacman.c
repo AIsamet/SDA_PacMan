@@ -1,4 +1,4 @@
-#include "main/pacman.h"
+#include "pacman.h"
 
 
 SDL_Rect pacmanSpritesByDirection[4][3] = {

@@ -1,4 +1,4 @@
-#include "graphics/mainMenuGraphics.h"
+#include "mainMenuGraphics.h"
 
 SDL_Rect src_mainMenuBackground = {0, 0, 0, 0}; // To get black background
 SDL_Rect mainMenuBackground = {0, 0, MAIN_MENU_SCREEN_WIDTH, MAIN_MENU_SCREEN_HEIGHT};

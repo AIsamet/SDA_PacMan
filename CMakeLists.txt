@@ -5,13 +5,12 @@ project(Pacman LANGUAGES C)
 find_package(SDL2 REQUIRED)
 
 file(GLOB_RECURSE SOURCES "src/*.c")
-file(GLOB_RECURSE HEADERS "header/*.h")
+file(GLOB_RECURSE HEADERS "src/*.h")
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
 target_include_directories(${PROJECT_NAME} PRIVATE
         ${SDL2_INCLUDE_DIRS}
-        header
         )
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE "SDL_MAIN_HANDLED")

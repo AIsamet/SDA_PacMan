@@ -1,4 +1,4 @@
-#include "graphics/gameGraphics.h"
+#include "gameGraphics.h"
 
 
 SDL_Rect src_game_bg = { 369,3, 168,216 };

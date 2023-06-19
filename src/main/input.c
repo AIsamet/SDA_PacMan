@@ -1,4 +1,4 @@
-#include "main/input.h"
+#include "input.h"
 
 // Check if the user pressed the escape key and quit the game if so by setting the quit flag to true
 void checkKeyboardExitEvent(bool* quit) 

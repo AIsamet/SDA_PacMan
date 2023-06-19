@@ -1,4 +1,4 @@
-#include "main/game.h"
+#include "game.h"
 
 int score;
 int highScore;

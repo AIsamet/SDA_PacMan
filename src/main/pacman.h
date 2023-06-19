@@ -5,9 +5,9 @@
 #include "../customData/mazeObstacles.h"
 #include "../graphics/gameGraphics.h"
 #include "../utils/spriteUtils.h"
-#include "main/coordinates.h"
-#include "main/maze.h"
-#include "main/input.h"
+#include "coordinates.h"
+#include "maze.h"
+#include "input.h"
 
 
 void initPacman();

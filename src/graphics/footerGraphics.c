@@ -1,4 +1,4 @@
-#include "graphics/footerGraphics.h"
+#include "footerGraphics.h"
 
 
 SDL_Rect src_footer = {0, 0, 0, 0};

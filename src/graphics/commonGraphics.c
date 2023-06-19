@@ -1,4 +1,4 @@
-#include "graphics/commonGraphics.h"
+#include "../graphics/commonGraphics.h"
 
 
 SDL_Rect alphabetSprites[LETTERS_IN_ALPHABET];

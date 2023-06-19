@@ -1,4 +1,4 @@
-#include "main/ghost.h"
+#include "ghost.h"
 
 // First index is the ghost color, second index is the direction
 SDL_Rect ghostSpritesByDirection[4][4];

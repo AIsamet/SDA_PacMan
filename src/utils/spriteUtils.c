@@ -1,4 +1,4 @@
-#include "utils/spriteUtils.h"
+#include "spriteUtils.h"
 
 
 struct Coordinates getCellCenter(struct Coordinates coordinates)
