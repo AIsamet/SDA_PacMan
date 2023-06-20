@@ -15,6 +15,12 @@ SDL_Rect wantedDirectionArrowSpritesByDirection[4] = {
     {25, 301, DIRECTION_ARROW_SIZE, DIRECTION_ARROW_SIZE}, // DOWN
 };
 
+SDL_Rect pacmanDeathSprites[10];
+SDL_Rect firstPacmanDeathSpritesPostion = {4, 106, PACMAN_SIZE, PACMAN_SIZE};
+
+extractSpritesIterativelyWithOffsets(firstPacmanDeathSpritesPostion, pacmanDeathSprites, 10, 17, 0)
+
+
 SDL_Rect lastPacmanPosition = {0, 0, 0, 0};
 
 struct Coordinates pacmanSpawnPos;
