@@ -18,9 +18,6 @@ SDL_Rect wantedDirectionArrowSpritesByDirection[4] = {
 SDL_Rect pacmanDeathSprites[10];
 SDL_Rect firstPacmanDeathSpritesPostion = {4, 106, PACMAN_SIZE, PACMAN_SIZE};
 
-extractSpritesIterativelyWithOffsets(firstPacmanDeathSpritesPostion, pacmanDeathSprites, 10, 17, 0)
-
-
 SDL_Rect lastPacmanPosition = {0, 0, 0, 0};
 
 struct Coordinates pacmanSpawnPos;
@@ -81,6 +78,8 @@ void killPacman()
     removePacmanLives(1);
     gameStartTime = clock();
     isGameRunning = false;
+    isPacmanDead = true;
+    drawPacmanDeathAnimation();
     resetPacmanPosition();
 }
 
@@ -218,4 +217,15 @@ void drawWantedDirectionArrow()
 void resetPacmanPosition()
 {
     resetElementPositionInMazeArray(PACMAN);
+}
+
+void initPacmanDeathAnimationSprites()
+{
+    // TO BE CHECKED
+    extractSpritesIterativelyWithOffsets(firstPacmanDeathSpritesPostion, pacmanDeathSprites, 10, 17, 0);
+}
+
+void drawPacmanDeathAnimation()
+{
+    // TO DO
 }

@@ -25,5 +25,7 @@ void drawPacman();
 SDL_Rect getWantedDirectionArrowSprite(Direction direction);
 void drawWantedDirectionArrow();
 void resetPacmanPosition();
+void initPacmanDeathAnimationSprites();
+void drawPacmanDeathAnimation();
 
 #endif //PACMAN_H
