@@ -32,11 +32,14 @@ void drawMainMenuGraphics()
 }
 
 void startMainMenu()
-{
+{    
     bool mainMenuQuit = false;
 
     while (!mainMenuQuit)
     {
+        // Init game graphics
+        initGraphics();
+
         // Start the frame timer
         clock_t frameStartTime = clock();
 

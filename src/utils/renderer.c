@@ -3,12 +3,6 @@
 
 void initGraphics()
 {   
-    // Init SDL 
-    initSDL();
-
-    // Init SDL game window
-    initWindow();
-
     // Init common graphics
     initCommonGraphics();
 

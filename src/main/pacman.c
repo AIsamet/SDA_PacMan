@@ -73,7 +73,8 @@ void pacmanBlit(SDL_Rect srcRect)
 void killPacman()
 {
     removePacmanLives(1);
-    isPacmanDead = true;
+    gameStartTime = clock();
+    isGameRunning = false;
     resetPacmanPosition();
 }
 
@@ -206,11 +207,6 @@ void drawWantedDirectionArrow()
 
     // Blit the wanted direction arrow sprite on the screen
     SDL_BlitScaled(plancheSprites, &currentDirectionArrowSprite, pWindowSurface, &arrowDestRect);
-}
-
-bool getIsPacmanDead()
-{
-    return isPacmanDead;
 }
 
 void resetPacmanPosition()

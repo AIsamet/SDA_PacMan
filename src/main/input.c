@@ -55,7 +55,6 @@ void mainMenuInputHandler(bool *mainMenuQuit_in)
     if (keys[SDL_SCANCODE_RETURN])
     {
         startGame();
-        *mainMenuQuit_in = true;
     }
     else
     {

@@ -1,21 +1,25 @@
 #include "game.h"
 
 int score;
-int highScore;
 int pacmanLives;
-bool isGameStarted = false;
-bool isGameRunning = false;
-bool isGamePaused = false;
-bool isGameOver = false;
+int highScore = DEFAULT_HIGH_SCORE;
+bool isGameStarted;
+bool isGameRunning;
+bool isGamePaused;
+bool isGameOver;
 clock_t gameStartTime;
 
 void initGame() 
 {
-    clock_t gameStartTime = clock();
+    bool isGameStarted = false;
+    bool isGameRunning = false;
+    bool isGamePaused = false;
+    bool isGameOver = false;
 
     score = DEFAULT_SCORE;
-    highScore = DEFAULT_HIGH_SCORE;
     pacmanLives = PACMAN_LIVES;
+
+     clock_t gameStartTime = clock();
 }
 
 void initGameLoop() 
