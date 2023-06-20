@@ -26,6 +26,8 @@ Direction defaultDirection = DIRECTION_RIGHT;
 Direction pacmanDirection;
 Direction pacmanWantedDirection;
 
+bool isPacmanDead = false;
+
 // Function to spawn Pacman at the beginning of the game
 void initPacman()
 {
@@ -71,9 +73,8 @@ void pacmanBlit(SDL_Rect srcRect)
 void killPacman()
 {
     removePacmanLives(1);
+    isPacmanDead = true;
     resetPacmanPosition();
-    isGameRunning = false;
-    gameStartTime = clock();
 }
 
 void ghostColisionHandler()
@@ -205,6 +206,11 @@ void drawWantedDirectionArrow()
 
     // Blit the wanted direction arrow sprite on the screen
     SDL_BlitScaled(plancheSprites, &currentDirectionArrowSprite, pWindowSurface, &arrowDestRect);
+}
+
+bool getIsPacmanDead()
+{
+    return isPacmanDead;
 }
 
 void resetPacmanPosition()

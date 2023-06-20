@@ -7,5 +7,6 @@
 
 
 void drawMainMenuGraphics();
+void startMainMenu();
 
 #endif

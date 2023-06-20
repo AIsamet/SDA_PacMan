@@ -78,3 +78,44 @@ void maintainFrameRateDelay(clock_t frameStartTime, int frameRate)
     if (remainingDelay > 0)
         SDL_Delay((Uint32)remainingDelay);
 }
+
+void startGameGraphics()
+{
+    bool gameQuit = false;
+
+    while (!getIsGameOver() && !gameQuit)
+    {
+
+        // Start the frame timer
+        clock_t frameStartTime = clock();
+
+        // Clear the window surface
+        SDL_FillRect(pWindowSurface, 0, 0);
+      
+        // Draw the game header
+        drawGameHeader();
+
+        // Check if the game is running or not
+        if (!getIsGameRunning())
+        {
+            // Draw waiting screen if the game is not running
+            drawWaitGraphics();
+        }
+        else
+        {
+            // Draw the game graphics if the game is running
+            drawGameGraphics();
+        }
+        
+        // Draw the game footer
+        drawGameFooter();
+    
+        // Handle game exit input
+        exitEventHandler(&gameQuit);
+
+        // Update the window surface
+        SDL_UpdateWindowSurface(pWindow);
+        // Delay the frame rate
+        maintainFrameRateDelay(frameStartTime, GAME_FRAMERATE);
+    }
+}

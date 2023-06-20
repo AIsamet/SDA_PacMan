@@ -13,7 +13,7 @@ extern bool isGameOver;
 
 void initGame();
 void initGameLoop();
-void startGameLoop();
+void startGame();
 int getScore();
 int getHighScore();
 int getPacmanLives();
@@ -28,5 +28,6 @@ void removeHighScore(int highScoreToRemove);
 void removePacmanLives(int livesToRemove);
 bool getIsGameStarted();
 bool getIsGameRunning();
+bool getIsGameOver();
 
 #endif

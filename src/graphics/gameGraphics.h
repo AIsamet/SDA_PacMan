@@ -29,5 +29,6 @@ void drawGameFooter();
 void drawWaitGraphics();
 void drawGameGraphics();
 void maintainFrameRateDelay(clock_t frameStartTime, int frameRate);
+void startGameGraphics();
 
 #endif //GAMEGRAPHICS_H

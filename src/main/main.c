@@ -7,7 +7,9 @@
 
 int main(int argc, char** argv) 
 {
-    initGameLoop();
+    initGraphics();
+
+    startMainMenu();
 
     freeSDL();
     

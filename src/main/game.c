@@ -21,39 +21,25 @@ void initGame()
 void initGameLoop() 
 {
     initGame();
+}
+
+void resetGameLoop() 
+{
+    isGameRunning = false;
+    isGameStarted = false;
+    gameStartTime = clock();
+  
+    score = DEFAULT_SCORE;
+    highScore = DEFAULT_HIGH_SCORE;
+    pacmanLives = PACMAN_LIVES;
+
     initGraphics();
 }
 
-void startGameLoop() 
+void startGame() 
 {
-    // Draw the main menu if the game has not started
-    if(!getIsGameStarted())
-    {
-        // Draw the main menu graphics
-        drawMainMenuGraphics();
-        // Handle game start input
-        startGameInputHandler(&isGameStarted, &gameStartTime);
-    }
-    else
-    {                    
-        // Draw the game header
-        drawGameHeader();
-
-        // Check if the game is running or not
-        if (!getIsGameRunning())
-        {
-            // Draw waiting screen if the game is not running
-            drawWaitGraphics();
-        }
-        else
-        {
-            // Draw the game graphics if the game is running
-            drawGameGraphics();
-        }
-        
-        // Draw the game footer
-        drawGameFooter();
-    }
+    initGameLoop();
+    startGameGraphics();
 }
 
 int getScore() 
@@ -132,4 +118,17 @@ bool getIsGameRunning()
         isGameRunning = true;
     }
     return isGameRunning;
+}
+
+bool getIsGameOver() 
+{
+    if(getPacmanLives() == 0)
+    {
+        isGameOver = true;
+    }
+    else
+    {
+        isGameOver = false;
+    }
+    return isGameOver;
 }
