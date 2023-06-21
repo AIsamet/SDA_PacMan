@@ -24,10 +24,10 @@ struct Coordinates pacmanSpawnPos;
 struct Coordinates pacmanUIPos = {0, 0};
 struct Coordinates pacmanGridPos = {0, 0};
 
-Direction defaultDirection = DIRECTION_RIGHT;
+const Direction defaultDirection = DIRECTION_RIGHT;
 
-Direction pacmanDirection;
-Direction pacmanWantedDirection;
+Direction pacmanDirection = defaultDirection;
+Direction pacmanWantedDirection = defaultDirection;
 
 bool isPacmanDead = false;
 
@@ -40,9 +40,6 @@ void initPacman()
     pacmanSpawnPos = searchElementInMazeArray(PACMAN);
     pacmanGridPos = pacmanSpawnPos;
     pacmanUIPos = getGridToUIPosition(pacmanGridPos);
-
-    pacmanDirection = defaultDirection;
-    pacmanWantedDirection = defaultDirection;
 
     lastPacmanPosition = pacmanSpritesByDirection[defaultDirection][0];
 }
@@ -78,8 +75,8 @@ void pacmanBlit(SDL_Rect srcRect)
 void killPacman()
 {
     removePacmanLives(1);
-    Timer_reset(&gameStartTime);
-    Timer_start(&gameStartTime);
+    Timer_reset(&gameReadyTimer);
+    Timer_start(&gameReadyTimer);
     resetPacmanPosition();
 }
 

@@ -5,7 +5,7 @@
 #include "../utils/renderer.h"
 #include "../utils/timer.h"
 
-extern struct Timer gameStartTime;
+extern struct Timer gameReadyTimer;
 extern bool isGameStarted;
 extern bool isGameRunning;
 extern bool isGamePaused;

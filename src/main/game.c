@@ -7,7 +7,8 @@ bool isGameStarted;
 bool isGameRunning;
 bool isGamePaused;
 bool isGameOver;
-struct Timer gameStartTime;
+struct Timer gameReadyTimer;
+struct Timer gameOverTimer;
 
 void initGame() 
 {
@@ -22,12 +23,12 @@ void initGame()
 
 void initGameTimers()
 {
-    Timer_init(&gameStartTime, GAME_RUNNING_WAIT_DELAY);
+    Timer_init(&gameReadyTimer, GAME_RUNNING_WAIT_DELAY);
 }
 
 void startGameTimers()
 {
-    Timer_start(&gameStartTime);
+    Timer_start(&gameReadyTimer);
 }
 
 void initGameLoop() 
@@ -40,7 +41,7 @@ void resetGameLoop()
 {
     isGameRunning = false;
     isGameStarted = false;
-    Timer_reset(&gameStartTime);
+    Timer_reset(&gameReadyTimer);
   
     score = DEFAULT_SCORE;
     highScore = DEFAULT_HIGH_SCORE;
@@ -126,7 +127,7 @@ bool getIsGameStarted()
 
 bool getIsGameRunning() 
 {
-    if(Timer_isDone(&gameStartTime))
+    if(Timer_isDone(&gameReadyTimer))
     {
         isGameRunning = true;
     }

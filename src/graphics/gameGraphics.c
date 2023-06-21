@@ -31,6 +31,12 @@ void drawWaitGraphics()
     // Spawn pacman
     spawnPacman();
 
+    // Draw arrow
+    drawWantedDirectionArrow();
+
+    // Get direction input 
+    pacmanEventHandler();
+
     // Spawn the ghosts
     spawnGhost(); // TEST
 
@@ -122,6 +128,6 @@ void startGameGraphics()
         maintainFrameRateDelay(frameStartTime, GAME_FRAMERATE);
 
         // Update the game timer
-        Timer_update(&gameStartTime);
+        Timer_update(&gameReadyTimer);
     }
 }
