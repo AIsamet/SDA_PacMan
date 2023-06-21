@@ -104,7 +104,7 @@ void startGameGraphics()
         drawGameHeader();
 
         // Check if the game is running or not
-        if (!getIsGameRunning())
+        if (gameReadyTimer.isRunning)
         {
             // Draw waiting screen if the game is not running
             drawWaitGraphics();

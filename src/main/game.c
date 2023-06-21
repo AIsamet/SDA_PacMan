@@ -24,6 +24,7 @@ void initGame()
 void initGameTimers()
 {
     Timer_init(&gameReadyTimer, GAME_RUNNING_WAIT_DELAY);
+    Timer_init(&gameOverTimer, GAME_OVER_WAIT_DELAY);
 }
 
 void startGameTimers()
@@ -127,14 +128,6 @@ bool getIsGameStarted()
 
 bool getIsGameRunning() 
 {
-    if(Timer_isDone(&gameReadyTimer))
-    {
-        isGameRunning = true;
-    }
-    else
-    {
-        isGameRunning = false;
-    }
     return isGameRunning;
 }
 
