@@ -34,6 +34,8 @@ bool isPacmanDead = false;
 // Function to spawn Pacman at the beginning of the game
 void initPacman()
 {
+    initPacmanDeathAnimationSprites();
+
     bool isPacmanDead = false;
     pacmanSpawnPos = searchElementInMazeArray(PACMAN);
     pacmanGridPos = pacmanSpawnPos;
@@ -76,10 +78,10 @@ void pacmanBlit(SDL_Rect srcRect)
 void killPacman()
 {
     removePacmanLives(1);
-    gameStartTime = clock();
+    Timer_reset(&gameStartTime);
+    Timer_start(&gameStartTime);
     isGameRunning = false;
     isPacmanDead = true;
-    drawPacmanDeathAnimation();
     resetPacmanPosition();
 }
 
@@ -115,6 +117,11 @@ void updateUnderPacmanGridElement()
 int getPacmanCurrentAnimationIndex()
 {
     return (pacmanAnimationCount / ANIMATION_SPEED) % 3;
+}
+
+int getPacmanCurrentDeathAnimationIndex()
+{
+    return (pacmanDeathAnimationCount / ANIMATION_SPEED) % 10;
 }
 
 // Function to update the direction of Pacman if possible
@@ -227,5 +234,8 @@ void initPacmanDeathAnimationSprites()
 
 void drawPacmanDeathAnimation()
 {
-    // TO DO
+    SDL_Rect pacmanDeathSprite = pacmanDeathSprites[getPacmanCurrentDeathAnimationIndex()];
+    SDL_Rect rect = {pacmanUIPos.x, pacmanUIPos.y + HEADER_SCREEN_HEIGHT, CELL_SIZE, CELL_SIZE};
+    SDL_SetColorKey(plancheSprites, 1, 0);
+    SDL_BlitScaled(plancheSprites, &pacmanDeathSprite, pWindowSurface, &rect);
 }

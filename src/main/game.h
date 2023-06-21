@@ -3,8 +3,9 @@
 #include <SDL2/SDL.h>
 #include <stdbool.h>
 #include "../utils/renderer.h"
+#include "../utils/timer.h"
 
-extern clock_t gameStartTime;
+extern struct Timer gameStartTime;
 extern bool isGameStarted;
 extern bool isGameRunning;
 extern bool isGamePaused;
@@ -12,6 +13,8 @@ extern bool isGameOver;
 
 
 void initGame();
+void initGameTimers();
+void startGameTimers();
 void initGameLoop();
 void startGame();
 int getScore();

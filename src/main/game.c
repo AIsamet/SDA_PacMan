@@ -7,7 +7,7 @@ bool isGameStarted;
 bool isGameRunning;
 bool isGamePaused;
 bool isGameOver;
-clock_t gameStartTime;
+struct Timer gameStartTime;
 
 void initGame() 
 {
@@ -18,20 +18,29 @@ void initGame()
 
     score = DEFAULT_SCORE;
     pacmanLives = PACMAN_LIVES;
+}
 
-     clock_t gameStartTime = clock();
+void initGameTimers()
+{
+    Timer_init(&gameStartTime, GAME_RUNNING_WAIT_DELAY);
+}
+
+void startGameTimers()
+{
+    Timer_start(&gameStartTime);
 }
 
 void initGameLoop() 
 {
     initGame();
+    initGameTimers();
 }
 
 void resetGameLoop() 
 {
     isGameRunning = false;
     isGameStarted = false;
-    gameStartTime = clock();
+    Timer_reset(&gameStartTime);
   
     score = DEFAULT_SCORE;
     highScore = DEFAULT_HIGH_SCORE;
@@ -43,6 +52,7 @@ void resetGameLoop()
 void startGame() 
 {
     initGameLoop();
+    startGameTimers();
     startGameGraphics();
 }
 
@@ -116,10 +126,13 @@ bool getIsGameStarted()
 
 bool getIsGameRunning() 
 {
-    // wait for 3 seconds before starting the game
-    if ((clock() - gameStartTime) / CLOCKS_PER_SEC > GAME_RUNNING_WAIT_DELAY)    
+    if(Timer_isDone(&gameStartTime))
     {
         isGameRunning = true;
+    }
+    else
+    {
+        isGameRunning = false;
     }
     return isGameRunning;
 }

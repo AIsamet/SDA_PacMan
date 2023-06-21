@@ -8,6 +8,7 @@ SDL_Rect src_readyImg = { SOURCE_READY_X_POSITION, SOURCE_READY_Y_POSITION, SOUR
 SDL_Rect readyImg = { READY_X_POSITION, READY_Y_POSITION, READY_WIDTH, READY_HEIGHT };
 
 int pacmanAnimationCount = 0;
+int pacmanDeathAnimationCount = 0;
 
 void drawGameBackground()
 {
@@ -60,6 +61,7 @@ void drawGameGraphics()
     // Get keyboard events
     pacmanEventHandler();
     pacmanAnimationCount++;
+    pacmanDeathAnimationCount++;
 }
 
 // function to maintain a specified frame rate

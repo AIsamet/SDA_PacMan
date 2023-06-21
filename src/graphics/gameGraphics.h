@@ -19,8 +19,8 @@ extern SDL_Rect ghost_d;
 extern SDL_Rect ghost_u;
 extern SDL_Rect ghost;
 
-extern int ghostAnimationCount;
 extern int pacmanAnimationCount;
+extern int pacmanDeathAnimationCount;
 
 void animateGhost();
 void drawGameBackground();
