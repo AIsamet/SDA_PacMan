@@ -117,7 +117,11 @@ void startGameGraphics()
 
         // Update the window surface
         SDL_UpdateWindowSurface(pWindow);
+        
         // Delay the frame rate
         maintainFrameRateDelay(frameStartTime, GAME_FRAMERATE);
+
+        // Update the game timer
+        Timer_update(&gameStartTime);
     }
 }

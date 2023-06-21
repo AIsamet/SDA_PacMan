@@ -80,8 +80,6 @@ void killPacman()
     removePacmanLives(1);
     Timer_reset(&gameStartTime);
     Timer_start(&gameStartTime);
-    isGameRunning = false;
-    isPacmanDead = true;
     resetPacmanPosition();
 }
 
