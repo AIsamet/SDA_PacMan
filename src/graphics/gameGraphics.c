@@ -7,6 +7,9 @@ SDL_Rect game_bg = { 0, HEADER_SCREEN_HEIGHT, MAZE_WIDTH, MAZE_HEIGHT };
 SDL_Rect src_readyImg = { SOURCE_READY_X_POSITION, SOURCE_READY_Y_POSITION, SOURCE_READY_WIDTH, SOURCE_READY_HEIGHT };
 SDL_Rect readyImg = { READY_X_POSITION, READY_Y_POSITION, READY_WIDTH, READY_HEIGHT };
 
+SDL_Rect src_gameOverImg = { SOURCE_GAME_OVER_X_POSITION, SOURCE_GAME_OVER_Y_POSITION, SOURCE_GAME_OVER_WIDTH, SOURCE_GAME_OVER_HEIGHT };
+SDL_Rect gameOverImg = { GAME_OVER_X_POSITION, GAME_OVER_Y_POSITION, GAME_OVER_WIDTH, GAME_OVER_HEIGHT };
+
 int pacmanAnimationCount = 0;
 int pacmanDeathAnimationCount = 0;
 
@@ -17,6 +20,27 @@ void drawGameBackground()
 
     // Draw the background image onto the window surface
     SDL_BlitScaled(plancheSprites, &src_game_bg, pWindowSurface, &game_bg);
+}
+
+void drawGameOverGraphics()
+{
+    // Draw the background image onto the window surface
+    drawGameBackground();
+
+    // Draw maze
+    drawMazeElements();
+
+    // Spawn pacman
+    spawnPacman();
+
+    // Spawn the ghosts
+    spawnGhost(); 
+
+    // Draw game over image
+    if (blinkingCounter % TEXT_BLINKING_SPEED)
+    {
+    SDL_BlitScaled(plancheSprites, &src_gameOverImg, pWindowSurface, &gameOverImg);
+    }
 }
 
 
@@ -130,4 +154,39 @@ void startGameGraphics()
         // Update the game timer
         Timer_update(&gameReadyTimer);
     }
+    
+    if (getIsGameOver())
+    {
+        Timer_start(&gameOverTimer);
+        while (!Timer_isDone(&gameOverTimer))
+        {
+            // Start the frame timer
+        clock_t frameStartTime = clock();
+
+        // Clear the window surface
+        SDL_FillRect(pWindowSurface, 0, 0);
+      
+        // Draw the game header
+        drawGameHeader();
+
+        // Check if the game is running or not
+        drawGameOverGraphics();
+        
+        // Draw the game footer
+        drawGameFooter();
+    
+        // Handle game exit input
+        exitEventHandler(&gameQuit);
+
+        // Update the window surface
+        SDL_UpdateWindowSurface(pWindow);
+        
+        // Delay the frame rate
+        maintainFrameRateDelay(frameStartTime, GAME_FRAMERATE);
+
+        // Update the game timer
+        Timer_update(&gameOverTimer);
+        }
+    }
+
 }

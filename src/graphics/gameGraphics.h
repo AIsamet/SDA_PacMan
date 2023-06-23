@@ -26,6 +26,7 @@ void animateGhost();
 void drawGameBackground();
 void drawGameHeader();
 void drawGameFooter();
+void drawGameOverGraphics();
 void drawWaitGraphics();
 void drawGameGraphics();
 void maintainFrameRateDelay(clock_t frameStartTime, int frameRate);
