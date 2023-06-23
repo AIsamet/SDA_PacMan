@@ -111,12 +111,12 @@ void updateUnderPacmanGridElement()
 // Function to get the current animation frame of Pacman
 int getPacmanCurrentAnimationIndex()
 {
-    return (pacmanAnimationCount / ANIMATION_SPEED) % 3;
+    return (pacmanAnimationCount / MOVE_ANIMATION_SPEED) % 3;
 }
 
 int getPacmanCurrentDeathAnimationIndex()
 {
-    return (pacmanDeathAnimationCount / ANIMATION_SPEED) % 10;
+    return (pacmanDeathAnimationCount / DEATH_ANIMATION_SPEED) % 10;
 }
 
 // Function to update the direction of Pacman if possible
@@ -229,8 +229,12 @@ void initPacmanDeathAnimationSprites()
 
 void drawPacmanDeathAnimation()
 {
-    SDL_Rect pacmanDeathSprite = pacmanDeathSprites[getPacmanCurrentDeathAnimationIndex()];
-    SDL_Rect rect = {pacmanUIPos.x, pacmanUIPos.y + HEADER_SCREEN_HEIGHT, CELL_SIZE, CELL_SIZE};
-    SDL_SetColorKey(plancheSprites, 1, 0);
-    SDL_BlitScaled(plancheSprites, &pacmanDeathSprite, pWindowSurface, &rect);
+    if (getPacmanCurrentDeathAnimationIndex() < 9)
+    {
+        SDL_Rect pacmanDeathSprite = pacmanDeathSprites[getPacmanCurrentDeathAnimationIndex()+1];
+        SDL_Rect rect = {pacmanUIPos.x, pacmanUIPos.y + HEADER_SCREEN_HEIGHT, CELL_SIZE, CELL_SIZE};
+        SDL_SetColorKey(plancheSprites, 1, 0);
+        SDL_BlitScaled(plancheSprites, &pacmanDeathSprite, pWindowSurface, &rect);
+        pacmanDeathAnimationCount++;
+    }
 }

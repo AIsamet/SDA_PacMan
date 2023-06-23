@@ -30,11 +30,8 @@ void drawGameOverGraphics()
     // Draw maze
     drawMazeElements();
 
-    // Spawn pacman
-    spawnPacman();
-
-    // Spawn the ghosts
-    spawnGhost(); 
+    // Draw pacman death animation
+    drawPacmanDeathAnimation();
 
     // Draw game over image
     if (blinkingCounter % TEXT_BLINKING_SPEED)
@@ -42,7 +39,6 @@ void drawGameOverGraphics()
     SDL_BlitScaled(plancheSprites, &src_gameOverImg, pWindowSurface, &gameOverImg);
     }
 }
-
 
 void drawWaitGraphics()
 {
@@ -91,7 +87,6 @@ void drawGameGraphics()
     // Get keyboard events
     pacmanEventHandler();
     pacmanAnimationCount++;
-    pacmanDeathAnimationCount++;
 }
 
 // function to maintain a specified frame rate
