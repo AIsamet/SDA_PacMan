@@ -15,27 +15,31 @@ SDL_Rect wantedDirectionArrowSpritesByDirection[4] = {
     {25, 301, DIRECTION_ARROW_SIZE, DIRECTION_ARROW_SIZE}, // DOWN
 };
 
+SDL_Rect pacmanDeathSprites[10];
+SDL_Rect firstPacmanDeathSpritesPostion = {4, 106, PACMAN_SIZE, PACMAN_SIZE};
+
 SDL_Rect lastPacmanPosition = {0, 0, 0, 0};
 
 struct Coordinates pacmanSpawnPos;
 struct Coordinates pacmanUIPos = {0, 0};
 struct Coordinates pacmanGridPos = {0, 0};
 
-Direction defaultDirection = DIRECTION_RIGHT;
+const Direction defaultDirection = DIRECTION_RIGHT;
 
-Direction pacmanDirection;
-Direction pacmanWantedDirection;
+Direction pacmanDirection = defaultDirection;
+Direction pacmanWantedDirection = defaultDirection;
+
+bool isPacmanDead = false;
 
 // Function to spawn Pacman at the beginning of the game
 void initPacman()
 {
+    initPacmanDeathAnimationSprites();
+
     bool isPacmanDead = false;
     pacmanSpawnPos = searchElementInMazeArray(PACMAN);
     pacmanGridPos = pacmanSpawnPos;
     pacmanUIPos = getGridToUIPosition(pacmanGridPos);
-
-    pacmanDirection = defaultDirection;
-    pacmanWantedDirection = defaultDirection;
 
     lastPacmanPosition = pacmanSpritesByDirection[defaultDirection][0];
 }
@@ -71,9 +75,9 @@ void pacmanBlit(SDL_Rect srcRect)
 void killPacman()
 {
     removePacmanLives(1);
+    Timer_reset(&gameReadyTimer);
+    Timer_start(&gameReadyTimer);
     resetPacmanPosition();
-    isGameRunning = false;
-    gameStartTime = clock();
 }
 
 void ghostColisionHandler()
@@ -107,7 +111,12 @@ void updateUnderPacmanGridElement()
 // Function to get the current animation frame of Pacman
 int getPacmanCurrentAnimationIndex()
 {
-    return (pacmanAnimationCount / ANIMATION_SPEED) % 3;
+    return (pacmanAnimationCount / MOVE_ANIMATION_SPEED) % 3;
+}
+
+int getPacmanCurrentDeathAnimationIndex()
+{
+    return (pacmanDeathAnimationCount / DEATH_ANIMATION_SPEED) % 10;
 }
 
 // Function to update the direction of Pacman if possible
@@ -210,4 +219,22 @@ void drawWantedDirectionArrow()
 void resetPacmanPosition()
 {
     resetElementPositionInMazeArray(PACMAN);
+}
+
+void initPacmanDeathAnimationSprites()
+{
+    // TO BE CHECKED
+    extractSpritesIterativelyWithOffsets(firstPacmanDeathSpritesPostion, pacmanDeathSprites, 10, 17, 0);
+}
+
+void drawPacmanDeathAnimation()
+{
+    if (getPacmanCurrentDeathAnimationIndex() < 9)
+    {
+        SDL_Rect pacmanDeathSprite = pacmanDeathSprites[getPacmanCurrentDeathAnimationIndex()+1];
+        SDL_Rect rect = {pacmanUIPos.x, pacmanUIPos.y + HEADER_SCREEN_HEIGHT, CELL_SIZE, CELL_SIZE};
+        SDL_SetColorKey(plancheSprites, 1, 0);
+        SDL_BlitScaled(plancheSprites, &pacmanDeathSprite, pWindowSurface, &rect);
+        pacmanDeathAnimationCount++;
+    }
 }

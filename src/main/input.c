@@ -48,11 +48,16 @@ void pacmanInputHandler(Direction* pacmanWishedDirection_in)
 }
 
 // Check if the user pressed the enter key to start the game
-void startGameInputHandler(bool* isGameStarted, clock_t* gameStartTime) 
+void mainMenuInputHandler(bool *mainMenuQuit_in) 
 {   
     const Uint8* keys = SDL_GetKeyboardState(NULL);
 
     if (keys[SDL_SCANCODE_RETURN])
-        *isGameStarted = true;
-        *gameStartTime = clock();
+    {
+        startGame();
+    }
+    else
+    {
+        exitEventHandler(mainMenuQuit_in);
+    }
 }

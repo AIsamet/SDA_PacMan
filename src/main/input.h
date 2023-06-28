@@ -4,12 +4,13 @@
 #include <stdbool.h>
 #include "../utils/renderer.h"
 #include "../customData/direction.h"
+#include "../main/game.h"
 
 
 void checkKeyboardExitEvent(bool* quit);
 void checkExitEvent(bool* quit);
 void exitEventHandler(bool* quit);
 void pacmanInputHandler(Direction* pacmanWishedDirection_in);
-void startGameInputHandler(bool* isGameStarted, clock_t* gameStartTime);
+void mainMenuInputHandler(bool *mainMenuQuit_in);
 
 #endif

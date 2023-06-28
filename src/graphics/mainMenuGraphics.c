@@ -30,3 +30,33 @@ void drawMainMenuGraphics()
 
     blinkingCounter++;
 }
+
+void startMainMenu()
+{    
+    bool mainMenuQuit = false;
+
+    while (!mainMenuQuit)
+    {
+        // Init game graphics
+        initGraphics();
+
+        // Start the frame timer
+        clock_t frameStartTime = clock();
+
+        // Clear the window surface
+        SDL_FillRect(pWindowSurface, 0, 0);
+        
+        // Draw the main menu graphics
+        drawMainMenuGraphics();
+
+        // Handle main menu input
+        mainMenuInputHandler(&mainMenuQuit);
+
+        // Update the window surface
+        SDL_UpdateWindowSurface(pWindow);
+        
+        // Delay the frame rate
+        maintainFrameRateDelay(frameStartTime, GAME_FRAMERATE);
+    }
+
+}

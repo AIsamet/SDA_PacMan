@@ -19,15 +19,17 @@ extern SDL_Rect ghost_d;
 extern SDL_Rect ghost_u;
 extern SDL_Rect ghost;
 
-extern int ghostAnimationCount;
 extern int pacmanAnimationCount;
+extern int pacmanDeathAnimationCount;
 
 void animateGhost();
 void drawGameBackground();
 void drawGameHeader();
 void drawGameFooter();
+void drawGameOverGraphics();
 void drawWaitGraphics();
 void drawGameGraphics();
 void maintainFrameRateDelay(clock_t frameStartTime, int frameRate);
+void startGameGraphics();
 
 #endif //GAMEGRAPHICS_H

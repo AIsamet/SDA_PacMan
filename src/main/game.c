@@ -1,59 +1,61 @@
 #include "game.h"
 
 int score;
-int highScore;
 int pacmanLives;
-bool isGameStarted = false;
-bool isGameRunning = false;
-bool isGamePaused = false;
-bool isGameOver = false;
-clock_t gameStartTime;
+int highScore = DEFAULT_HIGH_SCORE;
+bool isGameStarted;
+bool isGameRunning;
+bool isGamePaused;
+bool isGameOver;
+struct Timer gameReadyTimer;
+struct Timer gameOverTimer;
 
 void initGame() 
 {
-    clock_t gameStartTime = clock();
+    bool isGameStarted = false;
+    bool isGameRunning = false;
+    bool isGamePaused = false;
+    bool isGameOver = false;
 
     score = DEFAULT_SCORE;
-    highScore = DEFAULT_HIGH_SCORE;
     pacmanLives = PACMAN_LIVES;
+}
+
+void initGameTimers()
+{
+    Timer_init(&gameReadyTimer, GAME_RUNNING_WAIT_DELAY);
+    Timer_init(&gameOverTimer, GAME_OVER_WAIT_DELAY);
+}
+
+void startGameTimers()
+{
+    Timer_start(&gameReadyTimer);
 }
 
 void initGameLoop() 
 {
     initGame();
+    initGameTimers();
+}
+
+void resetGameLoop() 
+{
+    isGameRunning = false;
+    isGameStarted = false;
+    Timer_reset(&gameReadyTimer);
+  
+    score = DEFAULT_SCORE;
+    highScore = DEFAULT_HIGH_SCORE;
+    pacmanLives = PACMAN_LIVES;
+
     initGraphics();
 }
 
-void startGameLoop() 
+void startGame() 
 {
-    // Draw the main menu if the game has not started
-    if(!getIsGameStarted())
-    {
-        // Draw the main menu graphics
-        drawMainMenuGraphics();
-        // Handle game start input
-        startGameInputHandler(&isGameStarted, &gameStartTime);
-    }
-    else
-    {                    
-        // Draw the game header
-        drawGameHeader();
-
-        // Check if the game is running or not
-        if (!getIsGameRunning())
-        {
-            // Draw waiting screen if the game is not running
-            drawWaitGraphics();
-        }
-        else
-        {
-            // Draw the game graphics if the game is running
-            drawGameGraphics();
-        }
-        
-        // Draw the game footer
-        drawGameFooter();
-    }
+    initGameLoop();
+    startGameTimers();
+    startGameGraphics();
 }
 
 int getScore() 
@@ -126,10 +128,18 @@ bool getIsGameStarted()
 
 bool getIsGameRunning() 
 {
-    // wait for 3 seconds before starting the game
-    if ((clock() - gameStartTime) / CLOCKS_PER_SEC > GAME_RUNNING_WAIT_DELAY)    
-    {
-        isGameRunning = true;
-    }
     return isGameRunning;
+}
+
+bool getIsGameOver() 
+{
+    if(getPacmanLives() == 0)
+    {
+        isGameOver = true;
+    }
+    else
+    {
+        isGameOver = false;
+    }
+    return isGameOver;
 }
